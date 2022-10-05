@@ -6,6 +6,7 @@ lvim.builtin.bufferline.active = false
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
+lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 lvim.builtin.breadcrumbs.active = true
@@ -50,7 +51,7 @@ vim.opt.sidescrolloff = 8
 vim.opt.title = true
 vim.opt.fillchars = vim.opt.fillchars + "eob: "
 vim.opt.fillchars:append({
-	stl = " ",
+  stl = " ",
 })
 
 vim.opt.shortmess:append("c")
