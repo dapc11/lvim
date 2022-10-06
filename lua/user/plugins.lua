@@ -29,4 +29,5 @@ lvim.plugins = {
         ]])
     end,
   },
+  "tpope/vim-unimpaired",
 }

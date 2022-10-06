@@ -1,4 +1,33 @@
 lvim.leader = "space"
+
+local function map_utils(rhs, opts)
+  opts = opts or {}
+  local callback = nil
+  if type(rhs) ~= "string" then
+    callback = rhs
+  end
+
+  opts = vim.tbl_extend("keep", opts, {
+    noremap = true,
+    silent = true,
+    expr = false,
+    callback = callback,
+  })
+  return rhs, opts
+end
+
+local function map(mode, lhs, rhs, opts)
+  local r, o = map_utils(rhs, opts)
+  vim.keymap.set(mode, lhs, r, o)
+end
+
+map("n", "<", "]", { noremap = false })
+map("o", "<", "]", { noremap = false })
+map("x", "<", "]", { noremap = false })
+map("n", ">", "[", { noremap = false })
+map("o", ">", "[", { noremap = false })
+map("x", ">", "[", { noremap = false })
+
 lvim.keys.command_mode["<C-a>"] = "<Home>"
 lvim.keys.command_mode["<C-BS>"] = "<C-W>"
 lvim.keys.command_mode["<C-e>"] = "<End>"
@@ -9,7 +38,6 @@ lvim.keys.command_mode["<M-Right>"] = "<S-Right>"
 lvim.keys.insert_mode["<C-a>"] = "<home>"
 lvim.keys.insert_mode["<C-e>"] = "<end>"
 lvim.keys.insert_mode["<C-v>"] = "<esc>pa"
-lvim.keys.normal_mode["<"] = "]"
 lvim.keys.normal_mode["<A-a>"] = "<C-a>"
 lvim.keys.normal_mode["<A-x>"] = "<C-x>"
 lvim.keys.normal_mode["<C-Down>"] = "<C-W>j"
@@ -27,20 +55,26 @@ lvim.keys.normal_mode["<S-Down>"] = ":m .+1<CR>=="
 lvim.keys.normal_mode["<S-Left>"] = ":tabprevious<CR>"
 lvim.keys.normal_mode["<S-Right>"] = ":tabnext<CR>"
 lvim.keys.normal_mode["<S-Up>"] = ":m .-2<CR>=="
-lvim.keys.normal_mode[">"] = "["
+lvim.keys.normal_mode["<q"] = ":cnext<CR>"
+lvim.keys.normal_mode[">q"] = ":cprevious<CR>"
+lvim.keys.normal_mode["<l"] = ":lnext<CR>"
+lvim.keys.normal_mode[">l"] = ":lprevious<CR>"
+
 lvim.keys.normal_mode["ä"] = "}"
 lvim.keys.normal_mode["ö"] = "{"
 lvim.keys.normal_mode["W"] = ":noautocmd w<CR>"
--- lvim.visual_mode["<A-a>"] = "<C-a>"
--- lvim.visual_mode["<A-x>"] = "<C-x>"
--- lvim.visual_mode["<S-Down>"] = ":m '>+1<CR>gv=gv"
--- lvim.visual_mode["<S-Up>"] = ":m '<-2<CR>gv=gv"
--- lvim.visual_mode["ä"] = "}"
--- lvim.visual_mode["c"] = '"_c'
--- lvim.visual_mode["c"] = '"_c'
--- lvim.visual_mode["ö"] = "{"
--- lvim.visual_mode["p"] = '"_dP'
--- lvim.visual_mode["s"] = '"zy:Telescope grep_string default_text=<C-r>z<cr>'
--- lvim.keys.visual_block_mode["<"] = "]"
--- lvim.keys.visual_block_mode[">"] = "["
--- lvim.keys.visual_block_mode["p"] = "pgvy"
+lvim.keys.normal_mode["<"] = "]"
+lvim.keys.normal_mode[">"] = "["
+lvim.keys.visual_mode["<A-a>"] = "<C-a>"
+lvim.keys.visual_mode["<A-x>"] = "<C-x>"
+lvim.keys.visual_mode["<S-Down>"] = ":m '>+1<CR>gv=gv"
+lvim.keys.visual_mode["<S-Up>"] = ":m '<-2<CR>gv=gv"
+lvim.keys.visual_mode["ä"] = "}"
+lvim.keys.visual_mode["c"] = '"_c'
+lvim.keys.visual_mode["c"] = '"_c'
+lvim.keys.visual_mode["ö"] = "{"
+lvim.keys.visual_mode["p"] = '"_dP'
+lvim.keys.visual_mode["s"] = '"zy:Telescope grep_string default_text=<C-r>z<cr>'
+lvim.keys.visual_block_mode["<"] = "]"
+lvim.keys.visual_block_mode[">"] = "["
+lvim.keys.visual_block_mode["p"] = "pgvy"
