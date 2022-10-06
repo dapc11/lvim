@@ -20,4 +20,13 @@ lvim.plugins = {
   },
   "dapc11/vim-fugitive",
   "hrsh7th/cmp-cmdline",
+  {
+    "mfussenegger/nvim-treehopper",
+    config = function()
+      vim.cmd([[
+          omap <silent> m :<C-U>lua require('tsht').nodes()<CR>
+          xnoremap <silent> m :lua require('tsht').nodes()<CR>
+        ]])
+    end,
+  },
 }
