@@ -30,4 +30,6 @@ lvim.plugins = {
     end,
   },
   "tpope/vim-unimpaired",
+  "olexsmir/gopher.nvim",
+  "leoluz/nvim-dap-go",
 }
