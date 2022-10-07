@@ -55,6 +55,7 @@ vim.opt.fillchars:append({
 })
 
 vim.opt.shortmess:append("c")
+vim.g.python3_host_prog = "~/.envs/nvim/bin/python3"
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
