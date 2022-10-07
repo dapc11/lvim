@@ -31,7 +31,6 @@ lvim.builtin.which_key.mappings["."] = { '<cmd>lua require("harpoon.ui").nav_nex
 lvim.builtin.which_key.mappings[","] = { '<cmd>lua require("harpoon.ui").nav_prev()<cr>', "Harpoon Prev" }
 lvim.builtin.which_key.mappings["-"] = { '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', "Harpoon UI" }
 
-lvim.builtin.which_key.mappings["gy"] = "Link"
 lvim.builtin.which_key.mappings["r"] = {
   name = "Replace",
   r = { "<cmd>lua require('spectre').open()<cr>", "Replace" },
@@ -100,11 +99,9 @@ lvim.builtin.which_key.mappings["g"] = {
 lvim.builtin.which_key.mappings["l"] = {
   name = "LSP",
   a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-  c = { "<cmd>lua require('user.lsp').server_capabilities()<cr>", "Get Capabilities" },
   f = { "<cmd>lua vim.lsp.buf.format({ async = true })<cr>", "Format" },
   F = { "<cmd>LspToggleAutoFormat<cr>", "Toggle Autoformat" },
   i = { "<cmd>LspInfo<cr>", "Info" },
-  h = { "<cmd>lua require('lsp-inlayhints').toggle()<cr>", "Toggle Hints" },
   H = { "<cmd>IlluminationToggle<cr>", "Toggle Doc HL" },
   I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
   j = {
