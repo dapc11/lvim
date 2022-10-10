@@ -7,8 +7,6 @@ lvim.lsp.diagnostics.virtual_text = {
 lvim.lsp.installer.setup.ensure_installed = {
   "sumeko_lua",
   "jsonls",
-  "pyright",
-  "gopls",
 }
 
 -- lvim.format_on_save = {
@@ -20,7 +18,7 @@ lvim.format_on_save = false
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
   { command = "black", filetypes = { "python" } },
-  { command = "isort", filetypes = { "python" } },
+  { command = "isort", filetypes = { "python" }, extra_args = { "--profile", "black" } },
   { command = "stylua", filetypes = { "lua" } },
   { command = "gofmt", filetypes = { "go" } },
   { command = "goimports", filetypes = { "go" } },
