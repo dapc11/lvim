@@ -62,7 +62,6 @@ local config = {
     "-data",
     workspace_dir,
   },
-  on_attach = require("lvim.lsp").common_on_attach,
   on_init = require("lvim.lsp").common_on_init,
   on_exit = require("lvim.lsp").common_on_exit,
   capabilities = require("lvim.lsp").common_capabilities(),
@@ -138,7 +137,7 @@ config["on_attach"] = function(client, bufnr)
   local _, _ = pcall(vim.lsp.codelens.refresh)
   -- require("jdtls.dap").setup_dap_main_class_configs()
   -- require("jdtls").setup_dap({ hotcodereplace = "auto" })
-  require("lvim.lsp").on_attach(client, bufnr)
+  require("lvim.lsp").common_on_attach(client, bufnr)
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
