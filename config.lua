@@ -1,3 +1,5 @@
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls", "pyright", "gopls" })
+
 require("user.plugins")
 require("user.options")
 require("user.keymaps")

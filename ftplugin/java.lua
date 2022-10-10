@@ -19,7 +19,6 @@ end
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 
 local workspace_dir = WORKSPACE_PATH .. project_name
-local capabilities = require("lvim.lsp").common_capabilities()
 
 local status, jdtls = pcall(require, "jdtls")
 if not status then
@@ -38,10 +37,11 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 local bundles = {}
 local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
 vim.list_extend(bundles, vim.split(vim.fn.glob(mason_path .. "packages/java-test/extension/server/*.jar"), "\n"))
-vim.list_extend(bundles, vim.split(vim.fn.glob(mason_path .. "packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"), "\n"))
+vim.list_extend(bundles,
+  vim.split(vim.fn.glob(mason_path ..
+    "packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"), "\n"))
 
 local config = {
-  capabilities = capabilities,
   cmd = {
     os.getenv("HOME") .. "/.sdkman/candidates/java/17.0.4-oracle/bin/java", -- or '/path/to/java17_or_newer/bin/java'
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -62,6 +62,10 @@ local config = {
     "-data",
     workspace_dir,
   },
+  on_attach = require("lvim.lsp").common_on_attach,
+  on_init = require("lvim.lsp").common_on_init,
+  on_exit = require("lvim.lsp").common_on_exit,
+  capabilities = require("lvim.lsp").common_capabilities(),
   root_dir = root_dir,
   init_options = {
     bundles = bundles,
@@ -132,8 +136,8 @@ local config = {
 
 config["on_attach"] = function(client, bufnr)
   local _, _ = pcall(vim.lsp.codelens.refresh)
-  require("jdtls.dap").setup_dap_main_class_configs()
-  require("jdtls").setup_dap({ hotcodereplace = "auto" })
+  -- require("jdtls.dap").setup_dap_main_class_configs()
+  -- require("jdtls").setup_dap({ hotcodereplace = "auto" })
   require("lvim.lsp").on_attach(client, bufnr)
 end
 
