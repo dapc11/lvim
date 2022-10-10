@@ -22,6 +22,15 @@ lvim.builtin.which_key.mappings["ch"] = { "<cmd>nohlsearch<CR>", "Clear highligh
 lvim.builtin.which_key.mappings["gg"] = { ":LazyGit<CR>", "LazyGit" }
 lvim.builtin.which_key.mappings["gp"] = { ":Git push origin HEAD:refs/for/master<CR>", "Gerrit push" }
 lvim.builtin.which_key.mappings["gP"] = { ":Git push<CR>", "Regular push" }
+vim.cmd([[
+    function ClearQuickfixList()
+        call setqflist([])
+        cclose
+    endfunction
+    command! ClearQuickfixList call ClearQuickfixList()
+]])
+lvim.builtin.which_key.mappings["zz"] = { ":ClearQuickfixList<CR>", "Clear qf" }
+
 lvim.builtin.which_key.mappings["zl"] = { ":nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><c-l>", "Clear highlight search" }
 lvim.builtin.which_key.mappings["zn"] = { ":%s/\\\\n/\\r/g", "Fix literal linebreaks" }
 lvim.builtin.which_key.mappings["zp"] = { ":profile start nvim-profile.log | profile func * | profile file *", "Start profiling" }
