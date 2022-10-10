@@ -43,4 +43,11 @@ local opts = {
   end,
 }
 
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  pattern = { "*.go" },
+  callback = function()
+    local _, _ = pcall(vim.lsp.codelens.refresh)
+  end,
+})
+
 require("lvim.lsp.manager").setup("gopls", opts)
