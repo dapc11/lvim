@@ -1,3 +1,5 @@
+lvim.builtin.cmp.cmdline.enable = true
+
 local cmp_ok, cmp = pcall(require, "cmp")
 if not cmp_ok or cmp == nil then
   cmp = {
@@ -114,21 +116,6 @@ lvim.builtin.cmp.formatting = {
     return vim_item
   end,
 }
-cmp.setup.cmdline(":", {
-  mapping = mapping,
-  sources = {
-    { name = "path" },
-    { name = "cmdline", keyword_length = 2, keyword_pattern = [=[[^[:blank:]\!]*]=] },
-  },
-})
-
-cmp.setup.cmdline("/", {
-  preselect = cmp.PreselectMode.None,
-  mapping = mapping,
-  sources = {
-    { name = "buffer" },
-  },
-})
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype({ "gitcommit" }, {
