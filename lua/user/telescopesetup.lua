@@ -1,8 +1,3 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-  return
-end
-
 local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 local putils = require("telescope.previewers.utils")
@@ -15,7 +10,7 @@ local dropdown_config = {
   },
 }
 
-telescope.setup({
+lvim.builtin.telescope = {
   pickers = {
     lsp_references = {
       theme = "dropdown",
@@ -83,19 +78,11 @@ telescope.setup({
   },
   defaults = {
     prompt_prefix = "   ",
-    selection_caret = "",
-    entry_prefix = "",
     path_display = { "truncate" },
     file_sorter = require("telescope.sorters").get_fuzzy_file,
     generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
     initial_mode = "insert",
     file_ignore_patterns = { "node_modules", "\\.git", ".jar", ".tar.gz", ".zip", ".png", ".jpeg", ".cache" },
-    winblend = 0,
-    -- border = {},
-    -- borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-    color_devicons = true,
-    use_less = true,
-    set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
     vimgrep_arguments = {
       "rg",
       "--no-heading",
@@ -157,4 +144,4 @@ telescope.setup({
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
     },
   },
-})
+}
