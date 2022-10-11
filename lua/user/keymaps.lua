@@ -28,6 +28,12 @@ map("n", ">", "[", { noremap = false })
 map("o", ">", "[", { noremap = false })
 map("x", ">", "[", { noremap = false })
 
+lvim.keys.normal_mode["<Tab>"] = "<C-t>"
+lvim.keys.normal_mode["<S-Tab>"] = "<C-d>"
+lvim.keys.visual_mode["<Tab>"] = ">gv"
+lvim.keys.visual_mode["<S-Tab>"] = "<gv"
+lvim.keys.insert_mode["<S-Tab>"]=  "<C-d>"
+lvim.keys.insert_mode["<Tab>"] =  "<C-t>"
 lvim.keys.command_mode["<C-a>"] = "<Home>"
 lvim.keys.command_mode["<C-BS>"] = "<C-W>"
 lvim.keys.command_mode["<C-e>"] = "<End>"
