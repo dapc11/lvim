@@ -5,7 +5,7 @@ lvim.lsp.diagnostics.virtual_text = {
 }
 
 lvim.lsp.installer.setup.ensure_installed = {
-  "sumeko_lua",
+  "sumneko_lua",
   "jsonls",
 }
 
@@ -44,10 +44,10 @@ linters.setup({
   },
 })
 local null_ls = require("null-ls")
-lvim.lsp.null_ls.setup = {sources = {
+lvim.lsp.null_ls.setup = { sources = {
   null_ls.builtins.code_actions.gitsigns,
   null_ls.builtins.diagnostics.trail_space,
-}}
+} }
 
 --- Golang
 local lsp_manager = require("lvim.lsp.manager")
@@ -91,31 +91,19 @@ gopher.setup({
     iferr = "iferr",
   },
 })
-local status_ok, gopher = pcall(require, "gopher")
-if not status_ok then
-  return
-end
-
-gopher.setup({
-  commands = {
-    go = "go",
-    gomodifytags = "gomodifytags",
-    gotests = "gotests",
-    impl = "impl",
-    iferr = "iferr",
-  },
-})
 --- /Golang
 
-
 --- Python
-local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
-pcall(function() require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python") end)
-
+local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
+pcall(function()
+  require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
+end)
 
 -- Supported test frameworks are unittest, pytest and django. By default it
 -- tries to detect the runner by probing for pytest.ini and manage.py, if
 -- neither are present it defaults to unittest.
-pcall(function() require("dap-python").test_runner = "pytest" end)
+pcall(function()
+  require("dap-python").test_runner = "pytest"
+end)
 
 --- /Python
