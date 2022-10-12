@@ -131,8 +131,8 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = "*",
     command = [[
-			let current_pos = getpos(".")
-			silent! %s/\v\s+$|\n+%$//e
-			silent! call setpos(".", current_pos)
+      let current_pos = getpos(".")
+      silent! %s/\v\s+$|\n+%$//e
+      silent! call setpos(".", current_pos)
 		]],
 })
