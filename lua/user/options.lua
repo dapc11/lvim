@@ -9,9 +9,11 @@ lvim.builtin.terminal.active = true
 lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
+lvim.builtin.nvimtree.setup.diagnostics.enable = false
 lvim.builtin.breadcrumbs.active = true
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.cmp.completion = { completion = { completeopt = "menu,menuone, noinsert" } }
+lvim.builtin.project.patterns["9"] = "ruleset2.0.yaml"
 vim.opt.backup = false -- creates a backup file
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
