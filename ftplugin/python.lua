@@ -1,57 +1,22 @@
--- Mappings
-lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('dap-python').test_method()<cr>", "Test Method" }
-lvim.builtin.which_key.mappings["df"] = { "<cmd>lua require('dap-python').test_class()<cr>", "Test Class" }
-lvim.builtin.which_key.vmappings["d"] = {
-  name = "Debug",
-  s = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection" },
-}
-
 local opts = {
-  root_dir = function(fname)
-    local util = require "lspconfig.util"
-    local root_files = {
-      "pyproject.toml",
-      "setup.py",
-      "setup.cfg",
-      "requirements.txt",
-      "Pipfile",
-      "manage.py",
-      "pyrightconfig.json",
-    }
-    return util.root_pattern(unpack(root_files))(fname) or util.root_pattern ".git"(fname) or util.path.dirname(fname)
-  end,
-  settings = {
-    pyright = {
-      disableLanguageServices = false,
-      disableOrganizeImports = false,
-    },
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = "workspace",
-        useLibraryCodeForTypes = true,
-      },
-    },
+  mode = "n", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+local mappings = {
+  D = {
+    name = "Python Debug",
+    m = { "<cmd>lua require('dap-python').test_method()<cr>", "Test Method"},
+    f = { "<cmd>lua require('dap-python').test_class()<cr>", "Test Class" },
+    s = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection" },
   },
-  single_file_support = true,
-  on_attach = function(client, bufnr)
-    require("lvim.lsp").common_on_attach(client, bufnr)
-    local _, _ = pcall(vim.lsp.codelens.refresh)
-  end,
 }
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.py" },
-  callback = function()
-    local _, _ = pcall(vim.lsp.codelens.refresh)
-  end,
-})
-
-require("lvim.lsp.manager").setup("pyright", opts)
-
-lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('dap-python').test_method()<cr>", "Test Method" }
-lvim.builtin.which_key.mappings["df"] = { "<cmd>lua require('dap-python').test_class()<cr>", "Test Class" }
-lvim.builtin.which_key.vmappings["d"] = {
-  name = "Debug",
-  s = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection" },
-}
+local status_ok, which_key = pcall(require, "which-key")
+if not status_ok then
+  return
+end
+which_key.register({D = "which_key_ignore", L = "which_key_ignore"})
+which_key.register(mappings, opts)

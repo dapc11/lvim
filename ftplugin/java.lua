@@ -202,5 +202,6 @@ local vmappings = {
   },
 }
 
+which_key.register({D = "which_key_ignore", L = "which_key_ignore"})
 which_key.register(mappings, opts)
 which_key.register(vmappings, vopts)
