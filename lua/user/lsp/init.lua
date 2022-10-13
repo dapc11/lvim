@@ -96,6 +96,39 @@ local go_opts = {
   on_attach = function(client, bufnr)
     require("lvim.lsp").common_on_attach(client, bufnr)
     local _, _ = pcall(vim.lsp.codelens.refresh)
+    local opts = {
+      mode = "n", -- NORMAL mode
+      prefix = "<leader>",
+      buffer = bufnr, -- Global mappings. Specify a buffer number for buffer local mappings
+      silent = true, -- use `silent` when creating keymaps
+      noremap = true, -- use `noremap` when creating keymaps
+      nowait = true, -- use `nowait` when creating keymaps
+    }
+    local mappings = {
+      D = {
+        name = "Go Debug",
+        t = { "<cmd>lua require'dap-go'.debug_test()<cr>", "Debug test under cursor" },
+        T = { "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Test" },
+      },
+      L = {
+        name = "Go",
+        i = { "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies" },
+        t = { "<cmd>GoMod tidy<cr>", "Tidy" },
+        a = { "<cmd>GoTestAdd<Cr>", "Add Test" },
+        A = { "<cmd>GoTestsAll<Cr>", "Add All Tests" },
+        e = { "<cmd>GoTestsExp<Cr>", "Add Exported Tests" },
+        g = { "<cmd>GoGenerate<Cr>", "Go Generate" },
+        f = { "<cmd>GoGenerate %<Cr>", "Go Generate File" },
+        c = { "<cmd>GoCmt<Cr>", "Generate Comment" },
+        r = { "<cmd>GoIfErr<Cr>", "Add if err" },
+      },
+    }
+    local status_ok, which_key = pcall(require, "which-key")
+    if not status_ok then
+      return
+    end
+    which_key.register({ D = "which_key_ignore", L = "which_key_ignore" })
+    which_key.register(mappings, opts)
   end,
 }
 
@@ -127,7 +160,7 @@ gopher.setup({
 --- Python
 local python_opts = {
   root_dir = function(fname)
-    local util = require "lspconfig.util"
+    local util = require("lspconfig.util")
     local root_files = {
       "pyproject.toml",
       "setup.py",
@@ -137,7 +170,7 @@ local python_opts = {
       "manage.py",
       "pyrightconfig.json",
     }
-    return util.root_pattern(unpack(root_files))(fname) or util.root_pattern ".git"(fname) or util.path.dirname(fname)
+    return util.root_pattern(unpack(root_files))(fname) or util.root_pattern(".git")(fname) or util.path.dirname(fname)
   end,
   settings = {
     pyright = {
@@ -156,6 +189,28 @@ local python_opts = {
   on_attach = function(client, bufnr)
     require("lvim.lsp").common_on_attach(client, bufnr)
     local _, _ = pcall(vim.lsp.codelens.refresh)
+    local opts = {
+      mode = "n", -- NORMAL mode
+      prefix = "<leader>",
+      buffer = bufnr, -- Global mappings. Specify a buffer number for buffer local mappings
+      silent = true, -- use `silent` when creating keymaps
+      noremap = true, -- use `noremap` when creating keymaps
+      nowait = true, -- use `nowait` when creating keymaps
+    }
+    local mappings = {
+      D = {
+        name = "Python Debug",
+        m = { "<cmd>lua require('dap-python').test_method()<cr>", "Test Method" },
+        f = { "<cmd>lua require('dap-python').test_class()<cr>", "Test Class" },
+        s = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection" },
+      },
+    }
+    local status_ok, which_key = pcall(require, "which-key")
+    if not status_ok then
+      return
+    end
+    which_key.register({ D = "which_key_ignore", L = "which_key_ignore" })
+    which_key.register(mappings, opts)
   end,
 }
 

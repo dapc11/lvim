@@ -138,6 +138,52 @@ config["on_attach"] = function(client, bufnr)
   require("jdtls.dap").setup_dap_main_class_configs()
   require("jdtls").setup_dap({ hotcodereplace = "auto" })
   require("lvim.lsp").common_on_attach(client, bufnr)
+  local opts = {
+    mode = "n", -- NORMAL mode
+    prefix = "<leader>",
+    buffer = bufnr, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = true, -- use `nowait` when creating keymaps
+  }
+
+  local vopts = {
+    mode = "v", -- VISUAL mode
+    prefix = "<leader>",
+    buffer = bufnr, -- Global mappings. Specify a buffer number for buffer local mappings
+    silent = true, -- use `silent` when creating keymaps
+    noremap = true, -- use `noremap` when creating keymaps
+    nowait = true, -- use `nowait` when creating keymaps
+  }
+
+  local mappings = {
+    L = {
+      name = "Java",
+      o = { "<Cmd>lua require'jdtls'.organize_imports()<CR>", "Organize Imports" },
+      v = { "<Cmd>lua require('jdtls').extract_variable()<CR>", "Extract Variable" },
+      c = { "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant" },
+      t = { "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method" },
+      T = { "<Cmd>lua require'jdtls'.test_class()<CR>", "Test Class" },
+      u = { "<Cmd>JdtUpdateConfig<CR>", "Update Config" },
+    },
+  }
+
+  local vmappings = {
+    L = {
+      name = "Java",
+      v = { "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable" },
+      c = { "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant" },
+      m = { "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method" },
+    },
+  }
+
+  local status_ok, which_key = pcall(require, "which-key")
+  if not status_ok then
+    return
+  end
+  which_key.register({ D = "which_key_ignore", L = "which_key_ignore" })
+  which_key.register(mappings, opts)
+  which_key.register(vmappings, vopts)
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -157,51 +203,3 @@ vim.cmd("command! -buffer JdtUpdateConfig lua require('jdtls').update_project_co
 -- vim.cmd "command! -buffer JdtJol lua require('jdtls').jol()"
 vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
 -- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
-
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-  return
-end
-
-local opts = {
-  mode = "n", -- NORMAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
-
-local vopts = {
-  mode = "v", -- VISUAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = true, -- use `noremap` when creating keymaps
-  nowait = true, -- use `nowait` when creating keymaps
-}
-
-local mappings = {
-  L = {
-    name = "Java",
-    o = { "<Cmd>lua require'jdtls'.organize_imports()<CR>", "Organize Imports" },
-    v = { "<Cmd>lua require('jdtls').extract_variable()<CR>", "Extract Variable" },
-    c = { "<Cmd>lua require('jdtls').extract_constant()<CR>", "Extract Constant" },
-    t = { "<Cmd>lua require'jdtls'.test_nearest_method()<CR>", "Test Method" },
-    T = { "<Cmd>lua require'jdtls'.test_class()<CR>", "Test Class" },
-    u = { "<Cmd>JdtUpdateConfig<CR>", "Update Config" },
-  },
-}
-
-local vmappings = {
-  L = {
-    name = "Java",
-    v = { "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable" },
-    c = { "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant" },
-    m = { "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method" },
-  },
-}
-
-which_key.register({D = "which_key_ignore", L = "which_key_ignore"})
-which_key.register(mappings, opts)
-which_key.register(vmappings, vopts)
