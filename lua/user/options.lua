@@ -13,6 +13,7 @@ lvim.builtin.nvimtree.setup.diagnostics.enable = false
 lvim.builtin.breadcrumbs.active = true
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.builtin.cmp.completion = { completion = { completeopt = "menu,menuone, noinsert" } }
+lvim.builtin.project.patterns["9"] = "ruleset2.0.yaml"
 vim.opt.backup = false -- creates a backup file
 vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboard
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
