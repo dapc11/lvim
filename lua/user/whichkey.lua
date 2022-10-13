@@ -109,7 +109,7 @@ lvim.builtin.which_key.mappings["l"] = {
     "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
     "Prev Diagnostic",
   },
-  d = { ":Telescope diagnostics<CR>", "Find diagnostics" },
+  d = { "<cmd> lua require 'telescope.builtin'.diagnostics({bufnr=0})<CR>", "Find diagnostics" },
   v = { "<cmd>lua require('lsp_lines').toggle()<cr>", "Virtual Text" },
   l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
   q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
