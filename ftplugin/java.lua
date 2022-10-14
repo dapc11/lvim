@@ -37,9 +37,13 @@ extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 local bundles = {}
 local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
 vim.list_extend(bundles, vim.split(vim.fn.glob(mason_path .. "packages/java-test/extension/server/*.jar"), "\n"))
-vim.list_extend(bundles,
-  vim.split(vim.fn.glob(mason_path ..
-    "packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"), "\n"))
+vim.list_extend(
+  bundles,
+  vim.split(
+    vim.fn.glob(mason_path .. "packages/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar"),
+    "\n"
+  )
+)
 
 local config = {
   cmd = {
@@ -179,9 +183,9 @@ config["on_attach"] = function(client, bufnr)
 
   local status_ok, which_key = pcall(require, "which-key")
   if not status_ok then
+    print("Couldn't import which-key")
     return
   end
-  which_key.register({ D = "which_key_ignore", L = "which_key_ignore" })
   which_key.register(mappings, opts)
   which_key.register(vmappings, vopts)
 end
@@ -197,8 +201,12 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 -- or attaches to an existing client & server depending on the `root_dir`.
 require("jdtls").start_or_attach(config)
 
-vim.cmd("command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)")
-vim.cmd("command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)")
+vim.cmd(
+  "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
+)
+vim.cmd(
+  "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)"
+)
 vim.cmd("command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()")
 -- vim.cmd "command! -buffer JdtJol lua require('jdtls').jol()"
 vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")

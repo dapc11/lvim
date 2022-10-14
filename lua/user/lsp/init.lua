@@ -44,11 +44,17 @@ linters.setup({
   },
 })
 local null_ls = require("null-ls")
-lvim.lsp.null_ls.setup = { sources = {
-  null_ls.builtins.code_actions.gitsigns,
-  null_ls.builtins.diagnostics.trail_space,
-} }
-
+lvim.lsp.null_ls.setup = {
+  sources = {
+    null_ls.builtins.code_actions.gitsigns,
+    null_ls.builtins.diagnostics.trail_space,
+  },
+}
+local status_ok, which_key = pcall(require, "which-key")
+if not status_ok then
+  print("Couldn't import which-key")
+  return
+end
 --- Golang
 local lsp_manager = require("lvim.lsp.manager")
 lsp_manager.setup("golangci_lint_ls", {
@@ -123,11 +129,6 @@ local go_opts = {
         r = { "<cmd>GoIfErr<Cr>", "Add if err" },
       },
     }
-    local status_ok, which_key = pcall(require, "which-key")
-    if not status_ok then
-      return
-    end
-    which_key.register({ D = "which_key_ignore", L = "which_key_ignore" })
     which_key.register(mappings, opts)
   end,
 }
@@ -205,11 +206,6 @@ local python_opts = {
         s = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection" },
       },
     }
-    local status_ok, which_key = pcall(require, "which-key")
-    if not status_ok then
-      return
-    end
-    which_key.register({ D = "which_key_ignore", L = "which_key_ignore" })
     which_key.register(mappings, opts)
   end,
 }
