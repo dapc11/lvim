@@ -1,10 +1,10 @@
 lvim.log.level = "warn"
-lvim.format_on_save = true
+lvim.format_on_save = false
 lvim.colorscheme = "tokyonight-storm"
 lvim.builtin.alpha.active = true
 lvim.builtin.bufferline.active = false
 lvim.builtin.alpha.mode = "dashboard"
-lvim.builtin.notify.active = true
+lvim.builtin.notify.active = false
 lvim.builtin.terminal.active = true
 lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
