@@ -33,5 +33,18 @@ lvim.plugins = {
   "olexsmir/gopher.nvim",
   "leoluz/nvim-dap-go",
   "mfussenegger/nvim-dap-python",
-  "cuducos/yaml.nvim"
+  "cuducos/yaml.nvim",
+  {
+    "projekt0n/github-nvim-theme",
+    config = function()
+      require("github-theme").setup({
+        theme_style = "dark",
+        overrides = function(c)
+          return {
+            -- htmlTag = { fg = c.red, bg = "#282c34", sp = c.hint, style = "underline" },
+          }
+        end,
+      })
+    end,
+  },
 }

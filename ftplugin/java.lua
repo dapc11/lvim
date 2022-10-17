@@ -22,6 +22,7 @@ local workspace_dir = WORKSPACE_PATH .. project_name
 
 local status, jdtls = pcall(require, "jdtls")
 if not status then
+  print("Failed to load jdtls.")
   return
 end
 

@@ -1,6 +1,6 @@
 lvim.log.level = "warn"
 lvim.format_on_save = false
-lvim.colorscheme = "tokyonight-storm"
+lvim.colorscheme = "github_dimmed"
 lvim.builtin.alpha.active = true
 lvim.builtin.bufferline.active = false
 lvim.builtin.alpha.mode = "dashboard"
