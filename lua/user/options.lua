@@ -1,7 +1,7 @@
 lvim.log.level = "warn"
 lvim.format_on_save = false
 vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-lvim.colorscheme = "catppuccin"
+lvim.colorscheme = "github_dark"
 lvim.builtin.alpha.active = true
 lvim.builtin.bufferline.active = false
 lvim.builtin.alpha.mode = "dashboard"
@@ -13,7 +13,8 @@ lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.diagnostics.enable = false
 lvim.builtin.indentlines.options.show_current_context = false
 lvim.builtin.breadcrumbs.active = true
-lvim.builtin.treesitter.highlight.enabled = false
+lvim.builtin.treesitter.highlight.enabled = true
+lvim.lsp.code_lens_refresh = false
 lvim.builtin.cmp.completion = { completion = { completeopt = "menu,menuone, noinsert" } }
 lvim.builtin.project.patterns["9"] = "ruleset2.0.yaml"
 

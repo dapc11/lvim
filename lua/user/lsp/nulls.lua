@@ -21,7 +21,8 @@ linters.setup({
     command = "flake8",
     filetypes = { "python" },
     extra_args = {
-      "--per-file-ignores=**/test_*:D100,D103",
+      "--per-file-ignores=**/*:D100,D103",
+      "--ignore=E302,E501",
     },
   },
 })
