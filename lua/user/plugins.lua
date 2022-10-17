@@ -11,10 +11,6 @@ lvim.plugins = {
   "kdheepak/lazygit.nvim",
   "junegunn/vim-easy-align",
   {
-    "catppuccin/nvim",
-    as = "catppuccin",
-  },
-  {
     "phaazon/hop.nvim",
     branch = "v2",
   },
@@ -35,16 +31,7 @@ lvim.plugins = {
   "mfussenegger/nvim-dap-python",
   "cuducos/yaml.nvim",
   {
-    "projekt0n/github-nvim-theme",
-    config = function()
-      require("github-theme").setup({
-        theme_style = "dark",
-        overrides = function(c)
-          return {
-            -- htmlTag = { fg = c.red, bg = "#282c34", sp = c.hint, style = "underline" },
-          }
-        end,
-      })
-    end,
+    "catppuccin/nvim",
+    as = "catppuccin",
   },
 }
