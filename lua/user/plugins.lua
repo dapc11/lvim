@@ -33,4 +33,5 @@ lvim.plugins = {
   "olexsmir/gopher.nvim",
   "leoluz/nvim-dap-go",
   "mfussenegger/nvim-dap-python",
+  "cuducos/yaml.nvim"
 }
