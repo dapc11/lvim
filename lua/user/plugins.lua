@@ -43,14 +43,23 @@ lvim.plugins = {
           blue = "#539bf5",
           green = "#57ab5a",
           red = "#f47067",
-          info = "yellow", error = "red", warning = "orange", hint = "bright_blue"
+          info = "#539bf5",
+          error = "#f47067",
+          warning = "#d18616",
+          hint = "#6cb6ff",
+          git = {
+            add = "#57ab5a",
+            change = "#daaa3f",
+            delete = "#f47067",
+            conflict = "#daaa3f",
+            ignore = "#545d68",
+          },
+          git_signs = {
+            add = "#57ab5a",
+            change = "#daaa3f",
+            delete = "#f47067",
+          },
         },
-        overrides = function(c)
-          return {
-            -- htmlTag = { fg = c.red, bg = "#282c34", sp = c.hint, style = "underline" },
-            TelescopeNormal = { fg = c.fg, bg = c.bg },
-          }
-        end,
       })
     end,
   },
