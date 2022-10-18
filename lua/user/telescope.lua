@@ -1,135 +1,123 @@
-local M = {}
+local actions = require("telescope.actions")
+local action_layout = require("telescope.actions.layout")
+local putils = require("telescope.previewers.utils")
+local dropdown_config = {
+  center = {
+    height = 0.4,
+    preview_cutoff = 40,
+    prompt_position = "top",
+    width = 0.7,
+  },
+}
 
-local telescope = require("telescope.builtin")
-local themes = require("telescope.themes")
+lvim.builtin.telescope.pickers = {
+  lsp_references = {
+    theme = "dropdown",
+    initial_mode = "normal",
+    layout_config = dropdown_config,
+  },
+  lsp_definitions = {
+    theme = "dropdown",
+    initial_mode = "normal",
+    layout_config = dropdown_config,
+  },
+  lsp_declarations = {
+    theme = "dropdown",
+    initial_mode = "normal",
+    layout_config = dropdown_config,
+  },
+  diagnostics = {
+    theme = "dropdown",
+    initial_mode = "normal",
+    layout_config = dropdown_config,
+  },
+  lsp_implementations = {
+    theme = "dropdown",
+    initial_mode = "normal",
+    layout_config = dropdown_config,
+  },
+  find_files = {
+    theme = "dropdown",
+    previewer = false,
+    layout_config = dropdown_config,
+  },
+  oldfiles = {
+    theme = "dropdown",
+    previewer = false,
+    layout_config = dropdown_config,
+  },
+  git_files = {
+    theme = "dropdown",
+    previewer = false,
+    layout_config = dropdown_config,
+  },
+  current_buffer_fuzzy_find = {
+    theme = "dropdown",
+    layout_config = dropdown_config,
+  },
+  live_grep = {
+    theme = "dropdown",
+    layout_config = dropdown_config,
+  },
+  buffers = {
+    theme = "dropdown",
+    previewer = false,
+    initial_mode = "normal",
+    layout_config = dropdown_config,
+    mappings = {
+      n = {
+        ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
+        ["dd"] = actions.delete_buffer,
+      },
+      i = {
+        ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
+      },
+    },
+  },
+}
+lvim.builtin.telescope.defaults.prompt_prefix = "   "
+lvim.builtin.telescope.defaults.path_display = { "truncate" }
+lvim.builtin.telescope.file_sorter = require("telescope.sorters").get_fuzzy_file
+lvim.builtin.telescope.generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter
 
-function M.repo_grep()
-	telescope.live_grep({
-		cwd = "~/repos/",
-		path_display = { "truncate", shorten = { len = 1, exclude = { 1, -1 } } },
-		prompt_title = "Repos",
-		layout_config = {
-			height = 0.85,
-			width = 0.75,
-		},
-	})
-end
+lvim.builtin.telescope.defaults.mappings.i = {
+  ["<C-p>"] = action_layout.toggle_preview,
+  ["<C-c>"] = actions.close,
+  ["<esc>"] = actions.close,
+  ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+  ["<s-tab>"] = actions.toggle_selection + actions.move_selection_next,
+  ["<tab>"] = actions.toggle_selection + actions.move_selection_previous,
+  ["<CR>"] = actions.select_default,
+  ["<C-h>"] = actions.select_horizontal,
+  ["<C-v>"] = actions.select_vertical,
+  ["<C-o>"] = actions.select_tab,
+}
+lvim.builtin.telescope.defaults.mappings.n = {
+  ["<C-p>"] = action_layout.toggle_preview,
+  ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+  ["<s-tab>"] = actions.toggle_selection + actions.move_selection_next,
+  ["<tab>"] = actions.toggle_selection + actions.move_selection_previous,
+  ["<C-c>"] = actions.close,
+}
 
-function M.repo_fd()
-	telescope.find_files({
-		cwd = "~/repos/",
-		prompt_title = "Repos",
-		layout_config = {
-			height = 0.85,
-		},
-	})
-end
-
-function M.git_unstaged()
-	telescope.git_files({ git_command = { "git", "ls-files", "--modified", "--exclude-standard" } })
-end
-
-function M.spell_check()
-	telescope.spell_suggest(themes.get_cursor({
-		prompt_title = "",
-		layout_config = {
-			height = 0.25,
-			width = 0.25,
-		},
-	}))
-end
-
-local pickers = require("telescope.pickers")
-local conf = require("telescope.config").values
-local finders = require("telescope.finders")
-local entry_display = require("telescope.pickers.entry_display")
-local make_entry = require("telescope.make_entry")
-
-local function visit_yaml_node(node, name, yaml_path, result, file_path, bufnr)
-	local key = ""
-	if node:type() == "block_mapping_pair" then
-		local field_key = node:field("key")[1]
-		key = vim.treesitter.query.get_node_text(field_key, bufnr)
-	end
-
-	if key ~= nil and string.len(key) > 0 then
-		table.insert(yaml_path, key)
-		local line, col = node:start()
-		table.insert(result, {
-			lnum = line + 1,
-			col = col + 1,
-			bufnr = bufnr,
-			filename = file_path,
-			text = table.concat(yaml_path, "."),
-		})
-	end
-
-	for node, name in node:iter_children() do
-		visit_yaml_node(node, name, yaml_path, result, file_path, bufnr)
-	end
-
-	if key ~= nil and string.len(key) > 0 then
-		table.remove(yaml_path, table.maxn(yaml_path))
-	end
-end
-
-local function gen_from_yaml_nodes(opts)
-	local displayer = entry_display.create({
-		separator = " │ ",
-		items = {
-			{ width = 5 },
-			{ remaining = true },
-		},
-	})
-
-	local make_display = function(entry)
-		return displayer({
-			{ entry.lnum, "TelescopeResultsSpecialComment" },
-			{
-				entry.text,
-				function()
-					return {}
-				end,
-			},
-		})
-	end
-
-	return function(entry)
-		return make_entry.set_default_entry_mt({
-			ordinal = entry.text,
-			display = make_display,
-			filename = entry.filename,
-			lnum = entry.lnum,
-			text = entry.text,
-			col = entry.col,
-		}, opts)
-	end
-end
-
-function M.yaml_find(opts)
-	opts = opts or {}
-	local yaml_path = {}
-	local result = {}
-	local bufnr = vim.api.nvim_get_current_buf()
-	local ft = vim.api.nvim_buf_get_option(bufnr, "ft")
-	local tree = vim.treesitter.get_parser(bufnr, ft):parse()[1]
-	local file_path = vim.api.nvim_buf_get_name(bufnr)
-	local root = tree:root()
-	for node, name in root:iter_children() do
-		visit_yaml_node(node, name, yaml_path, result, file_path, bufnr)
-	end
-
-	-- return result
-	pickers.new(opts, {
-		prompt_title = "YAML symbols",
-		theme = "dropdown",
-		finder = finders.new_table({
-			results = result,
-			entry_maker = opts.entry_maker or gen_from_yaml_nodes(opts),
-		}),
-		sorter = conf.generic_sorter(opts),
-		previewer = conf.grep_previewer(opts),
-	}):find()
-end
-
-return M
+lvim.builtin.telescope.file_previewer = {
+  filetype_hook = function(filepath, bufnr, opts)
+    -- you could analogously check opts.ft for filetypes
+    local excluded = vim.tbl_filter(function(ending)
+      return filepath:match(ending)
+    end, {
+      ".*%.jar",
+      ".*%.tar.gz",
+    })
+    if not vim.tbl_isempty(excluded) then
+      putils.set_preview_message(bufnr, opts.winid, string.format("I don't like %s files!", excluded[1]:sub(5, -1)))
+      return false
+    end
+    return true
+  end,
+  filesize_hook = function(filepath, bufnr, opts)
+    local max_bytes = 10000
+    local cmd = { "head", "-c", max_bytes, filepath }
+    require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
+  end,
+}
