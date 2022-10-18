@@ -39,6 +39,12 @@ lvim.plugins = {
     config = function()
       require("github-theme").setup({
         theme_style = "dark",
+        colors = {
+          blue = "#539bf5",
+          green = "#57ab5a",
+          red = "#f47067",
+          info = "yellow", error = "red", warning = "orange", hint = "bright_blue"
+        },
         overrides = function(c)
           return {
             -- htmlTag = { fg = c.red, bg = "#282c34", sp = c.hint, style = "underline" },
