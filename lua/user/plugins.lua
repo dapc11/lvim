@@ -35,31 +35,10 @@ lvim.plugins = {
   "mfussenegger/nvim-dap-python",
   "cuducos/yaml.nvim",
   {
-    "projekt0n/github-nvim-theme",
+    "dapc11/github-nvim-theme",
     config = function()
       require("github-theme").setup({
         theme_style = "dark",
-        colors = {
-          blue = "#539bf5",
-          green = "#57ab5a",
-          red = "#f47067",
-          info = "#539bf5",
-          error = "#f47067",
-          warning = "#d18616",
-          hint = "#6cb6ff",
-          git = {
-            add = "#57ab5a",
-            change = "#daaa3f",
-            delete = "#f47067",
-            conflict = "#daaa3f",
-            ignore = "#545d68",
-          },
-          git_signs = {
-            add = "#57ab5a",
-            change = "#daaa3f",
-            delete = "#f47067",
-          },
-        },
       })
     end,
   },
