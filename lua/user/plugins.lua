@@ -14,10 +14,6 @@ lvim.plugins = {
     "catppuccin/nvim",
     as = "catppuccin",
   },
-  {
-    "phaazon/hop.nvim",
-    branch = "v2",
-  },
   "dapc11/vim-fugitive",
   "hrsh7th/cmp-cmdline",
   {
@@ -57,6 +53,22 @@ lvim.plugins = {
           mode = "virtualtext", -- Set the display mode.
           virtualtext = "■■■■■",
         },
+      })
+    end,
+  },
+  {
+    "ggandor/leap.nvim",
+    requires = { "tpope/vim-repeat" },
+  },
+  {
+    "ggandor/flit.nvim",
+    requires = { "ggandor/leap.nvim" },
+    config = function()
+      require("flit").setup({
+        keys = { f = "f", F = "F", t = "t", T = "T" },
+        labeled_modes = "v",
+        multiline = true,
+        opts = {},
       })
     end,
   },

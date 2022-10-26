@@ -81,7 +81,6 @@ lvim.keys.visual_mode["c"] = '"_c'
 lvim.keys.visual_mode["c"] = '"_c'
 lvim.keys.visual_mode["ö"] = "{"
 lvim.keys.visual_mode["p"] = '"_dP'
-lvim.keys.visual_mode["s"] = '"zy:Telescope grep_string default_text=<C-r>z<cr>'
 lvim.keys.visual_block_mode["<"] = "]"
 lvim.keys.visual_block_mode[">"] = "["
 lvim.keys.visual_block_mode["p"] = "pgvy"
