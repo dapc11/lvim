@@ -20,8 +20,12 @@ local python_opts = {
     },
     python = {
       analysis = {
+        diagnosticSeverityOverrides = {
+            reportOptionalMemberAccess = "none",
+        },
+        autoImportCompletions = true,
         autoSearchPaths = true,
-        diagnosticMode = "workspace",
+        diagnosticMode = "openFilesOnly",
         useLibraryCodeForTypes = true,
       },
     },
