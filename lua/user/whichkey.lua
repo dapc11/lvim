@@ -1,4 +1,5 @@
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+lvim.builtin.which_key.mappings["o"] = { "<cmd>Telescope find_files<CR>", "Find files" }
 lvim.builtin.which_key.mappings["<leader>"] = {
   ':lua require("telescope.builtin").live_grep({path_display={"truncate", shorten = {len = 3, exclude = {1,-1}}}})<CR>',
   "Live grep in current repo",
