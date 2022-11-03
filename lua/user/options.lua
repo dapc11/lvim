@@ -29,8 +29,25 @@ lvim.builtin.bufferline.options.diagnostics = false
 lvim.builtin.bufferline.options.modified_icon = ""
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.lsp.code_lens_refresh = false
-lvim.builtin.cmp.completion = { completion = { completeopt = "menu,menuone, noinsert" } }
-lvim.builtin.project.patterns["9"] = "ruleset2.0.yaml"
+lvim.builtin.cmp.completion = {
+  completion = {
+    completeopt = "menu, menuone, noinsert",
+  },
+}
+lvim.builtin.project.patterns = {
+  "ruleset2.0.yaml",
+  "pom.xml",
+  ".git",
+  "_darcs",
+  ".hg",
+  ".bzr",
+  ".svn",
+  "Makefile",
+  "package.json",
+  "script_version.txt",
+  "drc-report",
+  "image-design-rule-check-report.html"
+}
 
 vim.filetype.add({
   extension = {
