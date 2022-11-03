@@ -19,6 +19,7 @@ lvim.builtin.breadcrumbs.active = true
 lvim.builtin.bufferline.active = true
 lvim.builtin.bufferline.highlights.background.italic = false
 lvim.builtin.bufferline.highlights.buffer_selected.bold = true
+lvim.builtin.bufferline.highlights.buffer_selected.italic = false
 lvim.builtin.bufferline.options.always_show_bufferline = false
 lvim.builtin.bufferline.options.show_buffer_icons = false
 lvim.builtin.bufferline.options.show_close_icon = false
