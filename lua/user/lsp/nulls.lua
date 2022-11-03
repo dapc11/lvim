@@ -14,15 +14,14 @@ linters.setup({
     filetypes = { "python" },
     extra_args = {
       "-d",
-      "R0801,W1508,C0114,C0115,C0116,C0301,W0611,W1309",
+      "R0801,W1508,C0114,C0115,C0116,C0301,W0611,W1309,C0103,W0201,C0330,C0326",
     },
   },
   {
     command = "flake8",
     filetypes = { "python" },
     extra_args = {
-      "--per-file-ignores=**/*:D100,D103",
-      "--ignore=E302,E501",
+      "--extend-ignore=E302,E501,D107,D105,W503,E203,D100,D103",
     },
   },
 })

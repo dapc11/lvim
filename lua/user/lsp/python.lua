@@ -22,6 +22,7 @@ local python_opts = {
       analysis = {
         diagnosticSeverityOverrides = {
             reportOptionalMemberAccess = "none",
+            reportMissingImports = "none",
         },
         autoImportCompletions = true,
         autoSearchPaths = true,
