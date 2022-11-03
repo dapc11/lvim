@@ -16,6 +16,16 @@ lvim.builtin.nvimtree.setup.respect_buf_cwd = false
 lvim.builtin.indentlines.options.show_current_context = false
 lvim.builtin.nvimtree.setup.renderer.icons.webdev_colors = false
 lvim.builtin.breadcrumbs.active = true
+lvim.builtin.bufferline.active = true
+lvim.builtin.bufferline.highlights.background.italic = false
+lvim.builtin.bufferline.highlights.buffer_selected.bold = true
+lvim.builtin.bufferline.options.always_show_bufferline = false
+lvim.builtin.bufferline.options.show_buffer_icons = false
+lvim.builtin.bufferline.options.show_close_icon = false
+lvim.builtin.bufferline.options.show_buffer_close_icons = false
+lvim.builtin.bufferline.options.show_tab_indicators = false
+lvim.builtin.bufferline.options.diagnostics = false
+lvim.builtin.bufferline.options.modified_icon = ""
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.lsp.code_lens_refresh = false
 lvim.builtin.cmp.completion = { completion = { completeopt = "menu,menuone, noinsert" } }
