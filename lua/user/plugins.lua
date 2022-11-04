@@ -6,7 +6,6 @@ lvim.plugins = {
   "windwp/nvim-ts-autotag",
   "kylechui/nvim-surround",
   "christianchiarulli/harpoon",
-  "windwp/nvim-spectre",
   "lvimuser/lsp-inlayhints.nvim",
   "kdheepak/lazygit.nvim",
   "junegunn/vim-easy-align",
