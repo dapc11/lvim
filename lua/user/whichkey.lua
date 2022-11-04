@@ -15,7 +15,6 @@ lvim.builtin.which_key.mappings["N"] = {
 }
 lvim.builtin.which_key.mappings["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" }
 lvim.builtin.which_key.mappings["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" }
-lvim.builtin.which_key.mappings["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" }
 
 lvim.builtin.which_key.mappings["cd"] = { "<cmd>lua vim.diagnostic.disable()<CR>", "Hide diagnostics" }
 lvim.builtin.which_key.mappings["ce"] = { "<cmd>lua vim.diagnostic.enable()<CR>", "Show diagnostics" }
