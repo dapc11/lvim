@@ -72,4 +72,10 @@ lvim.plugins = {
       })
     end,
   },
+  {"Furkanzmc/zettelkasten.nvim",
+  config = function ()
+    require("zettelkasten").setup({
+        notes_path = "~/notes"
+      })
+  end}
 }

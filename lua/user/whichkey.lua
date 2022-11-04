@@ -30,11 +30,10 @@ vim.cmd([[
     endfunction
     command! ClearQuickfixList call ClearQuickfixList()
 ]])
-lvim.builtin.which_key.mappings["zz"] = { ":ClearQuickfixList<CR>", "Clear qf" }
-
-lvim.builtin.which_key.mappings["zl"] = { ":nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><c-l>", "Clear highlight search" }
-lvim.builtin.which_key.mappings["zn"] = { ":%s/\\\\n/\\r/g", "Fix literal linebreaks" }
-lvim.builtin.which_key.mappings["zp"] = { ":profile start nvim-profile.log | profile func * | profile file *", "Start profiling" }
+lvim.builtin.which_key.mappings["xx"] = { ":ClearQuickfixList<CR>", "Clear qf" }
+lvim.builtin.which_key.mappings["xl"] = { ":nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><c-l>", "Clear highlight search" }
+lvim.builtin.which_key.mappings["xn"] = { ":%s/\\\\n/\\r/g", "Fix literal linebreaks" }
+lvim.builtin.which_key.mappings["xp"] = { ":profile start nvim-profile.log | profile func * | profile file *", "Start profiling" }
 
 lvim.builtin.which_key.mappings["m"] = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" }
 lvim.builtin.which_key.mappings["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" }
@@ -122,6 +121,13 @@ lvim.builtin.which_key.mappings["l"] = {
     "Workspace Symbols",
   },
   t = { '<cmd>lua require("user.functions").toggle_diagnostics()<cr>', "Toggle Diagnostics" },
+}
+lvim.builtin.which_key.mappings["z"] = {
+  name = "Zettelkasten",
+  n = { "<cmd>ZkNew<cr>", "New note" },
+  b = { "<cmd>ZkBrowse<cr>", "Browse notes" },
+  f = { "<cmd>Telescope find_files cwd=~/notes<cr>", "Find note" },
+  g = { "<cmd>Telescope live_grep cwd=~/notes<cr>", "Find in notes" },
 }
 
 lvim.builtin.which_key.mappings[";"] = nil
