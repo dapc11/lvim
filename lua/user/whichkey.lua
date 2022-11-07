@@ -119,8 +119,7 @@ lvim.builtin.which_key.mappings["z"] = {
   name = "Zettelkasten",
   n = { "<cmd>ZkNew<cr>", "New note" },
   b = { "<cmd>ZkBrowse<cr>", "Browse notes" },
-  f = { "<cmd>Telescope find_files cwd=~/notes<cr>", "Find note" },
-  g = { "<cmd>Telescope live_grep cwd=~/notes<cr>", "Find in notes" },
+  z = { "<cmd>Telescope live_grep cwd=~/notes<cr>", "Find notes" },
 }
 
 lvim.builtin.which_key.mappings[";"] = nil
