@@ -6,5 +6,5 @@ local map = function(mode, lhs, rhs, desc)
 
   vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
 end
-map("n", "<leader>Cf", ":%!yq '.'", "Format")
-map("v", "<leader>Cf", ":%!yq '.'", "Format")
+map("n", "<leader>Cf", ":%!jq '.'", "Format")
+map("v", "<leader>Cf", ":%!jq '.'", "Format")

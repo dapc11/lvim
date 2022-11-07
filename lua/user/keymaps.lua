@@ -75,8 +75,6 @@ lvim.keys.normal_mode[">"] = "["
 lvim.keys.normal_mode["es"] = ':lua require("user.leap").leap_to_line()<CR>'
 lvim.keys.normal_mode["ws"] = ':lua require("user.leap").leap_to_window()<CR>'
 lvim.keys.normal_mode["<C-w>"] = "<cmd>bdelete!<CR>"
-lvim.keys.normal_mode["jf"] = ":%!jq '.'"
-lvim.keys.normal_mode["yf"] = ":%!yq '.'"
 lvim.keys.visual_mode["<A-a>"] = "<C-a>"
 lvim.keys.visual_mode["<A-x>"] = "<C-x>"
 lvim.keys.visual_mode["<S-Down>"] = ":m '>+1<CR>gv=gv"
@@ -86,8 +84,6 @@ lvim.keys.visual_mode["c"] = '"_c'
 lvim.keys.visual_mode["c"] = '"_c'
 lvim.keys.visual_mode["ö"] = "{"
 lvim.keys.visual_mode["p"] = '"_dP'
-lvim.keys.visual_mode["jf"] = ":%!jq '.'"
-lvim.keys.visual_mode["yf"] = ":%!yq '.'"
 lvim.keys.visual_block_mode["<"] = "]"
 lvim.keys.visual_block_mode[">"] = "["
 lvim.keys.visual_block_mode["p"] = "pgvy"
