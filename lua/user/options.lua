@@ -27,6 +27,15 @@ lvim.builtin.bufferline.options.show_buffer_close_icons = false
 lvim.builtin.bufferline.options.show_tab_indicators = false
 lvim.builtin.bufferline.options.diagnostics = false
 lvim.builtin.bufferline.options.modified_icon = ""
+lvim.builtin.bufferline.options.offsets = {
+  {
+
+    filetype = "NvimTree",
+    highlight = "PanelHeading",
+    padding = 0,
+    text = "Explorer",
+  },
+}
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.lsp.code_lens_refresh = false
 lvim.builtin.cmp.completion = {
