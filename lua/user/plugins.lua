@@ -25,11 +25,14 @@ lvim.plugins = {
     end,
   },
   "tpope/vim-unimpaired",
-  "olexsmir/gopher.nvim",
-  {"leoluz/nvim-dap-go",
-  config = function ()
-    require('dap-go').setup()
-  end},
+  "ray-x/go.nvim",
+  "ray-x/guihua.lua", -- recommanded if need floating window support
+  {
+    "leoluz/nvim-dap-go",
+    config = function()
+      require("dap-go").setup()
+    end,
+  },
   "mfussenegger/nvim-dap-python",
   "cuducos/yaml.nvim",
   {
@@ -74,10 +77,12 @@ lvim.plugins = {
       })
     end,
   },
-  {"dapc11/zettelkasten.nvim",
-  config = function ()
-    require("zettelkasten").setup({
-        notes_path = "~/notes"
+  {
+    "dapc11/zettelkasten.nvim",
+    config = function()
+      require("zettelkasten").setup({
+        notes_path = "~/notes",
       })
-  end}
+    end,
+  },
 }

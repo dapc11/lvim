@@ -58,6 +58,7 @@ local go_opts = {
     map("n", "<leader>Cg", "<cmd>GoGenerate", "Go Generate")
     map("n", "<leader>Cf", "<cmd>GoGenerate %<Cr>", "Go Generate File")
     map("n", "<leader>Cc", "<cmd>GoCmt<Cr>", "Generate Comment")
+    map("n", "<leader>Cr", "<cmd>GoGenReturn<Cr>", "Generate Return")
     map("n", "<leader>Dt", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Test")
   end,
 }
@@ -71,18 +72,8 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 
 lsp_manager.setup("gopls", go_opts)
 
-local status_ok, gopher = pcall(require, "gopher")
-if not status_ok then
-  return
-end
-
-gopher.setup({
-  commands = {
-    go = "go",
-    gomodifytags = "gomodifytags",
-    gotests = "gotests",
-    impl = "impl",
-    iferr = "iferr",
-  },
-})
+vim.cmd([[
+  autocmd BufWritePre *.go :silent! lua require('go.format').gofmt()
+]])
+require("go").setup()
 --- /Golang
