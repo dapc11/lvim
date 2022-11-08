@@ -26,7 +26,6 @@ local go_opts = {
         rangeVariableTypes = true,
       },
       diagnosticsDelay = "300ms",
-      experimentalWatchedFileDelay = "100ms",
       symbolMatcher = "fuzzy",
       completeUnimported = true,
       staticcheck = false,
