@@ -12,6 +12,7 @@ lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.diagnostics.enable = false
 lvim.builtin.nvimtree.setup.renderer.icons.webdev_colors = false
 lvim.builtin.nvimtree.setup.renderer.icons.show.file = false
+lvim.builtin.nvimtree.setup.renderer.group_empty = true
 lvim.builtin.nvimtree.setup.respect_buf_cwd = false
 lvim.builtin.indentlines.options.show_current_context = false
 lvim.builtin.nvimtree.setup.renderer.icons.webdev_colors = false
