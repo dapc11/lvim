@@ -46,7 +46,6 @@ lvim.builtin.cmp.completion = {
 }
 lvim.builtin.project.patterns = {
   "ruleset2.0.yaml",
-  "pom.xml",
   ".git",
   "_darcs",
   ".hg",
