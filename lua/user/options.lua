@@ -55,7 +55,7 @@ lvim.builtin.project.patterns = {
   "package.json",
   "script_version.txt",
   "drc-report",
-  "image-design-rule-check-report.html"
+  "image-design-rule-check-report.html",
 }
 
 vim.filetype.add({
