@@ -55,10 +55,10 @@ local go_opts = {
     map("n", "<leader>Ca", "<cmd>GoTestAdd<Cr>", "Add Test")
     map("n", "<leader>CA", "<cmd>GoTestsAll<Cr>", "Add All Tests")
     map("n", "<leader>Ce", "<cmd>GoTestsExp<Cr>", "Add Exported Tests")
-    map("n", "<leader>Cg", "<cmd>GoGenerate<Cr>", "Go Generate")
+    map("n", "<leader>Cg", "<cmd>GoGenerate", "Go Generate")
     map("n", "<leader>Cf", "<cmd>GoGenerate %<Cr>", "Go Generate File")
     map("n", "<leader>Cc", "<cmd>GoCmt<Cr>", "Generate Comment")
-    map("n", "<leader>DT", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Test")
+    map("n", "<leader>Dt", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Test")
   end,
 }
 

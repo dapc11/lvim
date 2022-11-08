@@ -26,7 +26,10 @@ lvim.plugins = {
   },
   "tpope/vim-unimpaired",
   "olexsmir/gopher.nvim",
-  "leoluz/nvim-dap-go",
+  {"leoluz/nvim-dap-go",
+  config = function ()
+    require('dap-go').setup()
+  end},
   "mfussenegger/nvim-dap-python",
   "cuducos/yaml.nvim",
   {
