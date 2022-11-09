@@ -72,8 +72,6 @@ lvim.keys.normal_mode["ö"] = "{"
 lvim.keys.normal_mode["W"] = ":noautocmd w<CR>"
 lvim.keys.normal_mode["<"] = "]"
 lvim.keys.normal_mode[">"] = "["
-lvim.keys.normal_mode["es"] = ':lua require("user.leap").leap_to_line()<CR>'
-lvim.keys.normal_mode["ws"] = ':lua require("user.leap").leap_to_window()<CR>'
 lvim.keys.visual_mode["<A-a>"] = "<C-a>"
 lvim.keys.visual_mode["<A-x>"] = "<C-x>"
 lvim.keys.visual_mode["<S-Down>"] = ":m '>+1<CR>gv=gv"
