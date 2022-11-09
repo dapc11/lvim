@@ -57,6 +57,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 		end
 
 		vim.opt.titlestring = get_project_dir() .. " - nvim"
+    vim.opt.laststatus = 3
 	end,
 })
 
