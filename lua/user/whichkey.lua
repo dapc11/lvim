@@ -47,7 +47,6 @@ lvim.builtin.which_key.mappings["f"] = {
     ':lua require("telescope.builtin").find_files({cwd = "~/repos/", path_display={"truncate", shorten = {len = 3, exclude = {1,-1}}}})<CR>',
     "Find files",
   },
-  y = { ':lua require("user.telescope").yaml_find()<CR>', "Find yaml" },
   t = { "<cmd>Telescope live_grep<cr>", "Find Text" },
   w = { "<cmd>Telescope grep_string<cr>", "Find String" },
   s = { ':lua require("user.telescope").spell_check()<CR>', "Spell check" },

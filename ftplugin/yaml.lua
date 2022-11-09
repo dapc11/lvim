@@ -8,3 +8,4 @@ local map = function(mode, lhs, rhs, desc)
 end
 map("n", "<leader>Cf", ":%!yq '.'", "Format")
 map("v", "<leader>Cf", ":%!yq '.'", "Format")
+map("n", "<leader>fy", ':lua require("user.telescope").yaml_find()<CR>', "Find yaml")
