@@ -12,6 +12,7 @@
       ]
     },
     "workspace": {
+      "checkThirdParty": false,
       "library": [
         "~/.luarocks/share/lua/5.3",
         "/usr/share/lua/5.3",
