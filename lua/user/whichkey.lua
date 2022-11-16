@@ -68,26 +68,19 @@ lvim.builtin.which_key.mappings["f"] = {
 }
 lvim.builtin.which_key.mappings["g"] = {
   name = "Git",
-  j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
-  k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-  b = { "<cmd>Git blame --date=human --color-by-age --abbrev-commit<cr>", "Blame" },
-  l = { "<cmd>Git log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all<cr>", "Log" },
   L = { "<cmd>Git log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative<cr>", "Log" },
-  h = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
-  r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
   R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
-  s = { "<cmd>lua require 'gitsigns'.stage_hunk()<cr>", "Stage Hunk" },
-  u = {
-    "<cmd>lua require 'gitsigns'.undo_stage_hunk()<cr>",
-    "Undo Stage Hunk",
-  },
-  o = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+  b = { "<cmd>Git blame --date=human --color-by-age --abbrev-commit<cr>", "Blame" },
   cb = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
   cc = { "<cmd>Telescope git_commits<cr>", "Checkout commit" },
-  d = {
-    "<cmd>Gitsigns diffthis HEAD<cr>",
-    "Diff",
-  },
+  d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
+  h = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
+  j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
+  k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
+  l = { "<cmd>Git log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all<cr>", "Log" },
+  s = { "<cmd>Telescope git_status<cr>", "Open changed file" },
+  p = { "<cmd>Git pull --rebase<cr>", "Pull & rebase" },
+  r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
 }
 lvim.builtin.which_key.mappings["l"] = {
   name = "LSP",

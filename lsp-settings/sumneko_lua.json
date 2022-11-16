@@ -16,12 +16,14 @@
       "library": [
         "~/.luarocks/share/lua/5.3",
         "/usr/share/lua/5.3",
-        "/usr/share/awesome/lib"
+        "/usr/share/awesome/lib",
+        "~/.local/share/lunarvim/lvim/"
       ]
     },
     "diagnostics": {
       "enable": true,
       "globals": [
+        "lvim",
         "vim",
         "use",
         "awesome",
