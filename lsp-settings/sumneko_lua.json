@@ -1,0 +1,37 @@
+{
+  "Lua": {
+    "runtime": {
+      "version": "Lua 5.3",
+      "path": [
+        "?.lua",
+        "?/init.lua",
+        "~/.luarocks/share/lua/5.3/?.lua",
+        "~/.luarocks/share/lua/5.3/?/init.lua",
+        "/usr/share/5.3/?.lua",
+        "/usr/share/lua/5.3/?/init.lua"
+      ]
+    },
+    "workspace": {
+      "library": [
+        "~/.luarocks/share/lua/5.3",
+        "/usr/share/lua/5.3",
+        "/usr/share/awesome/lib"
+      ]
+    },
+    "diagnostics": {
+      "enable": true,
+      "globals": [
+        "vim",
+        "use",
+        "awesome",
+        "client",
+        "root",
+        "tag",
+        "keygrabber",
+        "mousegrabber",
+        "mouse",
+        "screen"
+      ]
+    }
+  }
+}
