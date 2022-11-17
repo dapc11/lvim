@@ -34,7 +34,6 @@ local python_opts = {
   single_file_support = true,
   on_attach = function(client, bufnr)
     require("lvim.lsp").common_on_attach(client, bufnr)
-    local _, _ = pcall(vim.lsp.codelens.refresh)
     local opts = {
       mode = "n", -- NORMAL mode
       prefix = "<leader>",
@@ -59,13 +58,6 @@ local python_opts = {
     which_key.register(mappings, opts)
   end,
 }
-
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  pattern = { "*.py" },
-  callback = function()
-    local _, _ = pcall(vim.lsp.codelens.refresh)
-  end,
-})
 
 lsp_manager.setup("pyright", python_opts)
 
