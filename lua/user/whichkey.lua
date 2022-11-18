@@ -14,7 +14,7 @@ lvim.builtin.which_key.mappings["N"] = {
   "Find in unstaged files",
 }
 lvim.builtin.which_key.mappings["q"] = { '<cmd>lua require("user.functions").smart_quit()<CR>', "Quit" }
-lvim.builtin.which_key.mappings["w"] = { ':bdelete!<CR>', "Close current buffer" }
+lvim.builtin.which_key.mappings["w"] = { ":bdelete!<CR>", "Close current buffer" }
 lvim.builtin.which_key.mappings["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" }
 
 lvim.builtin.which_key.mappings["cd"] = { "<cmd>lua vim.diagnostic.disable()<CR>", "Hide diagnostics" }
@@ -31,9 +31,15 @@ vim.cmd([[
     command! ClearQuickfixList call ClearQuickfixList()
 ]])
 lvim.builtin.which_key.mappings["xx"] = { ":ClearQuickfixList<CR>", "Clear qf" }
-lvim.builtin.which_key.mappings["xl"] = { ":nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><c-l>", "Clear highlight search" }
+lvim.builtin.which_key.mappings["xl"] = {
+  ":nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><c-l>",
+  "Clear highlight search",
+}
 lvim.builtin.which_key.mappings["xn"] = { ":%s/\\\\n/\\r/g", "Fix literal linebreaks" }
-lvim.builtin.which_key.mappings["xp"] = { ":profile start nvim-profile.log | profile func * | profile file *", "Start profiling" }
+lvim.builtin.which_key.mappings["xp"] = {
+  ":profile start nvim-profile.log | profile func * | profile file *",
+  "Start profiling",
+}
 
 lvim.builtin.which_key.mappings["m"] = { '<cmd>lua require("harpoon.mark").add_file()<cr>', "Harpoon" }
 lvim.builtin.which_key.mappings["."] = { '<cmd>lua require("harpoon.ui").nav_next()<cr>', "Harpoon Next" }
@@ -67,7 +73,10 @@ lvim.builtin.which_key.mappings["f"] = {
 }
 lvim.builtin.which_key.mappings["g"] = {
   name = "Git",
-  L = { "<cmd>Git log --graph --name-status --pretty=format:\"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset\" --date=relative<cr>", "Log" },
+  L = {
+    '<cmd>Git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative<cr>',
+    "Log",
+  },
   R = { "<cmd>lua require 'gitsigns'.reset_buffer()<cr>", "Reset Buffer" },
   b = { "<cmd>Git blame --date=human --color-by-age --abbrev-commit<cr>", "Blame" },
   cb = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
@@ -76,11 +85,32 @@ lvim.builtin.which_key.mappings["g"] = {
   h = { "<cmd>lua require 'gitsigns'.preview_hunk()<cr>", "Preview Hunk" },
   j = { "<cmd>lua require 'gitsigns'.next_hunk()<cr>", "Next Hunk" },
   k = { "<cmd>lua require 'gitsigns'.prev_hunk()<cr>", "Prev Hunk" },
-  l = { "<cmd>Git log --pretty=format:\"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)\" --graph --date=relative --decorate --all<cr>", "Log" },
+  l = {
+    '<cmd>Git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all<cr>',
+    "Log",
+  },
   s = { "<cmd>Telescope git_status<cr>", "Open changed file" },
   p = { "<cmd>Git pull --rebase<cr>", "Pull & rebase" },
   r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
 }
+lvim.builtin.which_key.mappings["t"] = {
+  name = "Test",
+  c = { '<cmd>lua require("neotest").run.run()<CR>', "Run nearest test" },
+  f = { '<cmd>lua require("neotest").run.run(vim.fn.expand("%"))<CR>', "Run current file" },
+  d = { '<cmd>lua require("neotest").run.run({ strategy = "dap" })<CR>', "Debug nearest test" },
+  l = { '<cmd>lua require("neotest").run.run_last()<CR>', "Re-run last" },
+  s = { '<cmd>lua require("neotest").summary.toggle()<CR>', "Toggle test summary" },
+  o = { '<cmd>lua require("neotest").output.open({ enter = true })<CR>', "Open test output" },
+  j = {
+    "<cmd>lua require('neotest').jump.next({ status = 'failed' })",
+    "Next Failed Test",
+  },
+  k = {
+    "<cmd>lua require('neotest').jump.prev({ status = 'failed' })",
+    "Prev Failed Test",
+  },
+}
+
 lvim.builtin.which_key.mappings["l"] = {
   name = "LSP",
   a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },

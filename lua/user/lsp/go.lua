@@ -77,12 +77,12 @@ require("go").setup({
     map("n", "<leader>Cb", "<cmd>GoBuild<Cr>", "Build")
     map("n", "<leader>Ce", "<cmd>GoGenReturn<Cr>", "Generate Return")
     map("n", "<leader>Dt", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Test")
-    map("n", "<leader>tt", "<cmd>GoTest<cr>", "Run Tests")
-    map("n", "<leader>ta", "<cmd>GoAddTest<cr>", "Add Test")
-    map("n", "<leader>tA", "<cmd>GoAddAllTest<cr>", "Add All Missing Tests")
-    map("n", "<leader>tF", "<cmd>GoTestFile<cr>", "Test File")
-    map("n", "<leader>tf", "<cmd>GoTestFunc<cr>", "Test Func")
-    map("n", "<leader>tp", "<cmd>GoTestPkg<cr>", "Test Package")
+    map("n", "<leader>Tt", "<cmd>GoTest<cr>", "Run Tests")
+    map("n", "<leader>Ta", "<cmd>GoAddTest<cr>", "Add Test")
+    map("n", "<leader>TA", "<cmd>GoAddAllTest<cr>", "Add All Missing Tests")
+    map("n", "<leader>TF", "<cmd>GoTestFile<cr>", "Test File")
+    map("n", "<leader>Tf", "<cmd>GoTestFunc<cr>", "Test Func")
+    map("n", "<leader>Tp", "<cmd>GoTestPkg<cr>", "Test Package")
   end,
   lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
   lsp_codelens = true, -- set to false to disable codelens, true by default, you can use a function
