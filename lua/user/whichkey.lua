@@ -100,7 +100,8 @@ lvim.builtin.which_key.mappings["t"] = {
   d = { '<cmd>lua require("neotest").run.run({ strategy = "dap" })<CR>', "Debug nearest test" },
   l = { '<cmd>lua require("neotest").run.run_last()<CR>', "Re-run last" },
   s = { '<cmd>lua require("neotest").summary.toggle()<CR>', "Toggle test summary" },
-  o = { '<cmd>lua require("neotest").output.open({ enter = true })<CR>', "Open test output" },
+  O = { '<cmd>lua require("neotest").output.open({ enter = true })<CR>', "Open test output" },
+  o = { '<cmd>lua require("neotest").output_panel.open()<CR>', "Open test output panel" },
   j = {
     "<cmd>lua require('neotest').jump.next({ status = 'failed' })",
     "Next Failed Test",

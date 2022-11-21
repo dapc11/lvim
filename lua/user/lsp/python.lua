@@ -21,8 +21,8 @@ local python_opts = {
     python = {
       analysis = {
         diagnosticSeverityOverrides = {
-            reportOptionalMemberAccess = "none",
-            reportMissingImports = "none",
+          reportOptionalMemberAccess = "none",
+          reportMissingImports = "none",
         },
         autoImportCompletions = true,
         autoSearchPaths = true,
@@ -34,28 +34,17 @@ local python_opts = {
   single_file_support = true,
   on_attach = function(client, bufnr)
     require("lvim.lsp").common_on_attach(client, bufnr)
-    local opts = {
-      mode = "n", -- NORMAL mode
-      prefix = "<leader>",
-      buffer = bufnr, -- Global mappings. Specify a buffer number for buffer local mappings
-      silent = true, -- use `silent` when creating keymaps
-      noremap = true, -- use `noremap` when creating keymaps
-      nowait = true, -- use `nowait` when creating keymaps
-    }
-    local mappings = {
-      D = {
-        name = "Python Debug",
-        m = { "<cmd>lua require('dap-python').test_method()<cr>", "Test Method" },
-        f = { "<cmd>lua require('dap-python').test_class()<cr>", "Test Class" },
-        s = { "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection" },
-      },
-    }
-    local status_ok, which_key = pcall(require, "which-key")
-    if not status_ok then
-      return
+    local map = function(mode, lhs, rhs, desc)
+      if desc then
+        desc = desc
+      end
+
+      vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
     end
-    which_key.register({ D = "which_key_ignore", L = "which_key_ignore" })
-    which_key.register(mappings, opts)
+    map("n", "gf", "<cmd>PytrizeJumpFixture<Cr>", "Jump To Fixture")
+    map("n", "<leader>Dm", "<cmd>lua require('dap-python').test_method()<cr>", "Test Method")
+    map("n", "<leader>Df", "<cmd>lua require('dap-python').test_class()<cr>", "Test Class")
+    map("n", "<leader>Ds", "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection")
   end,
 }
 
