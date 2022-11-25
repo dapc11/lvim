@@ -15,6 +15,7 @@ lvim.plugins = {
   },
   "dapc11/vim-fugitive",
   "hrsh7th/cmp-cmdline",
+  "hrsh7th/cmp-nvim-lsp-signature-help",
   {
     "mfussenegger/nvim-treehopper",
     config = function()
