@@ -143,22 +143,16 @@ config["on_attach"] = function(client, bufnr)
   require("jdtls.dap").setup_dap_main_class_configs()
   jdtls.setup_dap({ hotcodereplace = "auto" })
   require("lvim.lsp").common_on_attach(client, bufnr)
-  local map = function(mode, lhs, rhs, desc)
-    if desc then
-      desc = desc
-    end
-
-    vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
-  end
-  map("n", "<leader>Co", jdtls.organize_imports(), "Organize Imports")
-  map("n", "<leader>Cv", jdtls.extract_variable(), "Extract Variable")
-  map("n", "<leader>Cc", jdtls.extract_constant(), "Extract Constant")
-  map("n", "<leader>Ct", jdtls.test_nearest_method(), "Test Method")
-  map("n", "<leader>CT", jdtls.test_class(), "Test Class")
-  map("n", "<leader>Cu", "<Cmd>JdtUpdateConfig<CR>", "Update Config")
-  map("v", "<leader>Cv", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable")
-  map("v", "<leader>Cc", "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant")
-  map("v", "<leader>Cm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method")
+  local map = require("user.functions").map
+  map("n", "<leader>Co", jdtls.organize_imports(), "Organize Imports", bufnr)
+  map("n", "<leader>Cv", jdtls.extract_variable(), "Extract Variable", bufnr)
+  map("n", "<leader>Cc", jdtls.extract_constant(), "Extract Constant", bufnr)
+  map("n", "<leader>Ct", jdtls.test_nearest_method(), "Test Method", bufnr)
+  map("n", "<leader>CT", jdtls.test_class(), "Test Class", bufnr)
+  map("n", "<leader>Cu", "<Cmd>JdtUpdateConfig<CR>", "Update Config", bufnr)
+  map("v", "<leader>Cv", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable", bufnr)
+  map("v", "<leader>Cc", "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant", bufnr)
+  map("v", "<leader>Cm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method", bufnr)
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {

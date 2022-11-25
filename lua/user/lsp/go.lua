@@ -61,28 +61,22 @@ require("go").setup({
   lsp_on_attach = function(client, bufnr)
     require("lvim.lsp").common_on_attach(client, bufnr)
     local _, _ = pcall(vim.lsp.codelens.refresh)
-    local map = function(mode, lhs, rhs, desc)
-      if desc then
-        desc = desc
-      end
-
-      vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc, buffer = bufnr, noremap = true })
-    end
-    map("n", "<leader>Ci", "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies")
-    map("n", "<leader>Ct", "<cmd>GoMod tidy<cr>", "Tidy")
-    map("n", "<leader>Cg", "<cmd>GoGenerate", "Go Generate")
-    map("n", "<leader>Cf", "<cmd>GoGenerate %<Cr>", "Go Generate File")
-    map("n", "<leader>Cc", "<cmd>GoCmt<Cr>", "Generate Comment")
-    map("n", "<leader>r", "<cmd>GoRun<Cr>", "Run")
-    map("n", "<leader>Cb", "<cmd>GoBuild<Cr>", "Build")
-    map("n", "<leader>Ce", "<cmd>GoGenReturn<Cr>", "Generate Return")
-    map("n", "<leader>Dt", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Test")
-    map("n", "<leader>Tt", "<cmd>GoTest<cr>", "Run Tests")
-    map("n", "<leader>Ta", "<cmd>GoAddTest<cr>", "Add Test")
-    map("n", "<leader>TA", "<cmd>GoAddAllTest<cr>", "Add All Missing Tests")
-    map("n", "<leader>TF", "<cmd>GoTestFile<cr>", "Test File")
-    map("n", "<leader>Tf", "<cmd>GoTestFunc<cr>", "Test Func")
-    map("n", "<leader>Tp", "<cmd>GoTestPkg<cr>", "Test Package")
+    local map = require("user.functions").map
+    map("n", "<leader>Ci", "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies", bufnr)
+    map("n", "<leader>Ct", "<cmd>GoMod tidy<cr>", "Tidy", bufnr)
+    map("n", "<leader>Cg", "<cmd>GoGenerate", "Go Generate", bufnr)
+    map("n", "<leader>Cf", "<cmd>GoGenerate %<Cr>", "Go Generate File", bufnr)
+    map("n", "<leader>Cc", "<cmd>GoCmt<Cr>", "Generate Comment", bufnr)
+    map("n", "<leader>r", "<cmd>GoRun<Cr>", "Run", bufnr)
+    map("n", "<leader>Cb", "<cmd>GoBuild<Cr>", "Build", bufnr)
+    map("n", "<leader>Ce", "<cmd>GoGenReturn<Cr>", "Generate Return", bufnr)
+    map("n", "<leader>Dt", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Test", bufnr)
+    map("n", "<leader>Tt", "<cmd>GoTest<cr>", "Run Tests", bufnr)
+    map("n", "<leader>Ta", "<cmd>GoAddTest<cr>", "Add Test", bufnr)
+    map("n", "<leader>TA", "<cmd>GoAddAllTest<cr>", "Add All Missing Tests", bufnr)
+    map("n", "<leader>TF", "<cmd>GoTestFile<cr>", "Test File", bufnr)
+    map("n", "<leader>Tf", "<cmd>GoTestFunc<cr>", "Test Func", bufnr)
+    map("n", "<leader>Tp", "<cmd>GoTestPkg<cr>", "Test Package", bufnr)
   end,
   lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
   lsp_codelens = true, -- set to false to disable codelens, true by default, you can use a function

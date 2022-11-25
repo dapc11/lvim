@@ -11,7 +11,7 @@
       },
       "autoImportCompletions": true,
       "autoSearchPaths": true,
-      "diagnosticMode": "openFilesOnly",
+      "diagnosticMode": "workspace",
       "useLibraryCodeForTypes": true
     },
     "venvPath": "/home/epedape/envs",
