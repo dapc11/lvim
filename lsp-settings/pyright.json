@@ -1,0 +1,20 @@
+{
+  "pyright": {
+    "disableLanguageServices": false,
+    "disableOrganizeImports": false
+  },
+  "python": {
+    "analysis": {
+      "diagnosticSeverityOverrides": {
+        "reportOptionalMemberAccess": "none",
+        "reportMissingImports": "none"
+      },
+      "autoImportCompletions": true,
+      "autoSearchPaths": true,
+      "diagnosticMode": "openFilesOnly",
+      "useLibraryCodeForTypes": true
+    },
+    "venvPath": "/home/epedape/envs",
+    "pythonPath": "python3"
+  }
+}
