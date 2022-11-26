@@ -10,8 +10,3 @@ lvim.lsp.installer.setup.ensure_installed = {
   "sumneko_lua",
   "jsonls",
 }
-
--- lvim.format_on_save = {
---   pattern = { "*.lua", "*.py", "*.go" },
--- }
-lvim.format_on_save = false

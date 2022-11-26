@@ -20,17 +20,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "Jaq" },
-	callback = function()
-		vim.cmd([[
-      nnoremap <silent> <buffer> <m-r> :close<CR>
-      " nnoremap <silent> <buffer> <m-r> <NOP>
-      set nobuflisted
-    ]])
-	end,
-})
-
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	pattern = { "" },
 	callback = function()
@@ -65,7 +54,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	pattern = { "term://*" },
 	callback = function()
 		vim.cmd("startinsert!")
-		-- TODO: if java = 2
 		vim.cmd("set cmdheight=1")
 	end,
 })

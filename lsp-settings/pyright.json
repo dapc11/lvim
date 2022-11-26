@@ -14,7 +14,7 @@
       "diagnosticMode": "workspace",
       "useLibraryCodeForTypes": true
     },
-    "venvPath": "/home/epedape/envs",
+    "venvPath": "/home/epedape/.virtualenvs/",
     "pythonPath": "python3"
   }
 }

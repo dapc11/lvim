@@ -16,52 +16,15 @@ lvim.plugins = {
   "dapc11/vim-fugitive",
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-nvim-lsp-signature-help",
-  {
-    "mfussenegger/nvim-treehopper",
-    config = function()
-      vim.cmd([[
-          omap <silent> m :<C-U>lua require('tsht').nodes()<CR>
-          xnoremap <silent> m :lua require('tsht').nodes()<CR>
-        ]])
-    end,
-  },
+  "mfussenegger/nvim-treehopper",
   "tpope/vim-unimpaired",
   "ray-x/go.nvim",
   "ray-x/guihua.lua", -- recommanded if need floating window support
-  {
-    "leoluz/nvim-dap-go",
-    config = function()
-      require("dap-go").setup()
-    end,
-  },
+  "leoluz/nvim-dap-go",
   "mfussenegger/nvim-dap-python",
   "cuducos/yaml.nvim",
-  {
-    "dapc11/github-nvim-theme",
-    config = function()
-      require("github-theme").setup({
-        theme_style = "dark",
-      })
-    end,
-  },
-  {
-    "NvChad/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup({
-        user_default_options = {
-          RGB = true, -- #RGB hex codes
-          RRGGBB = true, -- #RRGGBB hex codes
-          names = false, -- "Name" codes like Blue or blue
-          RRGGBBAA = true, -- #RRGGBBAA hex codes
-          AARRGGBB = true, -- 0xAARRGGBB hex codes
-          rgb_fn = true, -- CSS rgb() and rgba() functions
-          -- Available modes for `mode`: foreground, background,  virtualtext
-          mode = "virtualtext", -- Set the display mode.
-          virtualtext = "■■■■■",
-        },
-      })
-    end,
-  },
+  "dapc11/github-nvim-theme",
+  "NvChad/nvim-colorizer.lua",
   {
     "ggandor/leap.nvim",
     requires = { "tpope/vim-repeat" },
@@ -69,23 +32,8 @@ lvim.plugins = {
   {
     "ggandor/flit.nvim",
     requires = { "ggandor/leap.nvim" },
-    config = function()
-      require("flit").setup({
-        keys = { f = "f", F = "F", t = "t", T = "T" },
-        labeled_modes = "v",
-        multiline = true,
-        opts = {},
-      })
-    end,
   },
-  {
-    "dapc11/zettelkasten.nvim",
-    config = function()
-      require("zettelkasten").setup({
-        notes_path = "~/notes",
-      })
-    end,
-  },
+  "dapc11/zettelkasten.nvim",
   {
     "nvim-neotest/neotest",
     requires = {
@@ -95,27 +43,6 @@ lvim.plugins = {
       "nvim-neotest/neotest-python",
       "nvim-neotest/neotest-go",
     },
-    config = function()
-      require("neotest").setup({
-        adapters = {
-          require("neotest-python")({
-            dap = { justMyCode = false },
-            runner = "pytest",
-            python = "python3",
-          }),
-          require("neotest-go"),
-        },
-      })
-    end,
   },
-  { -- pytrize {{{
-    "AckslD/nvim-pytrize.lua",
-    -- uncomment if you want to lazy load
-    -- cmd = {'Pytrize', 'PytrizeClear', 'PytrizeJump'},
-    -- uncomment if you want to lazy load but not use the commands
-    -- module = 'pytrize',
-    config = function()
-      require("pytrize").setup()
-    end,
-  },
+  "AckslD/nvim-pytrize.lua",
 }

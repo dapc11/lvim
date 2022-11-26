@@ -136,12 +136,6 @@ require("go").setup({
   luasnip = false, -- enable included luasnip snippets. you can also disable while add lua/snips folder to luasnip load
 })
 
--- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
---   pattern = { "*.go" },
---   callback = function()
---     local _, _ = pcall(vim.lsp.codelens.refresh)
---   end,
--- })
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.go" },
   callback = function()

@@ -38,7 +38,6 @@ lvim.builtin.bufferline.options.offsets = {
   },
 }
 lvim.builtin.treesitter.highlight.enabled = true
-lvim.lsp.code_lens_refresh = false
 lvim.builtin.cmp.completion = {
   completion = {
     completeopt = "menu, menuone, noinsert",
@@ -112,7 +111,6 @@ vim.opt.fillchars:append({
 })
 
 vim.opt.shortmess:append("c")
-vim.g.python3_host_prog = "~/.envs/nvim/bin/python3"
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
