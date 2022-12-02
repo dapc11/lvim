@@ -1,18 +1,4 @@
 local dap = require("dap")
-dap.adapters.python = {
-  type = "executable",
-  command = os.getenv("VIRTUAL_ENV") .. "/bin/python",
-  args = { "-m", "debugpy.adapter" },
-}
-dap.configurations.python = {
-  {
-    type = "python", -- the type here established the link to the adapter definition: `dap.adapters.python`
-    request = "launch",
-    name = "Launch file",
-    program = "${file}", -- This configuration will launch the current file if used.
-    pythonPath = "python3",
-  },
-}
 dap.defaults.fallback.terminal_win_cmd = "50vsplit new"
 lvim.builtin.which_key.mappings["d"] = {
   name = "Debug",
