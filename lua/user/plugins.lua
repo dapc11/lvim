@@ -45,4 +45,5 @@ lvim.plugins = {
     },
   },
   "AckslD/nvim-pytrize.lua",
+  "tpope/vim-sleuth",
 }
