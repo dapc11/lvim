@@ -6,3 +6,7 @@ find / -name virtualenvwrapper.sh
 # add to zshrc
 source /usr/local/bin/virtualenvwrapper.sh
 mkvirtualenv env1
+
+
+# add to venv specific pythonpath
+add2virtualenv <dir>
