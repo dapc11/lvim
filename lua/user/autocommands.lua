@@ -163,3 +163,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.expandtab = true
   end,
 })
+
+vim.api.nvim_create_augroup("Configs", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", { group = "Configs", pattern = ".nvimrc.lua", command = "source <afile>" })
+vim.api.nvim_create_autocmd(
+  "BufWritePost",
+  { group = "Configs", pattern = os.getenv("HOME") .. "/.config/lvim/*/*.lua", command = "source <afile>" }
+)
