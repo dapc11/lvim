@@ -26,6 +26,10 @@ lvim.plugins = {
   "dapc11/github-nvim-theme",
   "NvChad/nvim-colorizer.lua",
   {
+    "justinmk/vim-sneak",
+    requires = { "tpope/vim-repeat" },
+  },
+  {
     "ggandor/leap.nvim",
     requires = { "tpope/vim-repeat" },
   },
