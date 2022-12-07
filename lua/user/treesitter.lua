@@ -1,4 +1,5 @@
 lvim.builtin.treesitter.highlight.enable = true
+lvim.builtin.treesitter.highlight.disable = { "help"}
 lvim.builtin.treesitter.ensure_installed = {
   "bash",
   "json",
