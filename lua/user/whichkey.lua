@@ -24,7 +24,7 @@ lvim.builtin.which_key.mappings["gg"] = { ":LazyGit<CR>", "LazyGit" }
 lvim.builtin.which_key.mappings["gp"] = { ":Git push origin HEAD:refs/for/master<CR>", "Gerrit push" }
 lvim.builtin.which_key.mappings["gP"] = { ":Git push<CR>", "Regular push" }
 vim.cmd([[
-    function ClearQuickfixList()
+    function! ClearQuickfixList()
         call setqflist([])
         cclose
     endfunction
