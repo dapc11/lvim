@@ -92,6 +92,7 @@ lvim.builtin.which_key.mappings["g"] = {
   },
   s = { "<cmd>Telescope git_status<cr>", "Open changed file" },
   p = { "<cmd>Git pull --rebase<cr>", "Pull & rebase" },
+  u = { "<cmd>Git submodule update --init --recursive<cr>", "Update Submodules" },
   r = { "<cmd>lua require 'gitsigns'.reset_hunk()<cr>", "Reset Hunk" },
 }
 lvim.builtin.which_key.mappings["t"] = {
