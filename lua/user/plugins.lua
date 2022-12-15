@@ -51,4 +51,11 @@ lvim.plugins = {
   "AckslD/nvim-pytrize.lua",
   "tpope/vim-sleuth",
   "AckslD/swenv.nvim",
+  -- install without yarn or npm
+  {
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
 }
