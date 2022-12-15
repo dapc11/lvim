@@ -58,4 +58,5 @@ lvim.plugins = {
       vim.fn["mkdp#util#install"]()
     end,
   },
+  "nvim-orgmode/orgmode",
 }
