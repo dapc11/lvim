@@ -19,7 +19,6 @@ lvim.builtin.which_key.mappings["/"] = { '<cmd>lua require("Comment.api").toggle
 
 lvim.builtin.which_key.mappings["cd"] = { "<cmd>lua vim.diagnostic.disable()<CR>", "Hide diagnostics" }
 lvim.builtin.which_key.mappings["ce"] = { "<cmd>lua vim.diagnostic.enable()<CR>", "Show diagnostics" }
-lvim.builtin.which_key.mappings["ch"] = { "<cmd>nohlsearch<CR>", "Clear highlight search" }
 lvim.builtin.which_key.mappings["gg"] = { ":LazyGit<CR>", "LazyGit" }
 lvim.builtin.which_key.mappings["gp"] = { ":Git push origin HEAD:refs/for/master<CR>", "Gerrit push" }
 lvim.builtin.which_key.mappings["gP"] = { ":Git push<CR>", "Regular push" }
