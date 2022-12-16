@@ -1,5 +1,5 @@
-local prev_line_nr = vim.api.nvim_win_get_cursor(0)[1] - 1
-local prev_bufnr = vim.api.nvim_get_current_buf()
+local prev_line = vim.api.nvim_win_get_cursor(0)[1] - 1
+local prev_buf = vim.api.nvim_get_current_buf()
 local set = false
 local virtual_text = true
 local message_area = false
@@ -27,16 +27,15 @@ local function clear(bufnr)
       virt_text = { { "", "" } },
       virt_text_pos = "eol",
     }
-    vim.api.nvim_buf_set_extmark(bufnr, 1, prev_line_nr, 0, opts)
+    vim.api.nvim_buf_set_extmark(bufnr, 1, prev_line, 0, opts)
   end
   set = false
 end
 
 local function printDiagnostics(buf, line)
   local line_diagnostics = vim.lsp.diagnostic.get_line_diagnostics(buf, line)
-
-  prev_bufnr = buf
-  prev_line_nr = line
+  prev_buf = buf
+  prev_line = line
 
   if vim.tbl_isempty(line_diagnostics) then
     clear(buf)
@@ -46,7 +45,7 @@ local function printDiagnostics(buf, line)
   if set then
     return
   end
-  prev_bufnr = buf
+  prev_buf = buf
   set = true
 
   local diagnostic_message = ""
@@ -63,7 +62,14 @@ local function printDiagnostics(buf, line)
     text = ""
   end
 
-  diagnostic_message = diagnostic_message .. string.format("%s%s", signs and text or "", diagnostic.message or "")
+  diagnostic_message = diagnostic_message
+    .. string.format(
+      "%s: %s%s %s",
+      diagnostic.source or "",
+      signs and text or "",
+      diagnostic.message or "",
+      diagnostic.code or ""
+    )
 
   if message_area then
     print(diagnostic_message)
@@ -93,6 +99,6 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufEnter" }, {
   pattern = "*",
   group = augroup,
   callback = function()
-    clear(prev_bufnr)
+    clear(prev_buf)
   end,
 })
