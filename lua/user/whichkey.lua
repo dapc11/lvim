@@ -17,8 +17,19 @@ lvim.builtin.which_key.mappings["q"] = { '<cmd>lua require("user.functions").sma
 lvim.builtin.which_key.mappings["w"] = { ":bdelete!<CR>", "Close current buffer" }
 lvim.builtin.which_key.mappings["/"] = { '<cmd>lua require("Comment.api").toggle.linewise.current()<CR>', "Comment" }
 
-lvim.builtin.which_key.mappings["cd"] = { "<cmd>lua vim.diagnostic.disable()<CR>", "Hide diagnostics" }
-lvim.builtin.which_key.mappings["ce"] = { "<cmd>lua vim.diagnostic.enable()<CR>", "Show diagnostics" }
+vim.g.diagnostics_visible = true
+lvim.builtin.which_key.mappings["ct"] = {
+  function()
+    if vim.g.diagnostics_visible then
+      vim.g.diagnostics_visible = false
+      vim.diagnostic.disable()
+    else
+      vim.g.diagnostics_visible = true
+      vim.diagnostic.enable()
+    end
+  end,
+  "Toggle diagnostics",
+}
 lvim.builtin.which_key.mappings["cl"] = {
   function()
     local config = lvim.lsp.diagnostics.float
