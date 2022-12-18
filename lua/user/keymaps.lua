@@ -1,25 +1,5 @@
+local map = require("user.functions").map
 lvim.leader = "space"
-
-local function map_utils(rhs, opts)
-  opts = opts or {}
-  local callback = nil
-  if type(rhs) ~= "string" then
-    callback = rhs
-  end
-
-  opts = vim.tbl_extend("keep", opts, {
-    noremap = true,
-    silent = true,
-    expr = false,
-    callback = callback,
-  })
-  return rhs, opts
-end
-
-local function map(mode, lhs, rhs, opts)
-  local r, o = map_utils(rhs, opts)
-  vim.keymap.set(mode, lhs, r, o)
-end
 
 map("n", "<", "]", { noremap = false })
 map("o", "<", "]", { noremap = false })
@@ -27,8 +7,12 @@ map("x", "<", "]", { noremap = false })
 map("n", ">", "[", { noremap = false })
 map("o", ">", "[", { noremap = false })
 map("x", ">", "[", { noremap = false })
-lvim.keys.normal_mode["<t"] ='<cmd>lua require("neotest").jump.next({ status = "failed" })<CR>'
-lvim.keys.normal_mode[">t"] ='<cmd>lua require("neotest").jump.prev({ status = "failed" })<CR>'
+lvim.keys.normal_mode["<t"] = function()
+  require("neotest").jump.next({ status = "failed" })
+end
+lvim.keys.normal_mode[">t"] = function()
+  require("neotest").jump.prev({ status = "failed" })
+end
 lvim.keys.visual_mode["<Tab>"] = ">gv"
 lvim.keys.visual_mode["<S-Tab>"] = "<gv"
 lvim.keys.insert_mode["<S-Tab>"] = "<C-d>"
@@ -49,8 +33,12 @@ lvim.keys.normal_mode["<A-a>"] = "<C-a>"
 lvim.keys.normal_mode["<A-x>"] = "<C-x>"
 lvim.keys.normal_mode["<C-Down>"] = "<C-W>j"
 lvim.keys.normal_mode["<C-g>"] = ":LazyGit<CR>"
-lvim.keys.normal_mode["<C-f>"] = ':lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>'
-lvim.keys.normal_mode["<C-j>"] = ':lua require("telescope.builtin").jumplist()<CR>'
+lvim.keys.normal_mode["<C-f>"] = function()
+  require("telescope.builtin").current_buffer_fuzzy_find()
+end
+lvim.keys.normal_mode["<C-j>"] = function()
+  require("telescope.builtin").jumplist()
+end
 lvim.keys.normal_mode["<C-Left>"] = "<C-W>h"
 lvim.keys.normal_mode["<C-p>"] = ":Telescope projects<CR>"
 lvim.keys.normal_mode["<C-Right>"] = "<C-W>l"
@@ -66,8 +54,12 @@ lvim.keys.normal_mode["<q"] = ":cnext<CR>"
 lvim.keys.normal_mode[">q"] = ":cprevious<CR>"
 lvim.keys.normal_mode["<l"] = ":lnext<CR>"
 lvim.keys.normal_mode[">l"] = ":lprevious<CR>"
-lvim.keys.normal_mode["<d"] = "<cmd>lua vim.diagnostic.goto_next({buffer=0, float=false})<CR>"
-lvim.keys.normal_mode[">d"] = "<cmd>lua vim.diagnostic.goto_prev({buffer=0, float=false})<CR>"
+lvim.keys.normal_mode["<d"] = function()
+  vim.diagnostic.goto_next({ buffer = 0, float = false })
+end
+lvim.keys.normal_mode[">d"] = function()
+  vim.diagnostic.goto_prev({ buffer = 0, float = false })
+end
 lvim.keys.normal_mode["<g"] = "<cmd>Gitsigns next_hunk<CR>"
 lvim.keys.normal_mode[">g"] = "<cmd>Gitsigns prev_hunk<CR>"
 lvim.keys.normal_mode["ä"] = "}"

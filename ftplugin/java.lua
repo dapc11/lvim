@@ -144,15 +144,31 @@ config["on_attach"] = function(client, bufnr)
   jdtls.setup_dap({ hotcodereplace = "auto" })
   require("lvim.lsp").common_on_attach(client, bufnr)
   local map = require("user.functions").map
-  map("n", "<leader>Co", jdtls.organize_imports(), "Organize Imports", bufnr)
-  map("n", "<leader>Cv", jdtls.extract_variable(), "Extract Variable", bufnr)
-  map("n", "<leader>Cc", jdtls.extract_constant(), "Extract Constant", bufnr)
-  map("n", "<leader>Ct", jdtls.test_nearest_method(), "Test Method", bufnr)
-  map("n", "<leader>CT", jdtls.test_class(), "Test Class", bufnr)
+  map("n", "<leader>Co", function()
+    jdtls.organize_imports()
+  end, "Organize Imports", bufnr)
+  map("n", "<leader>Cv", function()
+    jdtls.extract_variable()
+  end, "Extract Variable", bufnr)
+  map("n", "<leader>Cc", function()
+    jdtls.extract_constant()
+  end, "Extract Constant", bufnr)
+  map("n", "<leader>Ct", function()
+    jdtls.test_nearest_method()
+  end, "Test Method", bufnr)
+  map("n", "<leader>CT", function()
+    jdtls.test_class()
+  end, "Test Class", bufnr)
+  map("v", "<leader>Cv", function()
+    jdtls.extract_variable(true)
+  end, "Extract Variable", bufnr)
+  map("v", "<leader>Cc", function()
+    jdtls.extract_constant(true)
+  end, "Extract Constant", bufnr)
+  map("v", "<leader>Cm", function()
+    jdtls.extract_method(true)
+  end, "Extract Method", bufnr)
   map("n", "<leader>Cu", "<Cmd>JdtUpdateConfig<CR>", "Update Config", bufnr)
-  map("v", "<leader>Cv", "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable", bufnr)
-  map("v", "<leader>Cc", "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant", bufnr)
-  map("v", "<leader>Cm", "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method", bufnr)
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -164,7 +180,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
-require("jdtls").start_or_attach(config)
+jdtls.start_or_attach(config)
 
 vim.cmd(
   "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"

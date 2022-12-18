@@ -70,7 +70,9 @@ require("go").setup({
     map("n", "<leader>r", "<cmd>GoRun<Cr>", "Run", bufnr)
     map("n", "<leader>Cb", "<cmd>GoBuild<Cr>", "Build", bufnr)
     map("n", "<leader>Ce", "<cmd>GoGenReturn<Cr>", "Generate Return", bufnr)
-    map("n", "<leader>Dt", "<cmd>lua require('dap-go').debug_test()<cr>", "Debug Test", bufnr)
+    map("n", "<leader>Dt", function()
+      require("dap-go").debug_test()
+    end, "Debug Test", bufnr)
     map("n", "<leader>Tt", "<cmd>GoTest<cr>", "Run Tests", bufnr)
     map("n", "<leader>Ta", "<cmd>GoAddTest<cr>", "Add Test", bufnr)
     map("n", "<leader>TA", "<cmd>GoAddAllTest<cr>", "Add All Missing Tests", bufnr)
@@ -139,6 +141,6 @@ require("go").setup({
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*.go" },
   callback = function()
-    vim.cmd([[silent! lua require('go.format').goimport()]])
+    vim.cmd([[silent! lua require("go.format").goimport()]])
   end,
 })

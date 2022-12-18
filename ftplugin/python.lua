@@ -1,10 +1,18 @@
 local bufnr = vim.api.nvim_get_current_buf()
 local map = require("user.functions").map
 map("n", "gf", "<cmd>PytrizeJumpFixture<Cr>", "Jump To Fixture", bufnr)
-map("n", "<leader>Dm", "<cmd>lua require('dap-python').test_method()<cr>", "Test Method", bufnr)
-map("n", "<leader>Df", "<cmd>lua require('dap-python').test_class()<cr>", "Test Class", bufnr)
-map("n", "<leader>Ds", "<cmd>lua require('dap-python').debug_selection()<cr>", "Debug Selection", bufnr)
-map("n", "<leader>Ca", "<cmd>lua require('swenv.api').pick_venv()<cr>", "Pick Env", bufnr)
+map("n", "<leader>Dm", function()
+  require("dap-python").test_method()
+end, "Test Method", bufnr)
+map("n", "<leader>Df", function()
+  require("dap-python").test_class()
+end, "Test Class", bufnr)
+map("n", "<leader>Ds", function()
+  require("dap-python").debug_selection()
+end, "Debug Selection", bufnr)
+map("n", "<leader>Ca", function()
+  require("swenv.api").pick_venv()
+end, "Pick Env", bufnr)
 
 pcall(function()
   require("dap-python").test_runner = "pytest"
