@@ -46,7 +46,6 @@ lvim.builtin.cmp.sources = {
   { name = "luasnip", max_item_count = 3 },
   { name = "nvim_lua" },
   { name = "treesitter" },
-  { name = "orgmode" },
   { name = "nvim_lsp_signature_help" },
 }
 lvim.builtin.cmp.experimental = {
