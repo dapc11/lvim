@@ -269,6 +269,10 @@ lvim.builtin.which_key.mappings["l"] = {
     end,
     "Prev Diagnostic",
   },
+  g = {
+    "<cmd>Neogen<CR>",
+    "Generate Annotation",
+  },
   d = {
     function()
       require("telescope.builtin").diagnostics({ bufnr = 0 })
