@@ -11,7 +11,7 @@
       },
       "autoImportCompletions": true,
       "autoSearchPaths": true,
-      "diagnosticMode": "workspace",
+      "diagnosticMode": "openFilesOnly",
       "useLibraryCodeForTypes": true
     },
     "venvPath": "/home/epedape/.virtualenvs/",
