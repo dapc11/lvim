@@ -67,5 +67,11 @@ lvim.plugins = {
       vim.fn["mkdp#util#install"]()
     end,
   },
-  "nvim-orgmode/orgmode",
+  {
+    "nvim-neorg/neorg",
+    run = ":Neorg sync-parsers",
+    ft = { "norg", "org" },
+    after = "nvim-treesitter",
+    requires = { "nvim-lua/plenary.nvim", "nvim-neorg/neorg-telescope" },
+  },
 }

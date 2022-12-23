@@ -1,30 +1,36 @@
-local status, ts = pcall(require, "nvim-treesitter")
-if not status then
-  print("Failed to load Treesitter.")
-  return
-end
-local status, orgmode = pcall(require, "orgmode")
-if not status then
-  print("Failed to load Orgmode.")
-  return
-end
--- Load custom treesitter grammar for org filetype
-orgmode.setup_ts_grammar()
-
--- Treesitter configuration
-require("nvim-treesitter.configs").setup({
-  -- If TS highlights are not enabled at all, or disabled via `disable` prop,
-  -- highlighting will fallback to default Vim syntax highlighting
-  highlight = {
-    enable = true,
-    -- Required for spellcheck, some LaTex highlights and
-    -- code block highlights that do not have ts grammar
-    additional_vim_regex_highlighting = { "org" },
+require("neorg").setup({
+  load = {
+    ["core.defaults"] = {},
+    ["core.integrations.nvim-cmp"] = {},
+    ["core.integrations.telescope"] = {}, -- Enable the telescope module
+    ["core.norg.completion"] = {
+      config = {
+        engine = "nvim-cmp",
+      },
+    },
+    ["core.norg.dirman"] = {
+      config = {
+        workspaces = {
+          work = "~/norg/",
+        },
+      },
+    },
   },
-  ensure_installed = { "org" }, -- Or run :TSUpdate org
 })
+local neorg_callbacks = require("neorg.callbacks")
 
-orgmode.setup({
-  org_agenda_files = { "~/org/*" },
-  org_default_notes_file = "~/org/notes.org",
-})
+neorg_callbacks.on_event("core.keybinds.events.enable_keybinds", function(_, keybinds)
+  -- Map all the below keybinds only when the "norg" mode is active
+  keybinds.map_event_to_mode("norg", {
+    n = { -- Bind keys in normal mode
+      { "<C-s>", "core.integrations.telescope.find_linkable" },
+    },
+
+    i = { -- Bind in insert mode
+      { "<C-l>", "core.integrations.telescope.insert_link" },
+    },
+  }, {
+    silent = true,
+    noremap = true,
+  })
+end)
