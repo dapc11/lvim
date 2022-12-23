@@ -50,6 +50,11 @@ lvim.plugins = {
   },
   "AckslD/nvim-pytrize.lua",
   "tpope/vim-sleuth",
+  {
+    "danymat/neogen",
+    tag = "*",
+    requires = "nvim-treesitter/nvim-treesitter",
+  },
   "AckslD/swenv.nvim",
   -- install without yarn or npm
   {
