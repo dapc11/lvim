@@ -48,6 +48,10 @@ lvim.plugins = {
       "nvim-neotest/neotest-go",
     },
   },
+  {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+  },
   "AckslD/nvim-pytrize.lua",
   "tpope/vim-sleuth",
   {
