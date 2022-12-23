@@ -61,9 +61,6 @@ lvim.builtin.which_key.mappings["cl"] = {
   end,
   "Show line diagnostics",
 }
-lvim.builtin.which_key.mappings["gg"] = { "<cmd>LazyGit<CR>", "LazyGit" }
-lvim.builtin.which_key.mappings["gp"] = { "<cmd>Git push origin HEAD:refs/for/master<CR>", "Gerrit push" }
-lvim.builtin.which_key.mappings["gP"] = { "<cmd>Git push<CR>", "Regular push" }
 vim.cmd([[
     function! ClearQuickfixList()
         call setqflist([])
@@ -148,6 +145,18 @@ lvim.builtin.which_key.mappings["f"] = {
 }
 lvim.builtin.which_key.mappings["g"] = {
   name = "Git",
+  g = {
+    "<cmd>LazyGit<CR>",
+    "LazyGit",
+  },
+  Pp = {
+    "<cmd>Git push origin HEAD:refs/for/master<CR>",
+    "Gerrit Push",
+  },
+  PP = {
+    "<cmd>Git push<CR>",
+    "Git Push",
+  },
   L = {
     '<cmd>Git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative<cr>',
     "Log",
@@ -161,7 +170,8 @@ lvim.builtin.which_key.mappings["g"] = {
   b = { "<cmd>Git blame --date=human --color-by-age --abbrev-commit<cr>", "Blame" },
   cb = { require("telescope.builtin").git_branches, "Checkout branch" },
   cc = { require("telescope.builtin").git_commits, "Checkout commit" },
-  d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff" },
+  d = { "<cmd>Git diff<CR>", "Diff" },
+  D = { "<cmd>Gdiffsplit!<CR>", "Diff-3-way" },
   h = {
     require("gitsigns").preview_hunk,
     "Preview Hunk",
