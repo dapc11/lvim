@@ -274,6 +274,10 @@ lvim.builtin.which_key.mappings["l"] = {
     "Generate Annotation",
   },
   d = {
+    "<cmd>TroubleToggle document_diagnostics<CR>",
+    "Toggle Document Diagnostics",
+  },
+  D = {
     function()
       require("telescope.builtin").diagnostics({ bufnr = 0 })
     end,
@@ -290,6 +294,10 @@ lvim.builtin.which_key.mappings["l"] = {
     "CodeLens Action",
   },
   q = {
+    "<cmd>TroubleToggle quickfix<CR>",
+    "Toggle Trouble Quickfix List",
+  },
+  Q = {
     vim.lsp.diagnostic.set_loclist,
     "Quickfix",
   },

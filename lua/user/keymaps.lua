@@ -55,10 +55,10 @@ lvim.keys.normal_mode[">q"] = ":cprevious<CR>"
 lvim.keys.normal_mode["<l"] = ":lnext<CR>"
 lvim.keys.normal_mode[">l"] = ":lprevious<CR>"
 lvim.keys.normal_mode["<d"] = function()
-  vim.diagnostic.goto_next({ buffer = 0, float = false })
+  require("trouble").next({ skip_groups = true, jump = true })
 end
 lvim.keys.normal_mode[">d"] = function()
-  vim.diagnostic.goto_prev({ buffer = 0, float = false })
+  require("trouble").previous({ skip_groups = true, jump = true })
 end
 lvim.keys.normal_mode["<g"] = "<cmd>Gitsigns next_hunk<CR>"
 lvim.keys.normal_mode[">g"] = "<cmd>Gitsigns prev_hunk<CR>"
