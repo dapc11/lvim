@@ -13,6 +13,7 @@ end
 lvim.keys.normal_mode[">t"] = function()
   require("neotest").jump.prev({ status = "failed" })
 end
+lvim.keys.normal_mode["<M-x>"] = ":Telescope commands<CR>"
 lvim.keys.visual_mode["<Tab>"] = ">gv"
 lvim.keys.visual_mode["<S-Tab>"] = "<gv"
 lvim.keys.insert_mode["<S-Tab>"] = "<C-d>"
