@@ -1,12 +1,9 @@
 -- Additional Plugins
 lvim.plugins = {
   "mfussenegger/nvim-jdtls",
-  "karb94/neoscroll.nvim",
   "j-hui/fidget.nvim",
-  "windwp/nvim-ts-autotag",
   "kylechui/nvim-surround",
   "christianchiarulli/harpoon",
-  "lvimuser/lsp-inlayhints.nvim",
   "kdheepak/lazygit.nvim",
   "junegunn/vim-easy-align",
   {
@@ -26,16 +23,8 @@ lvim.plugins = {
   "dapc11/github-nvim-theme",
   "NvChad/nvim-colorizer.lua",
   {
-    "justinmk/vim-sneak",
-    requires = { "tpope/vim-repeat" },
-  },
-  {
     "ggandor/leap.nvim",
     requires = { "tpope/vim-repeat" },
-  },
-  {
-    "ggandor/flit.nvim",
-    requires = { "ggandor/leap.nvim" },
   },
   "dapc11/zettelkasten.nvim",
   {
@@ -53,7 +42,6 @@ lvim.plugins = {
     requires = "kyazdani42/nvim-web-devicons",
   },
   "AckslD/nvim-pytrize.lua",
-  "tpope/vim-sleuth",
   {
     "danymat/neogen",
     tag = "*",
@@ -66,12 +54,5 @@ lvim.plugins = {
     run = function()
       vim.fn["mkdp#util#install"]()
     end,
-  },
-  {
-    "nvim-neorg/neorg",
-    run = ":Neorg sync-parsers",
-    ft = { "norg", "org" },
-    after = "nvim-treesitter",
-    requires = { "nvim-lua/plenary.nvim", "nvim-neorg/neorg-telescope" },
   },
 }

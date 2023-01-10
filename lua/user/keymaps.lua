@@ -8,12 +8,12 @@ map("n", ">", "[", { noremap = false })
 map("o", ">", "[", { noremap = false })
 map("x", ">", "[", { noremap = false })
 lvim.keys.normal_mode["<t"] = function()
-  require("neotest").jump.next({ status = "failed" })
+	require("neotest").jump.next({ status = "failed" })
 end
 lvim.keys.normal_mode[">t"] = function()
-  require("neotest").jump.prev({ status = "failed" })
+	require("neotest").jump.prev({ status = "failed" })
 end
-lvim.keys.normal_mode["<M-x>"] = ":Telescope commands<CR>"
+-- lvim.keys.normal_mode["<C-P>"] = "<cmd>silent !tmux neww tmux-sessionizer<CR>"
 lvim.keys.visual_mode["<Tab>"] = ">gv"
 lvim.keys.visual_mode["<S-Tab>"] = "<gv"
 lvim.keys.insert_mode["<S-Tab>"] = "<C-d>"
@@ -41,36 +41,28 @@ lvim.keys.normal_mode["N"] = "Nzzzv"
 lvim.keys.normal_mode["<A-a>"] = "<C-a>"
 lvim.keys.normal_mode["<A-x>"] = "<C-x>"
 lvim.keys.normal_mode["<C-Down>"] = "<C-W>j"
-lvim.keys.normal_mode["<C-g>"] = ":LazyGit<CR>"
-lvim.keys.normal_mode["<C-f>"] = function()
-  require("telescope.builtin").current_buffer_fuzzy_find()
-end
-lvim.keys.normal_mode["<C-j>"] = function()
-  require("telescope.builtin").jumplist()
-end
+lvim.keys.normal_mode["<C-g>"] = vim.cmd.LazyGit
+lvim.keys.normal_mode["<C-f>"] = require("telescope.builtin").current_buffer_fuzzy_find
+lvim.keys.normal_mode["<C-j>"] = require("telescope.builtin").jumplist
 lvim.keys.normal_mode["<C-Left>"] = "<C-W>h"
-lvim.keys.normal_mode["<C-p>"] = ":Telescope projects<CR>"
+lvim.keys.normal_mode["<C-p>"] = require("telescope").extensions.projects.projects
 lvim.keys.normal_mode["<C-Right>"] = "<C-W>l"
 lvim.keys.normal_mode["<C-Up>"] = "<C-W>k"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-lvim.keys.normal_mode["<M-Left>"] = ":bprev<CR>"
-lvim.keys.normal_mode["<M-Right>"] = ":bnext<CR>"
+lvim.keys.normal_mode["<M-Left>"] = vim.cmd.bprev
+lvim.keys.normal_mode["<M-Right>"] = vim.cmd.bnext
 lvim.keys.normal_mode["<S-Down>"] = ":m .+1<CR>=="
-lvim.keys.normal_mode["<S-Left>"] = ":tabprevious<CR>"
-lvim.keys.normal_mode["<S-Right>"] = ":tabnext<CR>"
+lvim.keys.normal_mode["<S-Left>"] = vim.cmd.tabprevious
+lvim.keys.normal_mode["<S-Right>"] = vim.cmd.tabnext
 lvim.keys.normal_mode["<S-Up>"] = ":m .-2<CR>=="
-lvim.keys.normal_mode["<q"] = ":cnext<CR>"
-lvim.keys.normal_mode[">q"] = ":cprevious<CR>"
-lvim.keys.normal_mode["<l"] = ":lnext<CR>"
-lvim.keys.normal_mode[">l"] = ":lprevious<CR>"
-lvim.keys.normal_mode["<d"] = function()
-  require("trouble").next({ skip_groups = true, jump = true })
-end
-lvim.keys.normal_mode[">d"] = function()
-  require("trouble").previous({ skip_groups = true, jump = true })
-end
-lvim.keys.normal_mode["<g"] = "<cmd>Gitsigns next_hunk<CR>"
-lvim.keys.normal_mode[">g"] = "<cmd>Gitsigns prev_hunk<CR>"
+lvim.keys.normal_mode["<q"] = vim.cmd.cnext
+lvim.keys.normal_mode[">q"] = vim.cmd.cprevious
+lvim.keys.normal_mode["<l"] = vim.cmd.lnext
+lvim.keys.normal_mode[">l"] = vim.cmd.lprevious
+lvim.keys.normal_mode["<d"] = vim.diagnostic.goto_next
+lvim.keys.normal_mode[">d"] = vim.diagnostic.goto_prev
+lvim.keys.normal_mode["<g"] = require("gitsigns").next_hunk
+lvim.keys.normal_mode[">g"] = require("gitsigns").prev_hunk
 lvim.keys.normal_mode["ä"] = "}"
 lvim.keys.normal_mode["ö"] = "{"
 lvim.keys.normal_mode["W"] = ":noautocmd w<CR>"
