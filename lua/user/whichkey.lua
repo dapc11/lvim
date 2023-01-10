@@ -71,6 +71,7 @@ lvim.builtin.which_key.mappings["f"] = {
   s = { require("user.telescopefinders").spell_check, "Spelling" },
   l = { require("telescope.builtin").resume, "Last Search" },
   n = { require("telescope.builtin").git_files, "Tracked File" },
+  p = { "<cmd>silent !tmux neww tmux-sessionizer<CR>", "Tmux Session" },
   N = {
     function()
       require("telescope.builtin").git_files({

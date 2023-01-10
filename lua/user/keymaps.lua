@@ -13,7 +13,6 @@ end
 lvim.keys.normal_mode[">t"] = function()
 	require("neotest").jump.prev({ status = "failed" })
 end
--- lvim.keys.normal_mode["<C-P>"] = "<cmd>silent !tmux neww tmux-sessionizer<CR>"
 lvim.keys.visual_mode["<Tab>"] = ">gv"
 lvim.keys.visual_mode["<S-Tab>"] = "<gv"
 lvim.keys.insert_mode["<S-Tab>"] = "<C-d>"
