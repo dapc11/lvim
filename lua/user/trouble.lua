@@ -3,14 +3,12 @@ require("trouble").setup({
   height = 10, -- height of the trouble list when position is top or bottom
   width = 50, -- width of the list when position is left or right
   icons = true, -- use devicons for filenames
-  mode = "workspace_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
+  mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
   fold_open = "", -- icon used for open folds
   fold_closed = "", -- icon used for closed folds
   group = true, -- group results by file
   padding = true, -- add an extra new line on top of the list
   action_keys = { -- key mappings for actions in the trouble list
-    -- map to {} to remove a mapping, for example:
-    -- close = {},
     close = "q", -- close the list
     cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
     refresh = "r", -- manually refresh
