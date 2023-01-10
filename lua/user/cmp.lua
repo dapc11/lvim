@@ -93,17 +93,6 @@ cmp.setup.filetype({ "gitcommit" }, {
   }),
 })
 
--- Set configuration for specific filetype.
-cmp.setup.filetype({ "norg" }, {
-  sources = cmp.config.sources({
-    { name = "buffer" },
-    { name = "neorg" },
-    { name = "treesitter" },
-    { name = "luasnip", max_item_count = 3 },
-    { name = "path", max_item_count = 3 },
-  }),
-})
-
 lvim.builtin.cmp.cmdline.options = {
   {
     type = ":",
