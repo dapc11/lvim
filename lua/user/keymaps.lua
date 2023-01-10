@@ -29,12 +29,8 @@ lvim.keys.insert_mode["<C-a>"] = "<home>"
 lvim.keys.insert_mode["<C-e>"] = "<end>"
 lvim.keys.insert_mode["<C-v>"] = "<esc>pa"
 
-lvim.keys.normal_mode[" 2"] = ":diffget //2<cr>"
-lvim.keys.normal_mode[" 3"] = ":diffget //3<cr>"
 lvim.keys.normal_mode["<c"] = "]c"
 lvim.keys.normal_mode[">c"] = "[c"
-lvim.keys.normal_mode[" 1"] = "]c"
-lvim.keys.normal_mode[" §"] = "[c"
 
 lvim.keys.normal_mode["n"] = "nzzzv"
 lvim.keys.normal_mode["N"] = "Nzzzv"

@@ -1,7 +1,16 @@
+vim.g.diagnostics_visible = true
+
 lvim.builtin.which_key.setup.plugins.presets.motions = true
 lvim.builtin.which_key.setup.plugins.presets.nav = true
 lvim.builtin.which_key.setup.plugins.presets.operators = true
 lvim.builtin.which_key.setup.plugins.presets.text_objects = true
+lvim.builtin.which_key.setup.ignore_missing = true
+lvim.builtin.which_key.setup.icons.group = " "
+
+lvim.builtin.which_key.mappings["2"] = { ":diffget //2<cr>", "which_key_ignore" }
+lvim.builtin.which_key.mappings["3"] = { ":diffget //3<cr>", "which_key_ignore" }
+lvim.builtin.which_key.mappings["1"] = { "]c", "which_key_ignore" }
+lvim.builtin.which_key.mappings["§"] = { "[c", "which_key_ignore" }
 
 lvim.builtin.which_key.mappings["P"] = { require("telescope").extensions.projects.projects, "Projects" }
 lvim.builtin.which_key.mappings["o"] = { require("telescope.builtin").find_files, "Find files" }
@@ -11,11 +20,11 @@ lvim.builtin.which_key.mappings["<leader>"] = {
       path_display = { "truncate", shorten = { len = 3, exclude = { 1, -1 } } },
     })
   end,
-  "Live grep in current repo",
+  "Live Grep",
 }
 
 lvim.builtin.which_key.mappings["b"] = { require("telescope.builtin").buffers, "Buffers" }
-lvim.builtin.which_key.mappings["v"] = { vim.cmd.vsplit, "vsplit" }
+lvim.builtin.which_key.mappings["v"] = { vim.cmd.vsplit, "Split Vertically" }
 lvim.builtin.which_key.mappings["h"] = { require("telescope.builtin").oldfiles, "Recent files" }
 lvim.builtin.which_key.mappings["n"] = { require("telescope.builtin").git_files, "Find in tracked files" }
 lvim.builtin.which_key.mappings["N"] = {
@@ -27,31 +36,9 @@ lvim.builtin.which_key.mappings["N"] = {
   "Find in unstaged files",
 }
 lvim.builtin.which_key.mappings["q"] = { require("user.functions").smart_quit, "Quit" }
-lvim.builtin.which_key.mappings["w"] = { "<cmd>bdelete!<CR>", "Close current buffer" }
+lvim.builtin.which_key.mappings["w"] = { "<cmd>bdelete!<CR>", "Close Current Buffer" }
 lvim.builtin.which_key.mappings["/"] = { require("Comment.api").toggle.linewise.current, "Comment" }
 
-vim.g.diagnostics_visible = true
-lvim.builtin.which_key.mappings["ct"] = {
-  function()
-    if vim.g.diagnostics_visible then
-      vim.g.diagnostics_visible = false
-      vim.diagnostic.disable()
-    else
-      vim.g.diagnostics_visible = true
-      vim.diagnostic.enable()
-    end
-  end,
-  "Toggle diagnostics",
-}
-lvim.builtin.which_key.mappings["cl"] = {
-  function()
-    local config = lvim.lsp.diagnostics.float
-    config.scope = "line"
-    config.severity_sort = true
-    vim.diagnostic.open_float(0, config)
-  end,
-  "Show line diagnostics",
-}
 vim.cmd([[
     function! ClearQuickfixList()
         call setqflist([])
@@ -66,11 +53,6 @@ lvim.builtin.which_key.mappings["xl"] =
 lvim.builtin.which_key.mappings["xn"] = { ":%s/\\\\n/\\r/g", "Fix Literal Linebreaks" }
 lvim.builtin.which_key.mappings["xp"] =
 { ":profile start nvim-profile.log | profile func * | profile file *", "Start Profiling" }
-
-lvim.builtin.which_key.mappings["m"] = { require("harpoon.mark").add_file, "Harpoon" }
-lvim.builtin.which_key.mappings["."] = { require("harpoon.ui").nav_next, "Harpoon Next" }
-lvim.builtin.which_key.mappings[","] = { require("harpoon.ui").nav_prev, "Harpoon Prev" }
-lvim.builtin.which_key.mappings["-"] = { require("harpoon.ui").toggle_quick_menu, "Harpoon UI" }
 
 lvim.builtin.which_key.mappings["f"] = {
   name = "Find",
@@ -193,7 +175,11 @@ lvim.builtin.which_key.mappings["t"] = {
 
 lvim.builtin.which_key.mappings["l"] = {
   name = "LSP",
-  a = { vim.lsp.buf.code_action, "Code Action" },
+  a = {
+    name = "Actions",
+    a = { vim.lsp.buf.code_action, "Code" },
+    l = { vim.lsp.codelens.run, "Lens" },
+  },
   f = {
     function()
       vim.lsp.buf.format({ async = true })
@@ -203,13 +189,32 @@ lvim.builtin.which_key.mappings["l"] = {
   F = { vim.cmd.LspToggleAutoFormat, "Toggle Autoformat" },
   H = { vim.cmd.IlluminationToggle, "Toggle Doc HL" },
   g = { vim.cmd.Neogen, "Generate Annotation" },
-  d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Toggle Diagnostics" },
-  l = { vim.lsp.codelens.run, "CodeLens Action" },
-  q = { "<cmd>TroubleToggle quickfix<CR>", "Toggle Trouble Quickfix List" },
+  t = {
+    function()
+      if vim.g.diagnostics_visible then
+        vim.g.diagnostics_visible = false
+        vim.diagnostic.disable()
+      else
+        vim.g.diagnostics_visible = true
+        vim.diagnostic.enable()
+      end
+    end,
+    "Toggle Diagnostics",
+  },
+  l = {
+    function()
+      local config = lvim.lsp.diagnostics.float
+      config.scope = "line"
+      config.severity_sort = true
+      vim.diagnostic.open_float(0, config)
+    end,
+    "Show Line Diagnostics",
+  },
+  d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Toggle Diagnostics List" },
+  q = { "<cmd>TroubleToggle quickfix<CR>", "Toggle Quickfix List" },
   r = { vim.lsp.buf.rename, "Rename" },
   s = { require("telescope.builtin").lsp_document_symbols, "Document Symbols" },
   S = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols" },
-  t = { require("user.functions").toggle_diagnostics, "Toggle Diagnostics" },
 }
 lvim.builtin.which_key.mappings["z"] = {
   name = "Zettelkasten",
