@@ -8,7 +8,7 @@ lvim.plugins = {
   "junegunn/vim-easy-align",
   {
     "catppuccin/nvim",
-    as = "catppuccin",
+    name = "catppuccin",
   },
   "dapc11/vim-fugitive",
   "hrsh7th/cmp-cmdline",
@@ -24,12 +24,12 @@ lvim.plugins = {
   "NvChad/nvim-colorizer.lua",
   {
     "ggandor/leap.nvim",
-    requires = { "tpope/vim-repeat" },
+    dependencies = { "tpope/vim-repeat" },
   },
   "dapc11/zettelkasten.nvim",
   {
     "nvim-neotest/neotest",
-    requires = {
+    dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
@@ -39,19 +39,17 @@ lvim.plugins = {
   },
   {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
   },
   "AckslD/nvim-pytrize.lua",
   {
     "danymat/neogen",
-    tag = "*",
-    requires = "nvim-treesitter/nvim-treesitter",
+    dependencies = "nvim-treesitter/nvim-treesitter",
   },
   "AckslD/swenv.nvim",
-  -- install without yarn or npm
   {
     "iamcco/markdown-preview.nvim",
-    run = function()
+    build = function()
       vim.fn["mkdp#util#install"]()
     end,
   },
