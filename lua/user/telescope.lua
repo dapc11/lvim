@@ -15,6 +15,7 @@ local default_config = {
   initial_mode = "normal",
   layout_config = dropdown_config,
 }
+
 local file_config = {
   theme = "dropdown",
   preview = false,
@@ -54,6 +55,7 @@ lvim.builtin.telescope.pickers = {
     },
   },
 }
+
 lvim.builtin.telescope.defaults.prompt_prefix = "   "
 lvim.builtin.telescope.defaults.path_display = { "truncate" }
 lvim.builtin.telescope.file_sorter = require("telescope.sorters").get_fuzzy_file
@@ -76,6 +78,7 @@ lvim.builtin.telescope.defaults.mappings.i = {
   ["<C-v>"] = actions.select_vertical,
   ["<C-o>"] = actions.select_tab,
 }
+
 lvim.builtin.telescope.defaults.mappings.n = {
   ["<C-p>"] = action_layout.toggle_preview,
   ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
@@ -112,3 +115,7 @@ lvim.builtin.telescope.file_previewer = {
     require("telescope.previewers.utils").job_maker(cmd, bufnr, opts)
   end,
 }
+
+lvim.builtin.telescope.on_config_done = function(telescope)
+  pcall(telescope.load_extension, "harpoon")
+end

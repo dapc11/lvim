@@ -7,6 +7,8 @@ map("x", "<", "]", { noremap = false })
 map("n", ">", "[", { noremap = false })
 map("o", ">", "[", { noremap = false })
 map("x", ">", "[", { noremap = false })
+vim.keymap.set("o", "m", require("tsht").nodes, { noremap = false })
+vim.keymap.set("x", "m", require("tsht").nodes, { noremap = true })
 lvim.keys.normal_mode["<t"] = function()
 	require("neotest").jump.next({ status = "failed" })
 end
