@@ -111,6 +111,10 @@ vim.opt.fillchars:append({
 
 vim.opt.shortmess:append("c")
 
+vim.cmd([[
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+]])
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd([[set iskeyword+=-]])
 
