@@ -60,7 +60,6 @@ local cmp_sources = {
   buffer = "[Buf]",
   path = "[Path]",
 }
-
 lvim.builtin.cmp.formatting = {
   fields = { "kind", "abbr", "menu" },
   format = function(entry, vim_item)
@@ -109,7 +108,7 @@ lvim.builtin.cmp.cmdline.options = {
   },
 }
 
-methods = {}
+local methods = {}
 
 local has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))

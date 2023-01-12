@@ -1,6 +1,5 @@
 lvim.log.level = "warn"
 lvim.format_on_save = false
-vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 lvim.colorscheme = "github_dark"
 lvim.builtin.alpha.active = true
 lvim.builtin.bufferline.active = false
