@@ -9,9 +9,15 @@ map("o", ">", "[", { noremap = false })
 map("x", ">", "[", { noremap = false })
 vim.keymap.set("n", "s", "<Plug>(easymotion-overwin-f2)")
 vim.keymap.set({ "n", "v" }, "t", "<Plug>(easymotion-bd-t2)")
-vim.keymap.set("o", "t", "<Plug>(easymotion-bd-t2)")
+vim.keymap.set({ "v" }, "s", "<Plug>(easymotion-f2)")
+vim.keymap.set("o", "t", "<Plug>(easymotion-bd-tl)")
 vim.keymap.set("o", "m", require("tsht").nodes, { noremap = false })
 vim.keymap.set("x", "m", require("tsht").nodes, { noremap = true })
+
+
+vim.keymap.set({"n", "v", "x", "o"}, "ä", "}")
+vim.keymap.set({"n", "v", "x", "o"}, "ö", "{")
+
 lvim.keys.normal_mode["<t"] = function()
 	require("neotest").jump.next({ status = "failed" })
 end
@@ -31,7 +37,7 @@ lvim.keys.command_mode["<M-Left>"] = "<S-Left>"
 lvim.keys.command_mode["<M-Right>"] = "<S-Right>"
 lvim.keys.insert_mode["<C-a>"] = "<home>"
 lvim.keys.insert_mode["<C-e>"] = "<end>"
-lvim.keys.insert_mode["<C-v>"] = "<esc>pa"
+lvim.keys.insert_mode["<C-v>"] = "<esc>pi"
 
 lvim.keys.normal_mode["<c"] = "]c"
 lvim.keys.normal_mode[">c"] = "[c"
@@ -63,8 +69,6 @@ lvim.keys.normal_mode["<d"] = vim.diagnostic.goto_next
 lvim.keys.normal_mode[">d"] = vim.diagnostic.goto_prev
 lvim.keys.normal_mode["<g"] = require("gitsigns").next_hunk
 lvim.keys.normal_mode[">g"] = require("gitsigns").prev_hunk
-lvim.keys.normal_mode["ä"] = "}"
-lvim.keys.normal_mode["ö"] = "{"
 lvim.keys.normal_mode["W"] = ":noautocmd w<CR>"
 lvim.keys.normal_mode["<"] = "]"
 lvim.keys.normal_mode[">"] = "["
