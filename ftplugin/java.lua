@@ -144,21 +144,11 @@ config["on_attach"] = function(client, bufnr)
   jdtls.setup_dap({ hotcodereplace = "auto" })
   require("lvim.lsp").common_on_attach(client, bufnr)
   local map = require("user.functions").map
-  map("n", "<leader>Co", function()
-    jdtls.organize_imports()
-  end, "Organize Imports", bufnr)
-  map("n", "<leader>Cv", function()
-    jdtls.extract_variable()
-  end, "Extract Variable", bufnr)
-  map("n", "<leader>Cc", function()
-    jdtls.extract_constant()
-  end, "Extract Constant", bufnr)
-  map("n", "<leader>Ct", function()
-    jdtls.test_nearest_method()
-  end, "Test Method", bufnr)
-  map("n", "<leader>CT", function()
-    jdtls.test_class()
-  end, "Test Class", bufnr)
+  map("n", "<leader>Co", jdtls.organize_imports, "Organize Imports", bufnr)
+  map("n", "<leader>Cv", jdtls.extract_variable, "Extract Variable", bufnr)
+  map("n", "<leader>Cc", jdtls.extract_constant, "Extract Constant", bufnr)
+  map("n", "<leader>Ct", jdtls.test_nearest_method, "Test Method", bufnr)
+  map("n", "<leader>CT", jdtls.test_class, "Test Class", bufnr)
   map("v", "<leader>Cv", function()
     jdtls.extract_variable(true)
   end, "Extract Variable", bufnr)
@@ -168,7 +158,7 @@ config["on_attach"] = function(client, bufnr)
   map("v", "<leader>Cm", function()
     jdtls.extract_method(true)
   end, "Extract Method", bufnr)
-  map("n", "<leader>Cu", "<Cmd>JdtUpdateConfig<CR>", "Update Config", bufnr)
+  map("n", "<leader>Cu", vim.cmd.JdtUpdateConfig, "Update Config", bufnr)
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -189,6 +179,4 @@ vim.cmd(
   "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)"
 )
 vim.cmd("command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()")
--- vim.cmd "command! -buffer JdtJol lua require('jdtls').jol()"
 vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
--- vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"

@@ -1,12 +1,9 @@
-local map = require("user.functions").map
 lvim.leader = "space"
 
-map("n", "<", "]", { noremap = false })
-map("o", "<", "]", { noremap = false })
-map("x", "<", "]", { noremap = false })
-map("n", ">", "[", { noremap = false })
-map("o", ">", "[", { noremap = false })
-map("x", ">", "[", { noremap = false })
+vim.keymap.set({ "n", "v", "x", "o" }, "ä", "}")
+vim.keymap.set({ "n", "v", "x", "o" }, "ö", "{")
+vim.keymap.set({ "n", "o", "x" }, "<", "]", { noremap = false })
+vim.keymap.set({ "n", "o", "x" }, ">", "[", { noremap = false })
 vim.keymap.set("n", "s", "<Plug>(easymotion-overwin-f2)")
 vim.keymap.set({ "n", "v" }, "t", "<Plug>(easymotion-bd-t2)")
 vim.keymap.set({ "v" }, "s", "<Plug>(easymotion-f2)")
@@ -14,16 +11,13 @@ vim.keymap.set("o", "t", "<Plug>(easymotion-bd-tl)")
 vim.keymap.set("o", "m", require("tsht").nodes, { noremap = false })
 vim.keymap.set("x", "m", require("tsht").nodes, { noremap = true })
 
-
-vim.keymap.set({"n", "v", "x", "o"}, "ä", "}")
-vim.keymap.set({"n", "v", "x", "o"}, "ö", "{")
-
 lvim.keys.normal_mode["<t"] = function()
 	require("neotest").jump.next({ status = "failed" })
 end
 lvim.keys.normal_mode[">t"] = function()
 	require("neotest").jump.prev({ status = "failed" })
 end
+
 lvim.keys.visual_mode["<Tab>"] = ">gv"
 lvim.keys.visual_mode["<S-Tab>"] = "<gv"
 lvim.keys.insert_mode["<S-Tab>"] = "<C-d>"
@@ -38,9 +32,6 @@ lvim.keys.command_mode["<M-Right>"] = "<S-Right>"
 lvim.keys.insert_mode["<C-a>"] = "<home>"
 lvim.keys.insert_mode["<C-e>"] = "<end>"
 lvim.keys.insert_mode["<C-v>"] = "<esc>pi"
-
-lvim.keys.normal_mode["<c"] = "]c"
-lvim.keys.normal_mode[">c"] = "[c"
 
 lvim.keys.normal_mode["n"] = "nzzzv"
 lvim.keys.normal_mode["N"] = "Nzzzv"
@@ -61,6 +52,8 @@ lvim.keys.normal_mode["<S-Down>"] = ":m .+1<CR>=="
 lvim.keys.normal_mode["<S-Left>"] = vim.cmd.tabprevious
 lvim.keys.normal_mode["<S-Right>"] = vim.cmd.tabnext
 lvim.keys.normal_mode["<S-Up>"] = ":m .-2<CR>=="
+lvim.keys.normal_mode["<c"] = "]c"
+lvim.keys.normal_mode[">c"] = "[c"
 lvim.keys.normal_mode["<q"] = vim.cmd.cnext
 lvim.keys.normal_mode[">q"] = vim.cmd.cprevious
 lvim.keys.normal_mode["<l"] = vim.cmd.lnext
@@ -70,17 +63,10 @@ lvim.keys.normal_mode[">d"] = vim.diagnostic.goto_prev
 lvim.keys.normal_mode["<g"] = require("gitsigns").next_hunk
 lvim.keys.normal_mode[">g"] = require("gitsigns").prev_hunk
 lvim.keys.normal_mode["W"] = ":noautocmd w<CR>"
-lvim.keys.normal_mode["<"] = "]"
-lvim.keys.normal_mode[">"] = "["
 lvim.keys.visual_mode["<A-a>"] = "<C-a>"
 lvim.keys.visual_mode["<A-x>"] = "<C-x>"
 lvim.keys.visual_mode["<S-Down>"] = ":m '>+1<CR>gv=gv"
 lvim.keys.visual_mode["<S-Up>"] = ":m '<-2<CR>gv=gv"
-lvim.keys.visual_mode["ä"] = "}"
 lvim.keys.visual_mode["c"] = '"_c'
-lvim.keys.visual_mode["c"] = '"_c'
-lvim.keys.visual_mode["ö"] = "{"
 lvim.keys.visual_mode["p"] = '"_dP'
-lvim.keys.visual_block_mode["<"] = "]"
-lvim.keys.visual_block_mode[">"] = "["
 lvim.keys.visual_block_mode["p"] = "pgvy"
