@@ -1,5 +1,6 @@
 lvim.builtin.treesitter.highlight.enable = true
 lvim.builtin.treesitter.ensure_installed = {
+  "vim",
   "bash",
   "json",
   "help",
@@ -67,6 +68,7 @@ lvim.builtin.treesitter.textobjects.move = {
     ["><"] = "@class.outer",
   },
 }
+
 lvim.builtin.treesitter.textobjects.select = {
   enable = true,
   keymaps = {
