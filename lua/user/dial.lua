@@ -1,5 +1,6 @@
 local status_ok, dial_config = pcall(require, "dial.config")
 if not status_ok then
+  print("Failed to setup dial.nvim.")
   return
 end
 
@@ -53,8 +54,7 @@ dial_config.augends:register_group {
 
 local map = require "dial.map"
 
--- change augends in VISUAL mode
-vim.api.nvim_set_keymap("n", "<C-a>", map.inc_normal "mygroup", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-x>", map.dec_normal "mygroup", { noremap = true })
-vim.api.nvim_set_keymap("v", "<C-a>", map.inc_normal "visual", { noremap = true })
-vim.api.nvim_set_keymap("v", "<C-x>", map.dec_normal "visual", { noremap = true })
+vim.keymap.set("n", "<C-a>", map.inc_normal "mygroup", { noremap = true })
+vim.keymap.set("n", "<C-x>", map.dec_normal "mygroup", { noremap = true })
+vim.keymap.set("v", "<C-a>", map.inc_normal "visual", { noremap = true })
+vim.keymap.set("v", "<C-x>", map.dec_normal "visual", { noremap = true })
