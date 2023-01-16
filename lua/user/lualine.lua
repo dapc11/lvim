@@ -23,6 +23,7 @@ lvim.builtin.lualine.on_config_done = function(lualine)
 			section_separators = { left = "", right = "" },
 			disabled_filetypes = {
 				statusline = {
+          "lazy",
           "lazygit",
           "TelescopePrompt",
 					"help",
@@ -51,6 +52,7 @@ lvim.builtin.lualine.on_config_done = function(lualine)
 					"alpha",
 				},
 				winbar = {
+          "lazy",
           "lazygit",
           "TelescopePrompt",
 					"help",
