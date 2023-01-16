@@ -60,4 +60,7 @@ lvim.plugins = {
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
+	{
+		"monaqa/dial.nvim",
+	},
 }
