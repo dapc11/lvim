@@ -12,10 +12,10 @@ vim.keymap.set("o", "m", require("tsht").nodes, { noremap = false })
 vim.keymap.set("x", "m", require("tsht").nodes, { noremap = true })
 
 lvim.keys.normal_mode["<t"] = function()
-	require("neotest").jump.next({ status = "failed" })
+  require("neotest").jump.next({ status = "failed" })
 end
 lvim.keys.normal_mode[">t"] = function()
-	require("neotest").jump.prev({ status = "failed" })
+  require("neotest").jump.prev({ status = "failed" })
 end
 
 lvim.keys.visual_mode["<Tab>"] = ">gv"

@@ -100,11 +100,7 @@ lvim.builtin.telescope.file_previewer = {
       ".*%.tar.gz",
     })
     if not vim.tbl_isempty(excluded) then
-      putils.set_preview_message(
-        bufnr,
-        opts.winid,
-        string.format("I don't like %s files!", excluded[1]:sub(5, -1))
-      )
+      putils.set_preview_message(bufnr, opts.winid, string.format("I don't like %s files!", excluded[1]:sub(5, -1)))
       return false
     end
     return true
