@@ -91,6 +91,10 @@ vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
   pattern = "*",
   group = augroup,
   callback = function()
+    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+    if buf_ft == "lazy" then
+      return
+    end
     printDiagnostics(vim.api.nvim_get_current_buf(), vim.api.nvim_win_get_cursor(0)[1] - 1)
   end,
 })
@@ -99,6 +103,10 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufEnter" }, {
   pattern = "*",
   group = augroup,
   callback = function()
+    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+    if buf_ft == "lazy" then
+      return
+    end
     clear(prev_buf)
   end,
 })
