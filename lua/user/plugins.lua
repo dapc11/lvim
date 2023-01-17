@@ -63,4 +63,7 @@ lvim.plugins = {
 	{
 		"monaqa/dial.nvim",
 	},
+  { "ggandor/leap.nvim", dependencies = { "tpope/vim-repeat" } },
+  { "ggandor/flit.nvim", dependencies = { "ggandor/leap.nvim" }, config = true },
+  -- { "easymotion/vim-easymotion" },
 }
