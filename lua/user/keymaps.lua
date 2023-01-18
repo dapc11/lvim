@@ -8,6 +8,13 @@ vim.keymap.set({ "n", "o", "x" }, ">", "[", { noremap = false })
 -- vim.keymap.set({ "n", "v" }, "t", "<Plug>(easymotion-bd-t2)")
 -- vim.keymap.set({ "v" }, "s", "<Plug>(easymotion-f2)")
 -- vim.keymap.set("o", "t", "<Plug>(easymotion-bd-tl)")
+vim.keymap.set({ "n", "x", "o" }, "f", function()
+  require("leap").leap({
+    target_windows = vim.tbl_filter(function(win)
+      return vim.api.nvim_win_get_config(win).focusable
+    end, vim.api.nvim_tabpage_list_wins(0)),
+  })
+end)
 vim.keymap.set("o", "m", require("tsht").nodes, { noremap = false })
 vim.keymap.set("x", "m", require("tsht").nodes, { noremap = true })
 
