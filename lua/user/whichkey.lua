@@ -51,8 +51,14 @@ vim.cmd([[
     endfunction
     command! ClearQuickfixList call ClearQuickfixList()
 ]])
-lvim.builtin.which_key.mappings["pS"] = { "<cmd>LvimSyncCorePlugins<CR>", "Sync Core Plugins" }
-lvim.builtin.which_key.mappings["xx"] = { "<cmd>ClearQuickfixList<CR>", "Clear QF" }
+lvim.builtin.which_key.mappings["ps"] = {
+  function()
+    vim.cmd.Lazy("sync")
+  end,
+  "Sync Core Plugins",
+}
+lvim.builtin.which_key.mappings["pS"] = { vim.cmd.LvimSyncCorePlugins, "Sync Core Plugins" }
+lvim.builtin.which_key.mappings["xx"] = { vim.cmd.ClearQuickfixList, "Clear QF" }
 lvim.builtin.which_key.mappings["xl"] = {
   ":nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><c-l>",
   "Clear Highlight Search",
