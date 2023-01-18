@@ -1,7 +1,9 @@
 lvim.leader = "space"
 
-vim.keymap.set({ "n", "v", "x", "o" }, "ä", "}")
-vim.keymap.set({ "n", "v", "x", "o" }, "ö", "{")
+vim.keymap.set({ "n", "v", "x", "o" }, "ä", "}zz")
+vim.keymap.set({ "n", "v", "x", "o" }, "ö", "{zz")
+vim.keymap.set({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
+vim.keymap.set({ "n", "v", "x", "o" }, "<C-u>", "<C-u>zz")
 vim.keymap.set({ "n", "o", "x" }, "<", "]", { noremap = false })
 vim.keymap.set({ "n", "o", "x" }, ">", "[", { noremap = false })
 -- vim.keymap.set("n", "s", "<Plug>(easymotion-overwin-f2)")
