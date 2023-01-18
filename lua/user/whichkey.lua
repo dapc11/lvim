@@ -110,10 +110,20 @@ lvim.builtin.which_key.mappings["g"] = {
     '<cmd>Git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative<cr>',
     "Log",
   },
-  b = { "<cmd>Git blame --date=human --color-by-age --abbrev-commit<cr>", "Blame" },
+  b = {
+    function()
+      vim.cmd.Git("blame", "--date=human", "--color-by-age", "--abbrev-commit")
+    end,
+    "Blame",
+  },
   cb = { require("telescope.builtin").git_branches, "Checkout branch" },
   cc = { require("telescope.builtin").git_commits, "Checkout commit" },
-  d = { "<cmd>Git diff<CR>", "Diff" },
+  d = {
+    function()
+      vim.cmd.Git("diff")
+    end,
+    "Diff",
+  },
   D = { "<cmd>Gdiffsplit!<CR>", "Diff-3-way" },
   h = { require("gitsigns").preview_hunk, "Preview Hunk" },
   l = {
@@ -121,8 +131,18 @@ lvim.builtin.which_key.mappings["g"] = {
     "Log",
   },
   s = { require("telescope.builtin").git_status, "Open changed file" },
-  p = { "<cmd>Git pull --rebase<cr>", "Pull & rebase" },
-  u = { "<cmd>Git submodule update --init --recursive<cr>", "Update Submodules" },
+  p = {
+    function()
+      vim.cmd.Git("pull", "--rebase")
+    end,
+    "Pull & rebase",
+  },
+  u = {
+    function()
+      vim.cmd.Git("submodule", "update", "--init", "--recursive")
+    end,
+    "Update Submodules",
+  },
   r = { require("gitsigns").reset_hunk, "Reset Hunk" },
   R = {
     function()
