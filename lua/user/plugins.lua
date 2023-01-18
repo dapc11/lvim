@@ -94,4 +94,16 @@ lvim.plugins = {
   {
     "monaqa/dial.nvim",
   },
+  {
+    "ja-ford/delaytrain.nvim",
+    config = true,
+    opts = {
+      delay_ms = 1000,
+      grace_period = 1,
+      keys = {
+        ["nv"] = { "<Left>", "<Down>", "<Up>", "<Right>" },
+      },
+      ignore_filetypes = { "help", "gitcommit" },
+    },
+  },
 }
