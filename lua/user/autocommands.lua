@@ -1,5 +1,6 @@
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
+    "fugitiveblame",
     "Jaq",
     "qf",
     "help",
