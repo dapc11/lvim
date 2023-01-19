@@ -103,7 +103,7 @@ lvim.plugins = {
       keys = {
         ["nv"] = { "<Left>", "<Down>", "<Up>", "<Right>" },
       },
-      ignore_filetypes = { "help", "gitcommit" },
+      ignore_filetypes = { "help", "gitcommit", "NvimTree", "fugitive" },
     },
   },
 }
