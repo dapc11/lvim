@@ -27,7 +27,18 @@ lvim.plugins = {
 
   -- Custom config
   { "mfussenegger/nvim-jdtls", event = "VeryLazy" },
-  { "j-hui/fidget.nvim", config = true },
+  {
+    "j-hui/fidget.nvim",
+    config = true,
+    opts = {
+      window = {
+        relative = "win", -- where to anchor, either "win" or "editor"
+        blend = 0, -- &winblend for the window
+        zindex = nil, -- the zindex value for the window
+        border = "none", -- style of border for the fidget window
+      },
+    },
+  },
   { "christianchiarulli/harpoon", config = true, dependencies = { "nvim-telescope/telescope.nvim" } },
   { "kdheepak/lazygit.nvim", cmd = "LazyGit" },
   { "junegunn/vim-easy-align", event = "VeryLazy" },

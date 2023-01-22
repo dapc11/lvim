@@ -1,4 +1,5 @@
 lvim.log.level = "warn"
+lvim.transparent_window = true
 lvim.format_on_save = false
 lvim.colorscheme = "github_dark"
 lvim.builtin.alpha.active = true
