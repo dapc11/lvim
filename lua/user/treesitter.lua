@@ -24,6 +24,7 @@ ts.ensure_installed = {
   "css",
   "java",
   "yaml",
+  "gitcommit",
 }
 
 ts.incremental_selection = {
