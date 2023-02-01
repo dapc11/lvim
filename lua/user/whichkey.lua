@@ -104,8 +104,18 @@ lvim.builtin.which_key.mappings["f"] = {
 lvim.builtin.which_key.mappings["g"] = {
   name = "Git",
   g = { vim.cmd.Git, "Status" },
-  Pp = { vim.cmd.Git("push", "origin", "HEAD:refs/for/master"), "Gerrit Push" },
-  PP = { vim.cmd.Git("push"), "Git Push" },
+  Pp = {
+    function()
+      vim.cmd.Git("push", "origin", "HEAD:refs/for/master")
+    end,
+    "Gerrit Push",
+  },
+  PP = {
+    function()
+      vim.cmd.Git("push")
+    end,
+    "Git Push",
+  },
   L = {
     '<cmd>Git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative<cr>',
     "Log",
