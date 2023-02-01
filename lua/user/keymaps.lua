@@ -7,10 +7,6 @@ vim.keymap.set({ "n", "v", "x", "o" }, "<C-u>", "<C-u>zz")
 vim.keymap.set({ "n", "o", "x" }, "<", "]", { noremap = false })
 vim.keymap.set({ "n", "o", "x" }, ">", "[", { noremap = false })
 vim.keymap.set("n", "<c", function()
-  local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-  if buf_ft == "fugitive" then
-    return "]/"
-  end
   if vim.wo.diff then
     return "]c"
   end
@@ -21,10 +17,6 @@ vim.keymap.set("n", "<c", function()
 end, { expr = true })
 
 vim.keymap.set("n", ">c", function()
-  local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-  if buf_ft == "fugitive" then
-    return "[/"
-  end
   if vim.wo.diff then
     return "[c"
   end
