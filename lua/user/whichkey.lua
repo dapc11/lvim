@@ -124,7 +124,7 @@ lvim.builtin.which_key.mappings["g"] = {
     end,
     "Diff",
   },
-  D = { "<cmd>Gdiffsplit!<CR>", "Diff-3-way" },
+  D = { "<cmd>Gvdiffsplit!<CR>", "Diff-3-way" },
   h = { require("gitsigns").preview_hunk, "Preview Hunk" },
   l = {
     '<cmd>Git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all<cr>',
