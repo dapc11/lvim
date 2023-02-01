@@ -8,20 +8,22 @@ vim.keymap.set({ "n", "o", "x" }, "<", "]", { noremap = false })
 vim.keymap.set({ "n", "o", "x" }, ">", "[", { noremap = false })
 vim.keymap.set("n", "<c", function()
   if vim.wo.diff then
-    return "]c"
+    return "]czz"
   end
   vim.schedule(function()
     require("gitsigns").next_hunk()
+    vim.fn.feedkeys("zz")
   end)
   return "<Ignore>"
 end, { expr = true })
 
 vim.keymap.set("n", ">c", function()
   if vim.wo.diff then
-    return "[c"
+    return "[czz"
   end
   vim.schedule(function()
     require("gitsigns").prev_hunk()
+    vim.fn.feedkeys("zz")
   end)
   return "<Ignore>"
 end, { expr = true })
