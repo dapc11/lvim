@@ -103,9 +103,9 @@ lvim.builtin.which_key.mappings["f"] = {
 }
 lvim.builtin.which_key.mappings["g"] = {
   name = "Git",
-  g = { "<cmd>LazyGit<CR>", "LazyGit" },
-  Pp = { "<cmd>Git push origin HEAD:refs/for/master<CR>", "Gerrit Push" },
-  PP = { "<cmd>Git push<CR>", "Git Push" },
+  g = { vim.cmd.Git, "Status" },
+  Pp = { vim.cmd.Git("push", "origin", "HEAD:refs/for/master"), "Gerrit Push" },
+  PP = { vim.cmd.Git("push"), "Git Push" },
   L = {
     '<cmd>Git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative<cr>',
     "Log",
