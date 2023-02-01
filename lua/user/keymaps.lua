@@ -6,6 +6,34 @@ vim.keymap.set({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
 vim.keymap.set({ "n", "v", "x", "o" }, "<C-u>", "<C-u>zz")
 vim.keymap.set({ "n", "o", "x" }, "<", "]", { noremap = false })
 vim.keymap.set({ "n", "o", "x" }, ">", "[", { noremap = false })
+vim.keymap.set("n", "<c", function()
+  local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+  if buf_ft == "fugitive" then
+    return "]/"
+  end
+  if vim.wo.diff then
+    return "]c"
+  end
+  vim.schedule(function()
+    require("gitsigns").next_hunk()
+  end)
+  return "<Ignore>"
+end, { expr = true })
+
+vim.keymap.set("n", ">c", function()
+  local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
+  if buf_ft == "fugitive" then
+    return "[/"
+  end
+  if vim.wo.diff then
+    return "[c"
+  end
+  vim.schedule(function()
+    require("gitsigns").prev_hunk()
+  end)
+  return "<Ignore>"
+end, { expr = true })
+
 -- vim.keymap.set("n", "s", "<Plug>(easymotion-overwin-f2)")
 -- vim.keymap.set({ "n", "v" }, "t", "<Plug>(easymotion-bd-t2)")
 -- vim.keymap.set({ "v" }, "s", "<Plug>(easymotion-f2)")
@@ -47,7 +75,7 @@ lvim.keys.normal_mode["N"] = "Nzzzv"
 lvim.keys.normal_mode["<A-a>"] = "<C-a>"
 lvim.keys.normal_mode["<A-x>"] = "<C-x>"
 lvim.keys.normal_mode["<C-Down>"] = "<C-W>j"
-lvim.keys.normal_mode["<C-g>"] = vim.cmd.LazyGit
+lvim.keys.normal_mode["<C-g>"] = vim.cmd.Git
 lvim.keys.normal_mode["<C-f>"] = require("telescope.builtin").current_buffer_fuzzy_find
 lvim.keys.normal_mode["<C-j>"] = require("telescope.builtin").jumplist
 lvim.keys.normal_mode["<C-Left>"] = "<C-W>h"
@@ -61,16 +89,12 @@ lvim.keys.normal_mode["<S-Down>"] = ":m .+1<CR>=="
 lvim.keys.normal_mode["<S-Left>"] = vim.cmd.tabprevious
 lvim.keys.normal_mode["<S-Right>"] = vim.cmd.tabnext
 lvim.keys.normal_mode["<S-Up>"] = ":m .-2<CR>=="
-lvim.keys.normal_mode["<c"] = "]c"
-lvim.keys.normal_mode[">c"] = "[c"
 lvim.keys.normal_mode["<q"] = vim.cmd.cnext
 lvim.keys.normal_mode[">q"] = vim.cmd.cprevious
 lvim.keys.normal_mode["<l"] = vim.cmd.lnext
 lvim.keys.normal_mode[">l"] = vim.cmd.lprevious
 lvim.keys.normal_mode["<d"] = vim.diagnostic.goto_next
 lvim.keys.normal_mode[">d"] = vim.diagnostic.goto_prev
-lvim.keys.normal_mode["<g"] = require("gitsigns").next_hunk
-lvim.keys.normal_mode[">g"] = require("gitsigns").prev_hunk
 lvim.keys.normal_mode["W"] = ":noautocmd w<CR>"
 lvim.keys.visual_mode["<A-a>"] = "<C-a>"
 lvim.keys.visual_mode["<A-x>"] = "<C-x>"

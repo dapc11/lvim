@@ -130,14 +130,15 @@ lvim.builtin.which_key.mappings["g"] = {
     '<cmd>Git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all<cr>',
     "Log",
   },
-  s = { require("telescope.builtin").git_status, "Open changed file" },
+  s = { require("gitsigns").stage_hunk, "Stage Hunk" },
+  u = { require("gitsigns").undo_stage_hunk, "Undo Stage Hunk" },
   p = {
     function()
       vim.cmd.Git("pull", "--rebase")
     end,
     "Pull & rebase",
   },
-  u = {
+  U = {
     function()
       vim.cmd.Git("submodule", "update", "--init", "--recursive")
     end,
