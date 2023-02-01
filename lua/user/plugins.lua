@@ -105,6 +105,7 @@ lvim.plugins = {
   {
     "monaqa/dial.nvim",
   },
+  { "nvim-treesitter/nvim-treesitter-textobjects" },
   -- {
   --   "ja-ford/delaytrain.nvim",
   --   config = true,
