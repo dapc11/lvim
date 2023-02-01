@@ -1,5 +1,6 @@
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 local ts = lvim.builtin.treesitter
+
 parser_config.gotmpl = {
   install_info = {
     url = "https://github.com/ngalaiko/tree-sitter-go-template",
@@ -8,7 +9,9 @@ parser_config.gotmpl = {
   filetype = "gotmpl",
   used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml", "tpl", "yml" },
 }
+
 ts.highlight.enable = true
+
 ts.ensure_installed = {
   "vim",
   "bash",
@@ -22,6 +25,7 @@ ts.ensure_installed = {
   "java",
   "yaml",
 }
+
 ts.incremental_selection = {
   enable = true,
   keymaps = {
