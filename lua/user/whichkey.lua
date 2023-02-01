@@ -7,11 +7,6 @@ lvim.builtin.which_key.setup.plugins.presets.text_objects = true
 lvim.builtin.which_key.setup.ignore_missing = true
 lvim.builtin.which_key.setup.icons.group = " "
 
-lvim.builtin.which_key.mappings["2"] = { ":diffget //2<cr>", "which_key_ignore" }
-lvim.builtin.which_key.mappings["3"] = { ":diffget //3<cr>", "which_key_ignore" }
-lvim.builtin.which_key.mappings["1"] = { "]c", "which_key_ignore" }
-lvim.builtin.which_key.mappings["§"] = { "[c", "which_key_ignore" }
-
 lvim.builtin.which_key.mappings["m"] = { require("harpoon.mark").add_file, "Harpoon Add" }
 lvim.builtin.which_key.mappings["."] = { require("harpoon.ui").nav_next, "Harpoon Next" }
 lvim.builtin.which_key.mappings[","] = { require("harpoon.ui").nav_prev, "Harpoon Prev" }

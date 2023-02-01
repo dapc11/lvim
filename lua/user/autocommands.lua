@@ -23,6 +23,23 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "DiffUpdated" }, {
+  pattern = { "" },
+  callback = function()
+    if vim.wo.diff then
+      vim.diagnostic.disable()
+      local bufnr = vim.api.nvim_get_current_buf()
+      vim.keymap.set("n", "2", function()
+        return ":diffget //2<CR>"
+      end, { expr = true, silent = true, buffer = bufnr })
+
+      vim.keymap.set("n", "3", function()
+        return ":diffget //3<CR>"
+      end, { expr = true, silent = true, buffer = bufnr })
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
   pattern = { "" },
   callback = function()
