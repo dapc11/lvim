@@ -1,5 +1,5 @@
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
+local ts = lvim.builtin.treesitter
 parser_config.gotmpl = {
   install_info = {
     url = "https://github.com/ngalaiko/tree-sitter-go-template",
@@ -8,24 +8,31 @@ parser_config.gotmpl = {
   filetype = "gotmpl",
   used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml", "tpl", "yml" },
 }
+ts.highlight.enable = true
+ts.ensure_installed = {
+  "vim",
+  "bash",
+  "json",
+  "help",
+  "lua",
+  "go",
+  "gomod",
+  "python",
+  "css",
+  "java",
+  "yaml",
+}
+ts.incremental_selection = {
+  enable = true,
+  keymaps = {
+    init_selection = "<CR>",
+    node_incremental = "<CR>",
+    scope_incremental = "<S-CR>",
+    node_decremental = "<BS>",
+  },
+}
 
-lvim.builtin.treesitter = {
-  ensure_installed = {
-    "vim",
-    "bash",
-    "json",
-    "help",
-    "lua",
-    "go",
-    "gomod",
-    "python",
-    "css",
-    "java",
-    "yaml",
-  },
-  highlight = {
-    enable = true,
-  },
+ts.textobjects = {
   move = {
     enable = true,
     set_jumps = true, -- whether to set jumps in the jumplist
@@ -48,56 +55,28 @@ lvim.builtin.treesitter = {
   },
   select = {
     enable = true,
+    lookahead = true,
     keymaps = {
-      -- You can use the capture groups defined in textobjects.scm
-      ["af"] = "@function.outer",
       ["if"] = "@function.inner",
-      ["ac"] = "@class.outer",
-      ["ic"] = "@class.inner",
-      -- Or you can define your own textobjects like this
+      ["aC"] = "@class.outer",
+      ["iC"] = "@class.inner",
+      ["ac"] = "@conditional.outer",
+      ["ic"] = "@conditional.inner",
+      ["ae"] = "@block.outer",
+      ["ie"] = "@block.inner",
+      ["al"] = "@loop.outer",
+      ["il"] = "@loop.inner",
+      ["is"] = "@statement.inner",
+      ["as"] = "@statement.outer",
+      ["ad"] = "@comment.outer",
+      ["am"] = "@call.outer",
+      ["im"] = "@call.inner",
       ["iF"] = {
         python = "(function_definition) @function",
         cpp = "(function_definition) @function",
         c = "(function_definition) @function",
         java = "(method_declaration) @function",
         go = "(method_declaration) @function",
-      },
-    },
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<CR>",
-      node_incremental = "<CR>",
-      scope_incremental = "<S-CR>",
-      node_decremental = "<BS>",
-    },
-  },
-  textobjects = {
-    select = {
-      enable = true,
-      keymaps = {
-        ["if"] = "@function.inner",
-        ["aC"] = "@class.outer",
-        ["iC"] = "@class.inner",
-        ["ac"] = "@conditional.outer",
-        ["ic"] = "@conditional.inner",
-        ["ae"] = "@block.outer",
-        ["ie"] = "@block.inner",
-        ["al"] = "@loop.outer",
-        ["il"] = "@loop.inner",
-        ["is"] = "@statement.inner",
-        ["as"] = "@statement.outer",
-        ["ad"] = "@comment.outer",
-        ["am"] = "@call.outer",
-        ["im"] = "@call.inner",
-        ["iF"] = {
-          python = "(function_definition) @function",
-          cpp = "(function_definition) @function",
-          c = "(function_definition) @function",
-          java = "(method_declaration) @function",
-          go = "(method_declaration) @function",
-        },
       },
     },
   },
