@@ -76,13 +76,6 @@ ts.textobjects = {
       ["ad"] = "@comment.outer",
       ["am"] = "@call.outer",
       ["im"] = "@call.inner",
-      ["iF"] = {
-        python = "(function_definition) @function",
-        cpp = "(function_definition) @function",
-        c = "(function_definition) @function",
-        java = "(method_declaration) @function",
-        go = "(method_declaration) @function",
-      },
     },
   },
 }
