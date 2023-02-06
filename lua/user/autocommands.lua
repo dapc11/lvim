@@ -50,7 +50,7 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
       nnoremap <silent> <buffer> <c-j> j<CR>
       nnoremap <silent> <buffer> <c-k> k<CR>
       set nobuflisted
-    ]])
+    ]] )
     end
   end,
 })
@@ -181,6 +181,20 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt_local.tabstop = 4
     vim.opt_local.softtabstop = 4
     vim.opt_local.expandtab = true
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.cursorline = true
+  end,
+})
+
+vim.api.nvim_create_autocmd("WinLeave", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.cursorline = false
   end,
 })
 
