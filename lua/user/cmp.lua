@@ -6,6 +6,7 @@ if not cmp_ok or cmp == nil then
     config = { sources = function(...) end },
   }
 end
+
 local kind_icons = {
   Text = "",
   Method = "m",
@@ -48,11 +49,13 @@ lvim.builtin.cmp.sources = {
   { name = "treesitter" },
   { name = "nvim_lsp_signature_help" },
 }
+
 lvim.builtin.cmp.experimental = {
   ghost_text = false,
   native_menu = false,
   custom_menu = true,
 }
+
 local cmp_sources = {
   nvim_lsp = "[Lsp]",
   nvim_lua = "[Lua]",
@@ -60,6 +63,7 @@ local cmp_sources = {
   buffer = "[Buf]",
   path = "[Path]",
 }
+
 lvim.builtin.cmp.formatting = {
   fields = { "kind", "abbr", "menu" },
   format = function(entry, vim_item)
