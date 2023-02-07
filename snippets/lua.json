@@ -1,0 +1,13 @@
+{
+  "reql": {
+    "prefix": "reql",
+    "body": [
+      "local status, _err = pcall(require(\"${2:module}\"))",
+      "if not status then",
+      "\tprint(\"Cannot load module '${2:module}'\")",
+      "\treturn",
+      "end"
+    ],
+    "description": "Safe module require"
+  }
+}
