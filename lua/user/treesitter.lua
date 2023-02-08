@@ -10,7 +10,10 @@ parser_config.gotmpl = {
   used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml", "tpl", "yml" },
 }
 
-ts.highlight.enable = true
+ts.highlight = {
+  enable = true,
+  disable = { "gitcommit" },
+}
 
 ts.ensure_installed = {
   "vim",
@@ -24,7 +27,6 @@ ts.ensure_installed = {
   "css",
   "java",
   "yaml",
-  "gitcommit",
 }
 
 ts.incremental_selection = {
