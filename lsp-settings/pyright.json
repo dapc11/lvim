@@ -14,7 +14,7 @@
       "diagnosticMode": "openFilesOnly",
       "useLibraryCodeForTypes": true
     },
-    "venvPath": "/home/epedape/.virtualenvs/",
+    "venvPath": "~/.virtualenvs/",
     "pythonPath": "python3"
   }
 }
