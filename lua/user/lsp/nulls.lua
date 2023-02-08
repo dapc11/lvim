@@ -9,7 +9,16 @@ local null_ls = require("null-ls")
 lvim.lsp.null_ls.setup = {
   sources = {
     null_ls.builtins.code_actions.gitsigns,
-    null_ls.builtins.diagnostics.trail_space,
+    null_ls.builtins.diagnostics.trail_space.with({
+      filetypes = {
+        "lua",
+        "go",
+        "python",
+        "java",
+        "markdown",
+        "sh",
+      },
+    }),
     null_ls.builtins.formatting.black.with({ prefer_local = true }),
     null_ls.builtins.formatting.isort.with({ prefer_local = true, extra_args = { "--profile", "black" } }),
     null_ls.builtins.diagnostics.pylint.with({
