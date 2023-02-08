@@ -98,3 +98,5 @@ endfunction
 
 call s:MapMotion('>', 'exe <SID>PreviousItem(v:count1)')
 call s:MapMotion('<', 'exe <SID>NextItem(v:count1)')
+
+call s:Map('n', "<C-p>", ":Git push<CR>", "<silent>")
