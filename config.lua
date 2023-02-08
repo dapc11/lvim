@@ -21,5 +21,4 @@ require("user.simple-diagnostics")
 require("user.trouble")
 require("user.lualine")
 require("user.dial")
-
-require("luasnip/loaders/from_vscode").load { paths = { "~/.config/lvim/snippets/my-snippets" } }
+require("user.snippets")
