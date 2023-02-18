@@ -25,6 +25,7 @@ lvim.builtin.which_key.mappings["<leader>"] = {
 
 lvim.builtin.which_key.mappings["b"] = { require("telescope.builtin").buffers, "Buffers" }
 lvim.builtin.which_key.mappings["v"] = { vim.cmd.vsplit, "Split Vertically" }
+lvim.builtin.which_key.mappings["s"] = { vim.cmd.split, "Split Horizontally" }
 lvim.builtin.which_key.mappings["h"] = { require("telescope.builtin").oldfiles, "Recent files" }
 lvim.builtin.which_key.mappings["n"] = { require("telescope.builtin").git_files, "Find in tracked files" }
 lvim.builtin.which_key.mappings["N"] = {
@@ -287,4 +288,3 @@ lvim.builtin.which_key.mappings["d"] = {
 lvim.builtin.which_key.mappings[";"] = nil
 lvim.builtin.which_key.mappings["c"] = nil
 lvim.builtin.which_key.mappings["L"] = nil
-lvim.builtin.which_key.mappings["s"] = nil
