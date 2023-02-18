@@ -100,17 +100,20 @@ lvim.builtin.which_key.mappings["f"] = {
 lvim.builtin.which_key.mappings["g"] = {
   name = "Git",
   g = { vim.cmd.Git, "Status" },
-  Pp = {
-    function()
-      vim.cmd.Git("push", "origin", "HEAD:refs/for/master")
-    end,
-    "Gerrit Push",
-  },
-  PP = {
-    function()
-      vim.cmd.Git("push")
-    end,
-    "Git Push",
+  p = {
+    name = "Push",
+    p = {
+      function()
+        vim.cmd.Git("push", "origin", "HEAD:refs/for/master")
+      end,
+      "Gerrit",
+    },
+    P = {
+      function()
+        vim.cmd.Git("push")
+      end,
+      "Regular",
+    },
   },
   L = {
     '<cmd>Git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative<cr>',
@@ -122,8 +125,11 @@ lvim.builtin.which_key.mappings["g"] = {
     end,
     "Blame",
   },
-  cb = { require("telescope.builtin").git_branches, "Checkout branch" },
-  cc = { require("telescope.builtin").git_commits, "Checkout commit" },
+  c = {
+    name = "Checkout",
+    b = { require("telescope.builtin").git_branches, "Checkout branch" },
+    c = { require("telescope.builtin").git_commits, "Checkout commit" },
+  },
   d = {
     function()
       vim.cmd.Git("diff")
@@ -137,8 +143,8 @@ lvim.builtin.which_key.mappings["g"] = {
     "Log",
   },
   s = { require("gitsigns").stage_hunk, "Stage Hunk" },
-  u = { require("gitsigns").undo_stage_hunk, "Undo Stage Hunk" },
-  p = {
+  u = { require("gitsigns").undo_stage_hunk, "Unstage Hunk" },
+  P = {
     function()
       vim.cmd.Git("pull", "--rebase")
     end,
