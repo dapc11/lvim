@@ -122,18 +122,16 @@ function M.yaml_find(opts)
   end
 
   -- return result
-  pickers
-    .new(opts, {
-      prompt_title = "YAML symbols",
-      theme = "dropdown",
-      finder = finders.new_table({
-        results = result,
-        entry_maker = opts.entry_maker or gen_from_yaml_nodes(opts),
-      }),
-      sorter = conf.generic_sorter(opts),
-      previewer = conf.grep_previewer(opts),
-    })
-    :find()
+  pickers.new(opts, {
+    prompt_title = "YAML symbols",
+    theme = "dropdown",
+    finder = finders.new_table({
+      results = result,
+      entry_maker = opts.entry_maker or gen_from_yaml_nodes(opts),
+    }),
+    sorter = conf.generic_sorter(opts),
+    previewer = conf.grep_previewer(opts),
+  }):find()
 end
 
 return M

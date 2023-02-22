@@ -87,6 +87,7 @@ lvim.builtin.which_key.mappings["f"] = {
   k = { require("telescope.builtin").keymaps, "Keymap" },
   C = { require("telescope.builtin").commands, "Command" },
 }
+
 lvim.builtin.which_key.mappings["g"] = {
   name = "Git",
   g = { vim.cmd.Git, "Status" },
@@ -154,6 +155,7 @@ lvim.builtin.which_key.mappings["g"] = {
     "Reset Buffer",
   },
 }
+
 lvim.builtin.which_key.mappings["t"] = {
   name = "Test",
   c = {
@@ -255,12 +257,14 @@ lvim.builtin.which_key.mappings["l"] = {
   s = { require("telescope.builtin").lsp_document_symbols, "Document Symbols" },
   S = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols" },
 }
+
 lvim.builtin.which_key.mappings["z"] = {
   name = "Zettelkasten",
   n = { "<cmd>ZkNew<cr>", "New Note" },
   b = { "<cmd>ZkBrowse<cr>", "Browse Notes" },
   z = { "<cmd>Telescope live_grep cwd=~/notes<cr>", "Find Notes" },
 }
+
 local dap = require("dap")
 local dapui = require("dapui")
 lvim.builtin.which_key.mappings["d"] = {
