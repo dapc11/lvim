@@ -54,16 +54,6 @@ lvim.builtin.which_key.mappings["ps"] = {
   "Sync Core Plugins",
 }
 lvim.builtin.which_key.mappings["pS"] = { vim.cmd.LvimSyncCorePlugins, "Sync Core Plugins" }
-lvim.builtin.which_key.mappings["xx"] = { vim.cmd.ClearQuickfixList, "Clear QF" }
-lvim.builtin.which_key.mappings["xl"] = {
-  ":nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><c-l>",
-  "Clear Highlight Search",
-}
-lvim.builtin.which_key.mappings["xn"] = { ":%s/\\\\n/\\r/g", "Fix Literal Linebreaks" }
-lvim.builtin.which_key.mappings["xp"] = {
-  ":profile start nvim-profile.log | profile func * | profile file *",
-  "Start Profiling",
-}
 
 lvim.builtin.which_key.mappings["f"] = {
   name = "Find",
@@ -289,6 +279,91 @@ lvim.builtin.which_key.mappings["d"] = {
   l = { dap.run_last, "Last" },
   u = { dapui.toggle, "UI" },
   x = { dap.terminate, "Exit" },
+}
+
+lvim.builtin.which_key.mappings["x"] = {
+  name = "Misc",
+  x = { vim.cmd.ToggleTerm, "Toggle Terminal" },
+  v = {
+    function()
+      vim.cmd.ToggleTerm("direction=vertical", "size=80")
+    end,
+    "Toggle Vertical Terminal",
+  },
+  s = {
+    function()
+      vim.cmd.ToggleTerm("direction=horizontal")
+    end,
+    "Toggle Horizontal Terminal",
+  },
+  c = { vim.cmd.ClearQuickfixList, "Clear QF" },
+  l = {
+    ":nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><c-l>",
+    "Clear Highlight Search",
+  },
+  n = { ":%s/\\\\n/\\r/g", "Fix Literal Linebreaks" },
+  p = {
+    ":profile start nvim-profile.log | profile func * | profile file *",
+    "Start Profiling",
+  },
+}
+
+lvim.builtin.which_key.mappings["t"] = {
+  name = "Test",
+  c = {
+    function()
+      require("neotest").run.run()
+    end,
+    "Run nearest test",
+  },
+  f = {
+    function()
+      require("neotest").run.run(vim.fn.expand("%"))
+    end,
+    "Run current file",
+  },
+  d = {
+    function()
+      require("neotest").run.run({ strategy = "dap" })
+    end,
+    "Debug nearest test",
+  },
+  l = {
+    function()
+      require("neotest").run.run_last()
+    end,
+    "Re-run last",
+  },
+  s = {
+    function()
+      require("neotest").summary.toggle()
+    end,
+    "Toggle test summary",
+  },
+  O = {
+    function()
+      require("neotest").output.open({ enter = true })
+    end,
+    "Open test output",
+  },
+  o = {
+    function()
+      require("neotest").output_panel.open()
+    end,
+    "Open test output panel",
+  },
+  j = {
+    function()
+      require("neotest").jump.next({ status = "failed" })
+    end,
+    "Next Failed Test",
+  },
+  k = {
+    function()
+      require("neotest").jump.prev({ status = "failed" })
+    end,
+    "Prev Failed Test",
+  },
 }
 
 lvim.builtin.which_key.mappings[";"] = nil
