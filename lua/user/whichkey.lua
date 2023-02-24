@@ -296,23 +296,8 @@ lvim.builtin.which_key.mappings["d"] = {
 
 lvim.builtin.which_key.mappings["x"] = {
   name = "Misc",
-  x = {
-    function()
-      vim.cmd.ToggleTerm("direction=tab")
-    end,
+  x = { vim.cmd.BufTermEnter,
     "Toggle Terminal",
-  },
-  v = {
-    function()
-      vim.cmd.ToggleTerm("direction=vertical", "size=80")
-    end,
-    "Toggle Vertical Terminal",
-  },
-  s = {
-    function()
-      vim.cmd.ToggleTerm("direction=horizontal")
-    end,
-    "Toggle Horizontal Terminal",
   },
   c = { vim.cmd.ClearQuickfixList, "Clear QF" },
   l = {

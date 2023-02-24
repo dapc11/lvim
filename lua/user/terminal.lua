@@ -1,6 +1,10 @@
 vim.g.terminal_scrollback_buffer_size = 100000
-vim.keymap.set("t", "<C-b>", "<C-\\><C-n>", {
-  desc = "Get back to vim mode",
+vim.keymap.set("t", "<c-b>", "<c-\\><c-n>", {
+  desc = "get back to vim mode",
+  silent = true,
+})
+vim.keymap.set("t", "<esc>", "<c-\\><c-n>", {
+  desc = "get back to vim mode",
   silent = true,
 })
 
