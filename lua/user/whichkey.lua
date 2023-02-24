@@ -58,6 +58,15 @@ lvim.builtin.which_key.mappings["pS"] = { vim.cmd.LvimSyncCorePlugins, "Sync Cor
 lvim.builtin.which_key.mappings["f"] = {
   name = "Find",
   b = { require("telescope.builtin").buffers, "Buffer" },
+  d = {
+    function()
+      require("telescope.builtin").find_files({
+        cwd = "~/",
+        path_display = { "truncate", shorten = { len = 3, exclude = { 1, -1 } } },
+      })
+    end,
+    "File",
+  },
   f = {
     function()
       require("telescope.builtin").find_files({
