@@ -1,7 +1,7 @@
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
-  { command = "stylua", filetypes = { "lua" } },
-  { command = "gofmt", filetypes = { "go" } },
+  { command = "stylua",    extra_args = { "--search-parent-directories" }, filetypes = { "lua" } },
+  { command = "gofmt",     filetypes = { "go" } },
   { command = "goimports", filetypes = { "go" } },
 })
 
