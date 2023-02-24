@@ -294,11 +294,49 @@ lvim.builtin.which_key.mappings["d"] = {
   x = { dap.terminate, "Exit" },
 }
 
+local Terminal = require("bufterm.terminal").Terminal
+local ui = require("bufterm.ui")
+
+local runner = Terminal:new({
+  cmd = function()
+    local runner = {
+      python = "python3 %",
+      go = "go run %",
+      sh = "sh %",
+      bash = "bash %",
+      fish = "fish %",
+    }
+    local cmd = runner[vim.bo.filetype]
+    if not cmd then
+      -- fallback to default shell if can't run current filetype
+      return vim.o.shell
+    end
+    cmd = cmd:gsub("%%", vim.fn.expand("%"))
+    return cmd
+  end,
+  termlisted = true,
+  fallback_on_exit = false,
+  auto_close = false,
+})
+local runner_win = ui.Window:new()
+
 lvim.builtin.which_key.mappings["x"] = {
   name = "Misc",
-  x = { vim.cmd.BufTermEnter,
-    "Toggle Terminal",
+  r = {
+    function()
+      -- re-run process if buffer is visible
+      if runner.bufnr and vim.fn.bufwinid(runner.bufnr) > 0 then
+        runner:run()
+        return
+      end
+      -- open new window (or get existing window-id)
+      local winid = runner_win:open(runner.bufnr)
+      -- enter job
+      runner:enter(winid)
+    end,
+    "Run Current File in Terminal",
   },
+  x = { vim.cmd.BufTermEnter, "Toggle Terminal" },
   c = { vim.cmd.ClearQuickfixList, "Clear QF" },
   l = {
     ":nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><c-l>",
