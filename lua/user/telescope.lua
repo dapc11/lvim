@@ -74,7 +74,7 @@ lvim.builtin.telescope.defaults.mappings.i = {
   ["<M-right>"] = actions_layout.cycle_layout_next,
   ["<M-left>"] = actions_layout.cycle_layout_prev,
   ["<CR>"] = actions.select_default,
-  ["<C-h>"] = actions.select_horizontal,
+  ["<C-s>"] = actions.select_horizontal,
   ["<C-v>"] = actions.select_vertical,
   ["<C-o>"] = actions.select_tab,
 }
