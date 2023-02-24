@@ -99,7 +99,7 @@ lvim.builtin.which_key.mappings["f"] = {
 
 lvim.builtin.which_key.mappings["g"] = {
   name = "Git",
-  g = { vim.cmd.Git, "Status" },
+  g = { "<cmd>tab Git<CR>", "Status" },
   p = {
     name = "Push",
     p = {
@@ -116,7 +116,7 @@ lvim.builtin.which_key.mappings["g"] = {
     },
   },
   L = {
-    '<cmd>Git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative<cr>',
+    '<cmd>tab Git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative<cr>',
     "Log",
   },
   b = {
@@ -139,7 +139,7 @@ lvim.builtin.which_key.mappings["g"] = {
   D = { "<cmd>Gvdiffsplit!<CR>", "Diff-3-way" },
   h = { require("gitsigns").preview_hunk, "Preview Hunk" },
   l = {
-    '<cmd>Git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all<cr>',
+    '<cmd>tab Git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all<cr>',
     "Log",
   },
   s = { require("gitsigns").stage_hunk, "Stage Hunk" },
@@ -296,7 +296,12 @@ lvim.builtin.which_key.mappings["d"] = {
 
 lvim.builtin.which_key.mappings["x"] = {
   name = "Misc",
-  x = { vim.cmd.ToggleTerm, "Toggle Terminal" },
+  x = {
+    function()
+      vim.cmd.ToggleTerm("direction=tab")
+    end,
+    "Toggle Terminal",
+  },
   v = {
     function()
       vim.cmd.ToggleTerm("direction=vertical", "size=80")

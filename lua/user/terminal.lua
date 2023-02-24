@@ -6,6 +6,7 @@ vim.keymap.set("t", "<C-b>", "<C-\\><C-n>", {
 
 -- Move between windows using Alt-
 -- Ctrl- works only outside of terminal buffers
+vim.keymap.set({"t", "n"}, "<C-t>", "<Cmd>ToggleTerm<CR>", { silent = true })
 vim.keymap.set("t", "<A-Up>", "<C-\\><C-n><C-w>k", { silent = true })
 vim.keymap.set("t", "<A-Down>", "<C-\\><C-n><C-w>j", { silent = true })
 vim.keymap.set("t", "<A-Left>", "<C-\\><C-n><C-w>h", { silent = true })
