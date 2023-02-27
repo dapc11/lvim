@@ -1,5 +1,10 @@
 lvim.leader = "space"
-
+vim.cmd [[
+cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
+cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
+cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
+cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
+]]
 vim.keymap.set({ "n", "v", "x", "o" }, "ä", "}zz")
 vim.keymap.set({ "n", "v", "x", "o" }, "ö", "{zz")
 vim.keymap.set({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
