@@ -5,6 +5,23 @@ cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q')
 cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
 cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
 ]]
+
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+vim.keymap.set("n", "n", '"Nn"[v:searchforward]', {
+  expr = true,
+  noremap = true,
+  desc = "Better forward N behaviour",
+})
+vim.keymap.set("n", "N", '"nN"[v:searchforward]', {
+  expr = true,
+  noremap = true,
+  desc = "Better backward N behaviour",
+})
+
+-- stolen from justinmk
+vim.keymap.set("n", "/", "ms/", { desc = "Keeps jumplist after forward searching" })
+vim.keymap.set("n", "?", "ms?", { desc = "Keeps jumplist after backward searching" })
+
 vim.keymap.set({ "n", "v", "x", "o" }, "ä", "}zz")
 vim.keymap.set({ "n", "v", "x", "o" }, "ö", "{zz")
 vim.keymap.set({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
