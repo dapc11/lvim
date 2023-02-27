@@ -33,7 +33,8 @@
         "keygrabber",
         "mousegrabber",
         "mouse",
-        "screen"
+        "screen",
+        "require"
       ]
     }
   }
