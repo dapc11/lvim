@@ -1,10 +1,10 @@
 lvim.leader = "space"
-vim.cmd [[
+vim.cmd([[
 cnoreabbrev <expr> W ((getcmdtype() is# ':' && getcmdline() is# 'W')?('w'):('W'))
 cnoreabbrev <expr> Q ((getcmdtype() is# ':' && getcmdline() is# 'Q')?('q'):('Q'))
 cnoreabbrev <expr> WQ ((getcmdtype() is# ':' && getcmdline() is# 'WQ')?('wq'):('WQ'))
 cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('Wq'))
-]]
+]])
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 vim.keymap.set("n", "n", '"Nn"[v:searchforward]', {
@@ -109,8 +109,16 @@ lvim.keys.normal_mode["<q"] = vim.cmd.cnext
 lvim.keys.normal_mode[">q"] = vim.cmd.cprevious
 lvim.keys.normal_mode["<l"] = vim.cmd.lnext
 lvim.keys.normal_mode[">l"] = vim.cmd.lprevious
-lvim.keys.normal_mode["<d"] = vim.diagnostic.goto_next
-lvim.keys.normal_mode[">d"] = vim.diagnostic.goto_prev
+lvim.keys.normal_mode["<d"] = function()
+  vim.diagnostic.goto_next({
+    float = false,
+  })
+end
+lvim.keys.normal_mode[">d"] = function()
+  vim.diagnostic.goto_prev({
+    float = false,
+  })
+end
 lvim.keys.normal_mode["W"] = ":noautocmd w<CR>"
 lvim.keys.visual_mode["<A-a>"] = "<C-a>"
 lvim.keys.visual_mode["<A-x>"] = "<C-x>"
