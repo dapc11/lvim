@@ -103,9 +103,7 @@ lvim.builtin.which_key.mappings["g"] = {
   p = {
     name = "Push",
     p = {
-      function()
-        vim.cmd.Git("push", "origin", "HEAD:refs/for/master")
-      end,
+      "<cmd>Git push origin HEAD:refs/for/master<CR>",
       "Gerrit",
     },
     P = {
@@ -120,9 +118,7 @@ lvim.builtin.which_key.mappings["g"] = {
     "Log",
   },
   b = {
-    function()
-      vim.cmd.Git("blame", "--date=human", "--color-by-age", "--abbrev-commit")
-    end,
+    "<cmd>tab Git blame --date=human --color-by-age --abbrev-commit<CR>",
     "Blame",
   },
   c = {
@@ -145,14 +141,12 @@ lvim.builtin.which_key.mappings["g"] = {
   s = { require("gitsigns").stage_hunk, "Stage Hunk" },
   u = { require("gitsigns").undo_stage_hunk, "Unstage Hunk" },
   P = {
-    function()
-      vim.cmd.Git("pull", "--rebase")
-    end,
+    "<cmd>Git pull --rebase",
     "Pull & rebase",
   },
   U = {
     function()
-      vim.cmd.Git("submodule", "update", "--init", "--recursive")
+      vim.cmd.Git("submodule", "update", "--init", "--recursive<CR>")
     end,
     "Update Submodules",
   },
