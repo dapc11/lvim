@@ -141,7 +141,7 @@ lvim.builtin.which_key.mappings["g"] = {
   s = { require("gitsigns").stage_hunk, "Stage Hunk" },
   u = { require("gitsigns").undo_stage_hunk, "Unstage Hunk" },
   P = {
-    "<cmd>Git pull --rebase",
+    "<cmd>Git pull --rebase<CR>",
     "Pull & rebase",
   },
   U = {
