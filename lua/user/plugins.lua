@@ -52,7 +52,6 @@ lvim.plugins = {
     dependencies = { "tpope/vim-repeat" },
     config = true,
     init = function()
-      require("leap").add_default_mappings()
       vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
       vim.api.nvim_set_hl(0, "LeapMatch", {
         fg = "#c9d1d9",
