@@ -50,18 +50,7 @@ vim.keymap.set("n", ">c", function()
   return "<Ignore>"
 end, { expr = true })
 
--- vim.keymap.set("n", "s", "<Plug>(easymotion-overwin-f2)")
--- vim.keymap.set({ "n", "v" }, "t", "<Plug>(easymotion-bd-t2)")
--- vim.keymap.set({ "v" }, "s", "<Plug>(easymotion-f2)")
--- vim.keymap.set("o", "t", "<Plug>(easymotion-bd-tl)")
-vim.keymap.set({ "n", "x", "o" }, "s", function()
-  require("leap").leap({
-    offset = 0,
-    target_windows = vim.tbl_filter(function(win)
-      return vim.api.nvim_win_get_config(win).focusable
-    end, vim.api.nvim_tabpage_list_wins(0)),
-  })
-end)
+require('leap').add_default_mappings()
 vim.keymap.set("o", "m", require("tsht").nodes, { noremap = false })
 vim.keymap.set("x", "m", require("tsht").nodes, { noremap = true })
 
