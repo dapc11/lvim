@@ -184,6 +184,10 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+vim.cmd([[
+au FileType TelescopePrompt* setlocal nocursorline
+]])
+
 vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
   pattern = "*",
   callback = function()
