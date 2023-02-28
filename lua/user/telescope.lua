@@ -11,15 +11,13 @@ local dropdown_config = {
 }
 
 local default_config = {
-  theme = "dropdown",
+  theme = "ivy",
   initial_mode = "normal",
-  layout_config = dropdown_config,
 }
 
 local file_config = {
-  theme = "dropdown",
+  theme = "ivy",
   preview = false,
-  layout_config = dropdown_config,
 }
 
 lvim.builtin.telescope.pickers = {
@@ -32,18 +30,15 @@ lvim.builtin.telescope.pickers = {
   oldfiles = file_config,
   git_files = file_config,
   current_buffer_fuzzy_find = {
-    theme = "dropdown",
-    layout_config = dropdown_config,
+    theme = "ivy",
   },
   live_grep = {
-    theme = "dropdown",
-    layout_config = dropdown_config,
+    theme = "ivy",
   },
   buffers = {
-    theme = "dropdown",
+    theme = "ivy",
     previewer = false,
     initial_mode = "normal",
-    layout_config = dropdown_config,
     mappings = {
       n = {
         ["<C-d>"] = actions.delete_buffer + actions.move_to_top,
