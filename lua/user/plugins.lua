@@ -118,6 +118,7 @@ lvim.plugins = {
   {
     "alexghergh/nvim-tmux-navigation",
     config = true,
+    priority = 999,
     init = function()
       -- These keymaps corresponds to what is setup in .tmux conf
       require("nvim-tmux-navigation").setup({
