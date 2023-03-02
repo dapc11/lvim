@@ -115,6 +115,24 @@ lvim.plugins = {
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   { "boltlessengineer/bufterm.nvim", config = true },
+  {
+    "alexghergh/nvim-tmux-navigation",
+    config = true,
+    init = function()
+      -- These keymaps corresponds to what is setup in .tmux conf
+      require("nvim-tmux-navigation").setup({
+        disable_when_zoomed = true, -- defaults to false
+        keybindings = {
+          left = "<C-h>",
+          down = "<C-j>",
+          up = "<C-k>",
+          right = "<C-l>",
+          last_active = "<C-\\>",
+          next = "<C-Space>",
+        },
+      })
+    end,
+  },
   -- {
   --   "ja-ford/delaytrain.nvim",
   --   config = true,
