@@ -39,7 +39,11 @@ lvim.plugins = {
       },
     },
   },
-  { "christianchiarulli/harpoon", config = true, dependencies = { "nvim-telescope/telescope.nvim" } },
+  {
+    "christianchiarulli/harpoon",
+    config = true,
+    dependencies = { "nvim-telescope/telescope.nvim" },
+  },
   { "kdheepak/lazygit.nvim", cmd = "LazyGit" },
   { "junegunn/vim-easy-align", event = "VeryLazy" },
   { "dapc11/vim-fugitive", event = "VeryLazy" },
@@ -79,7 +83,12 @@ lvim.plugins = {
     },
   },
   -- { "easymotion/vim-easymotion" },
-  { "dapc11/zettelkasten.nvim", ft = "markdown", config = true, opts = { notes_path = "~/notes" } },
+  {
+    "dapc11/zettelkasten.nvim",
+    ft = "markdown",
+    config = true,
+    opts = { notes_path = "~/notes" },
+  },
   {
     "nvim-neotest/neotest",
     dependencies = {
