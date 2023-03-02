@@ -50,7 +50,7 @@ vim.keymap.set("n", ">c", function()
   return "<Ignore>"
 end, { expr = true })
 
-require('leap').add_default_mappings()
+require("leap").add_default_mappings()
 vim.keymap.set("o", "m", require("tsht").nodes, { noremap = false })
 vim.keymap.set("x", "m", require("tsht").nodes, { noremap = true })
 
@@ -85,7 +85,9 @@ lvim.keys.normal_mode["<C-g>"] = "<cmd>tab Git<CR>"
 lvim.keys.normal_mode["<C-f>"] = require("telescope.builtin").current_buffer_fuzzy_find
 lvim.keys.normal_mode["<C-j>"] = require("telescope.builtin").jumplist
 lvim.keys.normal_mode["<C-Left>"] = "<C-W>h"
-lvim.keys.normal_mode["<C-p>"] = function() require("telescope").extensions.projects.projects(require('telescope.themes').get_ivy { previewer = false }) end
+lvim.keys.normal_mode["<C-p>"] = function()
+  require("telescope").extensions.projects.projects(require("telescope.themes").get_ivy({ previewer = false }))
+end
 lvim.keys.normal_mode["<C-Right>"] = "<C-W>l"
 lvim.keys.normal_mode["<C-Up>"] = "<C-W>k"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
