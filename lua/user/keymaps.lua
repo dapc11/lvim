@@ -114,3 +114,5 @@ lvim.keys.visual_mode["<S-Up>"] = ":m '<-2<CR>gv=gv"
 lvim.keys.visual_mode["c"] = '"_c'
 lvim.keys.visual_mode["p"] = '"_dP'
 lvim.keys.visual_block_mode["p"] = "pgvy"
+vim.keymap.set("n", "<C-Left>", "<Nop>")
+vim.keymap.set("n", "<C-Right>", "<Nop>")
