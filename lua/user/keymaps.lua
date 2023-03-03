@@ -120,26 +120,31 @@ vim.keymap.set("n", "<C-Up>", "<Nop>")
 vim.keymap.set("n", "<C-Down>", "<Nop>")
 
 function vim.getVisualSelection()
-	vim.cmd('noau normal! "vy"')
-	local text = vim.fn.getreg('v')
-	vim.fn.setreg('v', {})
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg("v")
+  vim.fn.setreg("v", {})
 
-	text = string.gsub(text, "\n", "")
-	if #text > 0 then
-		return text
-	else
-		return ''
-	end
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ""
+  end
 end
 
-local tb = require('telescope.builtin')
+local tb = require("telescope.builtin")
+lvim.builtin.which_key.vmappings["f"] = {
+  function()
+    local text = vim.getVisualSelection()
+    tb.current_buffer_fuzzy_find({ default_text = text })
+  end,
+  "Current Buffer Grep Selection",
+}
 
-vim.keymap.set('v', '<leader>f', function()
-	local text = vim.getVisualSelection()
-	tb.current_buffer_fuzzy_find({ default_text = text })
-end, { noremap = true, silent = true, desc = "Curent Buffer Grep for Selection" })
-
-vim.keymap.set('v', '<leader>g', function()
-	local text = vim.getVisualSelection()
-	tb.live_grep({ default_text = text })
-end, { noremap = true, silent = true, desc = "Live Grep for Selection" })
+lvim.builtin.which_key.vmappings["g"] = {
+  function()
+    local text = vim.getVisualSelection()
+    tb.live_grep({ default_text = text })
+  end,
+  "Live Grep Selection",
+}
