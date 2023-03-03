@@ -116,3 +116,30 @@ lvim.keys.visual_mode["p"] = '"_dP'
 lvim.keys.visual_block_mode["p"] = "pgvy"
 vim.keymap.set("n", "<C-Left>", "<Nop>")
 vim.keymap.set("n", "<C-Right>", "<Nop>")
+vim.keymap.set("n", "<C-Up>", "<Nop>")
+vim.keymap.set("n", "<C-Down>", "<Nop>")
+
+function vim.getVisualSelection()
+	vim.cmd('noau normal! "vy"')
+	local text = vim.fn.getreg('v')
+	vim.fn.setreg('v', {})
+
+	text = string.gsub(text, "\n", "")
+	if #text > 0 then
+		return text
+	else
+		return ''
+	end
+end
+
+local tb = require('telescope.builtin')
+
+vim.keymap.set('v', '<leader>f', function()
+	local text = vim.getVisualSelection()
+	tb.current_buffer_fuzzy_find({ default_text = text })
+end, { noremap = true, silent = true, desc = "Curent Buffer Grep for Selection" })
+
+vim.keymap.set('v', '<leader>g', function()
+	local text = vim.getVisualSelection()
+	tb.live_grep({ default_text = text })
+end, { noremap = true, silent = true, desc = "Live Grep for Selection" })
