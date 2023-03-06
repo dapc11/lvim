@@ -83,11 +83,32 @@ lvim.plugins = {
     },
   },
   -- { "easymotion/vim-easymotion" },
+  -- {
+  --   "dapc11/zettelkasten.nvim",
+  --   ft = "markdown",
+  --   config = true,
+  --   opts = { notes_path = "~/notes" },
+  -- },
   {
-    "dapc11/zettelkasten.nvim",
-    ft = "markdown",
-    config = true,
-    opts = { notes_path = "~/notes" },
+    "mickael-menu/zk-nvim",
+    config = function()
+      require("zk").setup({
+        -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+        -- it's recommended to use "telescope" or "fzf"
+        picker = "telescope",
+        lsp = {
+          config = {
+            cmd = { "zk", "lsp" },
+            name = "zk",
+          },
+
+          auto_attach = {
+            enabled = true,
+            filetypes = { "markdown" },
+          },
+        },
+      })
+    end,
   },
   {
     "nvim-neotest/neotest",

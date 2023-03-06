@@ -4,4 +4,5 @@ lvim.lsp.installer.setup.ensure_installed = {
   "pyright",
   "lua_ls",
   "jsonls",
+  "zk",
 }

@@ -263,8 +263,8 @@ lvim.builtin.which_key.mappings["l"] = {
 
 lvim.builtin.which_key.mappings["z"] = {
   name = "Zettelkasten",
-  n = { "<cmd>ZkNew<cr>", "New Note" },
-  b = { "<cmd>ZkBrowse<cr>", "Browse Notes" },
+  n = { "<Cmd>ZkNew { dir = vim.fn.expand('$HOME/notes'), title = vim.fn.input('Title: ') }<CR>", "New Note" },
+  b = { vim.cmd.ZkNotes, "Browse Notes" },
   z = { "<cmd>Telescope live_grep cwd=~/notes<cr>", "Find Notes" },
 }
 

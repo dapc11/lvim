@@ -72,5 +72,5 @@
   "vim-unimpaired": { "branch": "master", "commit": "6d44a6dc2ec34607c41ec78acf81657248580bf1" },
   "which-key.nvim": { "branch": "main", "commit": "5224c261825263f46f6771f1b644cae33cd06995" },
   "yaml.nvim": { "branch": "main", "commit": "ec53f8eabcce9ff42121ad64ff288af8d25f5010" },
-  "zettelkasten.nvim": { "branch": "master", "commit": "28c77643b2fd01c2f4c88bd7006d79cfd5a674f5" }
+  "zk-nvim": { "branch": "main", "commit": "0413c52500cd0133b0cd8e7e7d43084855ac1760" }
 }

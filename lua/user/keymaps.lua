@@ -141,7 +141,7 @@ lvim.builtin.which_key.vmappings["f"] = {
   "Current Buffer Grep Selection",
 }
 
-lvim.builtin.which_key.vmappings["g"] = {
+lvim.builtin.which_key.vmappings["<leader>"] = {
   function()
     local text = vim.getVisualSelection()
     tb.live_grep({ default_text = text })
