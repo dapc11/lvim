@@ -10,7 +10,7 @@ wk.register({
     name = "Zettelkasten",
     b = { "<Cmd>ZkBacklinks<CR>", "Open Notes Linking to Buffer" },
     l = { "<Cmd>ZkLinks<CR>", "Open Notes Linked by the Buffer" },
-    f = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Follow Link" }
+    f = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Follow Link" },
   },
 }, { prefix = "<leader>", buffer = bufnr, mode = "n" })
 wk.register({
