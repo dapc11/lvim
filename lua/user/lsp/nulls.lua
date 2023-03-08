@@ -1,10 +1,3 @@
-local formatters = require("lvim.lsp.null-ls.formatters")
-formatters.setup({
-  { command = "stylua", extra_args = { "--search-parent-directories" }, filetypes = { "lua" } },
-  { command = "gofmt", filetypes = { "go" } },
-  { command = "goimports", filetypes = { "go" } },
-})
-
 local null_ls = require("null-ls")
 lvim.lsp.null_ls.setup = {
   sources = {
@@ -19,6 +12,10 @@ lvim.lsp.null_ls.setup = {
         "sh",
       },
     }),
+    null_ls.builtins.formatting.stylua.with({ extra_args = { "--search-parent-directories" } }),
+    null_ls.builtins.diagnostics.golangci_lint.with({ prefer_local = true }),
+    null_ls.builtins.formatting.goimports.with({ prefer_local = true }),
+    null_ls.builtins.formatting.gofmt.with({ prefer_local = true }),
     null_ls.builtins.formatting.black.with({ prefer_local = true }),
     null_ls.builtins.formatting.isort.with({ prefer_local = true, extra_args = { "--profile", "black" } }),
     null_ls.builtins.diagnostics.pylint.with({

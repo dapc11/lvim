@@ -1,9 +1,3 @@
-local lsp_manager = require("lvim.lsp.manager")
-lsp_manager.setup("golangci_lint_ls", {
-  on_init = require("lvim.lsp").common_on_init,
-  capabilities = require("lvim.lsp").common_capabilities(),
-})
-
 require("go").setup({
   disable_defaults = false, -- true|false when true set false to all boolean settings and replace all table
   go = "go", -- go command, can be go[default] or go1.18beta1
@@ -120,7 +114,6 @@ require("go").setup({
     -- The color of the hints
     highlight = "Comment",
   },
-  gopls_cmd = nil, -- if you need to specify gopls path and cmd, e.g {"/home/user/lsp/gopls", "-logfile","/var/log/gopls.log" }
   gopls_remote_auto = true, -- add -remote=auto to gopls
   gocoverage_sign = "█",
   sign_priority = 5, -- change to a higher number to override other signs
