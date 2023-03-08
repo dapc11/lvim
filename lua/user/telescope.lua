@@ -1,5 +1,6 @@
 local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
+local action_generate = require("telescope.actions.generate")
 local putils = require("telescope.previewers.utils")
 local dropdown_config = {
   center = {
@@ -12,7 +13,7 @@ local dropdown_config = {
 
 local default_config = {
   theme = "ivy",
-  initial_mode = "normal",
+  initial_mode = "insert",
 }
 
 local file_config = {
@@ -24,6 +25,8 @@ lvim.builtin.telescope.pickers = {
   lsp_references = default_config,
   lsp_definitions = default_config,
   lsp_declarations = default_config,
+  lsp_document_symbols = default_config,
+  lsp_dynamic_workspace_symbols = default_config,
   diagnostics = default_config,
   lsp_implementations = default_config,
   find_files = file_config,
@@ -72,6 +75,12 @@ lvim.builtin.telescope.defaults.mappings.i = {
   ["<C-s>"] = actions.select_horizontal,
   ["<C-v>"] = actions.select_vertical,
   ["<C-o>"] = actions.select_tab,
+  ["<C-h>"] = action_generate.which_key({
+    name_width = 20, -- typically leads to smaller floats
+    max_height = 0.5, -- increase potential maximum height
+    separator = " > ", -- change sep between mode, keybind, and name
+    close_with_action = true,
+  }),
 }
 
 lvim.builtin.telescope.defaults.mappings.n = {
@@ -84,6 +93,12 @@ lvim.builtin.telescope.defaults.mappings.n = {
   ["<C-Up>"] = actions.cycle_history_prev,
   ["<M-right>"] = actions_layout.cycle_layout_next,
   ["<M-left>"] = actions_layout.cycle_layout_prev,
+  ["?"] = action_generate.which_key({
+    name_width = 20, -- typically leads to smaller floats
+    max_height = 0.5, -- increase potential maximum height
+    separator = " > ", -- change sep between mode, keybind, and name
+    close_with_action = true,
+  }),
 }
 
 lvim.builtin.telescope.file_previewer = {

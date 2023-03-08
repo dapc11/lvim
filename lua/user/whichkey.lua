@@ -257,8 +257,18 @@ lvim.builtin.which_key.mappings["l"] = {
   d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Toggle Diagnostics List" },
   q = { "<cmd>TroubleToggle quickfix<CR>", "Toggle Quickfix List" },
   r = { vim.lsp.buf.rename, "Rename" },
-  s = { require("telescope.builtin").lsp_document_symbols, "Document Symbols" },
-  S = { require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace Symbols" },
+  s = {
+    function()
+      require("telescope.builtin").lsp_document_symbols({ symbol_width = 100, show_line = false })
+    end,
+    "Document Symbols",
+  },
+  S = {
+    function()
+      require("telescope.builtin").lsp_dynamic_workspace_symbols({ fname_width = 100, show_line = false })
+    end,
+    "Workspace Symbols",
+  },
 }
 
 lvim.builtin.which_key.mappings["z"] = {
