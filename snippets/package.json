@@ -15,10 +15,6 @@
         "path": "./python.json"
       },
       {
-        "language": "go",
-        "path": "./go.json"
-      },
-      {
         "language": "bash",
         "path": "./bash.json"
       }
