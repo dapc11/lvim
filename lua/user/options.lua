@@ -121,10 +121,8 @@ vim.cmd([[set iskeyword+=-]])
 
 vim.cmd([[
   if exists("g:neovide")
-  " Put anything you want to happen only in Neovide here
-  let g:neovide_transparency=0.95
   let g:neovide_refresh_rate=60
-  let g:neovide_scroll_animation_length = 0.5
+  let g:neovide_scroll_animation_length = 0.1
   let g:neovide_underline_automatic_scaling = v:false
   let g:neovide_cursor_animation_length=0
   let g:neovide_cursor_trail_size=0.8
@@ -132,6 +130,7 @@ vim.cmd([[
   let g:neovide_floating_blur_amount_y = 2.0
   let g:winblend = 30
   let g:pumblend = 30
-  set guifont=MesloLGS\ NF:h11
+  set guifont=MesloLGS\ NF:h10
+  let g:neovide_transparency = 0.8
   endif
 ]])

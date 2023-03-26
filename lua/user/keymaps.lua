@@ -83,7 +83,7 @@ lvim.keys.normal_mode["<A-x>"] = "<C-x>"
 lvim.keys.normal_mode["<C-g>"] = "<cmd>tab Git<CR>"
 lvim.keys.normal_mode["<C-f>"] = require("telescope.builtin").current_buffer_fuzzy_find
 lvim.keys.normal_mode["<C-p>"] = function()
-  require("telescope").extensions.projects.projects(require("telescope.themes").get_ivy({ previewer = false }))
+  require("telescope").extensions.projects.projects()
 end
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<M-Left>"] = vim.cmd.bprev

@@ -155,9 +155,13 @@ lvim.plugins = {
       })
     end,
   },
-  { 'echasnovski/mini.splitjoin', version = false, init = function ()
-    require('mini.splitjoin').setup()
-  end },
+  {
+    "echasnovski/mini.splitjoin",
+    version = false,
+    init = function()
+      require("mini.splitjoin").setup()
+    end,
+  },
   -- {
   --   "ja-ford/delaytrain.nvim",
   --   config = true,
