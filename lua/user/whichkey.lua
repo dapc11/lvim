@@ -113,10 +113,6 @@ lvim.builtin.which_key.mappings["g"] = {
       "Regular",
     },
   },
-  L = {
-    '<cmd>tab Git log --graph --name-status --pretty=format:"%C(red)%h %C(reset)(%cd) %C(green)%an %Creset%s %C(yellow)%d%Creset" --date=relative<cr>',
-    "Log",
-  },
   b = {
     "<cmd>tab Git blame --date=human --color-by-age --abbrev-commit<CR>",
     "Blame",
@@ -135,6 +131,10 @@ lvim.builtin.which_key.mappings["g"] = {
   D = { "<cmd>Gvdiffsplit!<CR>", "Diff-3-way" },
   h = { require("gitsigns").preview_hunk, "Preview Hunk" },
   l = {
+    "<cmd>Gclog %<CR>",
+    "Log",
+  },
+  L = {
     '<cmd>tab Git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all<cr>',
     "Log",
   },
@@ -254,8 +254,6 @@ lvim.builtin.which_key.mappings["l"] = {
     end,
     "Show Line Diagnostics",
   },
-  d = { "<cmd>TroubleToggle document_diagnostics<CR>", "Toggle Diagnostics List" },
-  q = { "<cmd>TroubleToggle quickfix<CR>", "Toggle Quickfix List" },
   r = { vim.lsp.buf.rename, "Rename" },
   s = {
     function()

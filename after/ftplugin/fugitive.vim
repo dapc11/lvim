@@ -96,8 +96,8 @@ function! s:MapMotion(lhs, rhs) abort
   return join(maps, '|')
 endfunction
 
-call s:MapMotion('>', 'exe <SID>PreviousItem(v:count1)')
-call s:MapMotion('<', 'exe <SID>NextItem(v:count1)')
+" call s:MapMotion('>', 'exe <SID>PreviousItem(v:count1)')
+" call s:MapMotion('<', 'exe <SID>NextItem(v:count1)')
 
 call s:Map('n', "<C-r>", ":Git pull --rebase<CR>", "<silent>")
 call s:Map('n', "<C-p>", ":Git push<CR>", "<silent>")

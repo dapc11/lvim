@@ -48,7 +48,6 @@ lvim.builtin.lualine.on_config_done = function(lualine)
           "neo-tree",
           "neogitstatus",
           "NvimTree",
-          "Trouble",
           "alpha",
         },
         winbar = {
@@ -77,7 +76,6 @@ lvim.builtin.lualine.on_config_done = function(lualine)
           "neo-tree",
           "neogitstatus",
           "NvimTree",
-          "Trouble",
           "alpha",
         },
       },

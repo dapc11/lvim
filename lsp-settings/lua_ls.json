@@ -21,7 +21,7 @@
       ]
     },
     "diagnostics": {
-      "enable": true,
+      "enable": false,
       "globals": [
         "lvim",
         "vim",

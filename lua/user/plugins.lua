@@ -120,7 +120,6 @@ lvim.plugins = {
       "nvim-neotest/neotest-go",
     },
   },
-  { "folke/trouble.nvim" },
   { "AckslD/nvim-pytrize.lua", ft = "python", config = true },
   { "danymat/neogen", config = true, dependencies = "nvim-treesitter/nvim-treesitter" },
   { "AckslD/swenv.nvim", ft = "python" },
