@@ -17,9 +17,9 @@ lvim.plugins = {
 
   -- No setup
   "kylechui/nvim-surround",
+  "tpope/vim-unimpaired",
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-nvim-lsp-signature-help",
-  "tpope/vim-unimpaired",
   "ray-x/go.nvim",
   "ray-x/guihua.lua",
   "NvChad/nvim-colorizer.lua",
@@ -82,13 +82,6 @@ lvim.plugins = {
       max_phase_one_targets = nil,
     },
   },
-  -- { "easymotion/vim-easymotion" },
-  -- {
-  --   "dapc11/zettelkasten.nvim",
-  --   ft = "markdown",
-  --   config = true,
-  --   opts = { notes_path = "~/notes" },
-  -- },
   {
     "mickael-menu/zk-nvim",
     config = function()
@@ -154,23 +147,4 @@ lvim.plugins = {
       })
     end,
   },
-  {
-    "echasnovski/mini.splitjoin",
-    version = false,
-    init = function()
-      require("mini.splitjoin").setup()
-    end,
-  },
-  -- {
-  --   "ja-ford/delaytrain.nvim",
-  --   config = true,
-  --   opts = {
-  --     delay_ms = 1000,
-  --     grace_period = 1,
-  --     keys = {
-  --       ["nv"] = { "<Left>", "<Down>", "<Up>", "<Right>" },
-  --     },
-  --     ignore_filetypes = { "help", "gitcommit", "NvimTree", "fugitive" },
-  --   },
-  -- },
 }

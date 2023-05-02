@@ -356,12 +356,14 @@ lvim.builtin.which_key.mappings["t"] = {
   c = {
     function()
       require("neotest").run.run()
+      require("neotest").output_panel.open()
     end,
     "Run nearest test",
   },
   f = {
     function()
       require("neotest").run.run(vim.fn.expand("%"))
+      require("neotest").output_panel.open()
     end,
     "Run current file",
   },
@@ -374,6 +376,7 @@ lvim.builtin.which_key.mappings["t"] = {
   l = {
     function()
       require("neotest").run.run_last()
+      require("neotest").output_panel.open()
     end,
     "Re-run last",
   },
