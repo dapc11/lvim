@@ -3,7 +3,6 @@ lvim.transparent_window = true
 lvim.format_on_save = false
 lvim.colorscheme = "github_dark"
 lvim.builtin.alpha.active = true
-lvim.builtin.bufferline.active = false
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.terminal.active = false
 lvim.builtin.dap.active = true
@@ -37,12 +36,7 @@ lvim.builtin.bufferline.options.offsets = {
     text = "Explorer",
   },
 }
-lvim.builtin.treesitter.highlight.enabled = true
-lvim.builtin.cmp.completion = {
-  completion = {
-    completeopt = "menu, menuone, noinsert",
-  },
-}
+
 lvim.builtin.project.patterns = {
   "ruleset2.0.yaml",
   ".git",

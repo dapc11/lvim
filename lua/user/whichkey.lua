@@ -245,6 +245,18 @@ lvim.builtin.which_key.mappings["l"] = {
     end,
     "Toggle Diagnostics",
   },
+  d = {
+    function()
+      require("telescope.builtin").diagnostics({ bufnr = 0 })
+    end,
+    "List Diagnostics for Buffer",
+  },
+  D = {
+    function()
+      require("telescope.builtin").diagnostics()
+    end,
+    "List Diagnostics for Workspace",
+  },
   l = {
     function()
       local config = lvim.lsp.diagnostics.float

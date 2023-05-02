@@ -6,6 +6,9 @@ require("neotest").setup({
     }),
     require("neotest-go"),
   },
+  icons = {
+    running = "羽",
+  },
   summary = {
     enabled = true,
     follow = true,

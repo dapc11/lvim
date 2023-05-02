@@ -23,7 +23,6 @@ lvim.plugins = {
   "ray-x/go.nvim",
   "ray-x/guihua.lua",
   "NvChad/nvim-colorizer.lua",
-  "ThePrimeagen/vim-be-good",
 
   -- Custom config
   { "mfussenegger/nvim-jdtls", event = "VeryLazy" },

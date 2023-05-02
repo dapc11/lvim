@@ -1,3 +1,10 @@
+lvim.builtin.cmp.completion = {
+  completion = {
+    completeopt = "menu, menuone, noinsert",
+  },
+}
+lvim.builtin.cmp.completion.keyword_length = 1
+
 local cmp_ok, cmp = pcall(require, "cmp")
 if not cmp_ok or cmp == nil then
   cmp = {

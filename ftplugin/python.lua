@@ -1,3 +1,18 @@
+-- pip install virtualenvwrapper
+-- ..
+-- export WORKON_HOME=~/envs
+-- mkdir -p $WORKON_HOME
+-- find / -name virtualenvwrapper.sh
+-- # add to zshrc
+-- source /usr/local/bin/virtualenvwrapper.sh
+-- mkvirtualenv env1
+--
+--
+-- # add to venv specific pythonpath
+-- add2virtualenv <dir>
+
+
+
 local bufnr = vim.api.nvim_get_current_buf()
 local map = require("user.functions").map
 map("n", "gf", "<cmd>PytrizeJumpFixture<Cr>", "Jump To Fixture", bufnr)
@@ -39,3 +54,90 @@ lvim.builtin.which_key.mappings["lv"] = {
 --     },
 --   })
 -- end)
+
+local opts = {
+  root_dir = function(fname)
+    local util = require "lspconfig.util"
+    local root_files = {
+      "pyproject.toml",
+      "setup.py",
+      "setup.cfg",
+      "requirements.txt",
+      "Pipfile",
+      "manage.py",
+      "pyrightconfig.json",
+    }
+    return util.root_pattern(unpack(root_files))(fname) or util.root_pattern ".git" (fname) or util.path.dirname(fname)
+  end,
+  settings = {
+    pyright = {
+      disableLanguageServices = false,
+      disableOrganizeImports = false,
+    },
+    python = {
+      analysis = {
+        diagnosticSeverityOverrides = {
+          reportMissingImports = "none",
+          reportOptionalMemberAccess = "none"
+        },
+        autoImportCompletions = true,
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly", -- or workspace
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+  single_file_support = true,
+}
+local function match(dir, pattern)
+  if string.sub(pattern, 1, 1) == "=" then
+    return vim.fn.fnamemodify(dir, ":t") == string.sub(pattern, 2, #pattern)
+  else
+    return vim.fn.globpath(dir, pattern) ~= ""
+  end
+end
+
+local function parent_dir(dir)
+  return vim.fn.fnamemodify(dir, ":h")
+end
+
+local function get_root(pythonpath_file)
+  local current = vim.api.nvim_buf_get_name(0)
+  local parent = parent_dir(current)
+
+  while 1 do
+    if match(parent, pythonpath_file) then
+      return parent
+    end
+
+    current, parent = parent, parent_dir(parent)
+    if parent == current then
+      break
+    end
+  end
+  return nil
+end
+
+local function file_exists(name)
+  local f = io.open(name, "r")
+  return f ~= nil and io.close(f)
+end
+
+local buf_ft = vim.bo.filetype
+if buf_ft ~= "python" or buf_ft == nil then
+  return
+end
+local pythonpath_file = ".pythonpath"
+local root = get_root(pythonpath_file)
+if root == nil then
+  vim.env.PYTHONPATH = ""
+  return
+end
+local absolute_path = root .. "/" .. pythonpath_file
+if file_exists(absolute_path) then
+  for line in io.open(absolute_path):lines() do
+    vim.env.PYTHONPATH = line
+  end
+end
+
+require("lvim.lsp.manager").setup("pyright", opts)
