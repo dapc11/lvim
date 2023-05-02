@@ -96,6 +96,7 @@ vim.opt.tabstop = 2 -- insert 2 spaces for a tab
 vim.opt.cursorline = true -- highlight the current line
 vim.opt.number = true -- set numbered lines
 vim.opt.laststatus = 3
+vim.opt.timeoutlen = 250
 vim.opt.showcmd = false
 vim.opt.ruler = false
 vim.opt.relativenumber = true -- set relative numbered lines

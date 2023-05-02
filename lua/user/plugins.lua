@@ -48,8 +48,6 @@ lvim.plugins = {
   { "junegunn/vim-easy-align", event = "VeryLazy" },
   { "dapc11/vim-fugitive", event = "VeryLazy" },
   { "mfussenegger/nvim-treehopper", dependencies = { "nvim-treesitter/nvim-treesitter" } },
-  { "leoluz/nvim-dap-go", config = true },
-  { "mfussenegger/nvim-dap-python", event = "VeryLazy" },
   { "cuducos/yaml.nvim", event = "VeryLazy" },
   {
     "ggandor/leap.nvim",

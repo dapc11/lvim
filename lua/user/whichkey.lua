@@ -276,25 +276,25 @@ lvim.builtin.which_key.mappings["z"] = {
   z = { "<cmd>Telescope live_grep cwd=~/notes<cr>", "Find Notes" },
 }
 
-local dap = require("dap")
-local dapui = require("dapui")
-lvim.builtin.which_key.mappings["d"] = {
-  name = "Debug",
-  b = { dap.toggle_breakpoint, "Breakpoint" },
-  c = { dap.continue, "Continue" },
-  i = {
-    function()
-      dap.step_into("Into")
-    end,
-    "Step Into",
-  },
-  o = { dap.step_over, "Over" },
-  O = { dap.step_out, "Out" },
-  r = { dap.repl.toggle, "Repl" },
-  l = { dap.run_last, "Last" },
-  u = { dapui.toggle, "UI" },
-  x = { dap.terminate, "Exit" },
-}
+-- local dap = require("dap")
+-- local dapui = require("dapui")
+-- lvim.builtin.which_key.mappings["d"] = {
+--   name = "Debug",
+--   b = { dap.toggle_breakpoint, "Breakpoint" },
+--   c = { dap.continue, "Continue" },
+--   i = {
+--     function()
+--       dap.step_into("Into")
+--     end,
+--     "Step Into",
+--   },
+--   o = { dap.step_over, "Over" },
+--   O = { dap.step_out, "Out" },
+--   r = { dap.repl.toggle, "Repl" },
+--   l = { dap.run_last, "Last" },
+--   u = { dapui.toggle, "UI" },
+--   x = { dap.terminate, "Exit" },
+-- }
 
 local Terminal = require("bufterm.terminal").Terminal
 local ui = require("bufterm.ui")
