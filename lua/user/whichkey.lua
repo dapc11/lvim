@@ -99,6 +99,12 @@ lvim.builtin.which_key.mappings["f"] = {
 
 lvim.builtin.which_key.mappings["g"] = {
   name = "Git",
+  d = {
+    name = "Diff",
+    c = { "<cmd>DiffviewClose<cr>", "Diffview Close" },
+    d = { "<cmd>DiffviewOpen<cr>", "Diffview (all modified files)" },
+  },
+  f = { "<cmd>DiffviewFileHistory %<cr>", "Diffview current file history" },
   g = { "<cmd>tab Git<CR>", "Status" },
   p = {
     name = "Push",
@@ -121,12 +127,6 @@ lvim.builtin.which_key.mappings["g"] = {
     name = "Checkout",
     b = { require("telescope.builtin").git_branches, "Checkout branch" },
     c = { require("telescope.builtin").git_commits, "Checkout commit" },
-  },
-  d = {
-    function()
-      vim.cmd.Git("diff")
-    end,
-    "Diff",
   },
   D = { "<cmd>Gvdiffsplit!<CR>", "Diff-3-way" },
   h = { require("gitsigns").preview_hunk, "Preview Hunk" },

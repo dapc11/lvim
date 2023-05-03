@@ -91,7 +91,6 @@ lvim.plugins = {
             cmd = { "zk", "lsp" },
             name = "zk",
           },
-
           auto_attach = {
             enabled = true,
             filetypes = { "markdown" },
@@ -143,5 +142,25 @@ lvim.plugins = {
         },
       })
     end,
+  },
+  {
+    "folke/todo-comments.nvim",
+    event = "BufRead",
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
+  {
+    "sindrets/diffview.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose", -- also can use :tabclose
+      "DiffviewFileHistory",
+      "DiffviewRefresh",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+    },
   },
 }

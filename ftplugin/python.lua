@@ -11,8 +11,6 @@
 -- # add to venv specific pythonpath
 -- add2virtualenv <dir>
 
-
-
 local bufnr = vim.api.nvim_get_current_buf()
 local map = require("user.functions").map
 map("n", "gf", "<cmd>PytrizeJumpFixture<Cr>", "Jump To Fixture", bufnr)
@@ -22,9 +20,8 @@ lvim.builtin.which_key.mappings["lv"] = {
     require("swenv.api").pick_venv()
   end,
   "Pick Venv",
-  buffer = bufnr
+  buffer = bufnr,
 }
-
 
 -- pcall(function()
 --   require("dap-python").test_runner = "pytest"
@@ -57,7 +54,7 @@ lvim.builtin.which_key.mappings["lv"] = {
 
 local opts = {
   root_dir = function(fname)
-    local util = require "lspconfig.util"
+    local util = require("lspconfig.util")
     local root_files = {
       "pyproject.toml",
       "setup.py",
@@ -67,7 +64,7 @@ local opts = {
       "manage.py",
       "pyrightconfig.json",
     }
-    return util.root_pattern(unpack(root_files))(fname) or util.root_pattern ".git" (fname) or util.path.dirname(fname)
+    return util.root_pattern(unpack(root_files))(fname) or util.root_pattern(".git")(fname) or util.path.dirname(fname)
   end,
   settings = {
     pyright = {
@@ -78,7 +75,7 @@ local opts = {
       analysis = {
         diagnosticSeverityOverrides = {
           reportMissingImports = "none",
-          reportOptionalMemberAccess = "none"
+          reportOptionalMemberAccess = "none",
         },
         autoImportCompletions = true,
         autoSearchPaths = true,

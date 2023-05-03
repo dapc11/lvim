@@ -8,30 +8,30 @@ lvim.builtin.telescope.file_sorter = require("telescope.sorters").get_fuzzy_file
 lvim.builtin.telescope.generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter
 
 lvim.builtin.telescope.defaults.mappings.i = {
-      ["<C-p>"] = action_layout.toggle_preview,
-      ["<C-c>"] = actions.close,
-      ["<esc>"] = actions.close,
-      ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-      ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
-      ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
-      ["<C-Down>"] = actions.cycle_history_next,
-      ["<C-Up>"] = actions.cycle_history_prev,
-      ["<CR>"] = actions.select_default,
-      ["<C-h>"] = actions.select_horizontal,
-      ["<C-v>"] = actions.select_vertical,
-      ["<C-o>"] = actions.select_tab,
+  ["<C-p>"] = action_layout.toggle_preview,
+  ["<C-c>"] = actions.close,
+  ["<esc>"] = actions.close,
+  ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+  ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
+  ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
+  ["<C-Down>"] = actions.cycle_history_next,
+  ["<C-Up>"] = actions.cycle_history_prev,
+  ["<CR>"] = actions.select_default,
+  ["<C-h>"] = actions.select_horizontal,
+  ["<C-v>"] = actions.select_vertical,
+  ["<C-o>"] = actions.select_tab,
 }
 
 lvim.builtin.telescope.defaults.layout_config.width = 0.95
 lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
 lvim.builtin.telescope.defaults.mappings.n = {
-      ["<C-c>"] = actions.close,
-      ["<C-p>"] = action_layout.toggle_preview,
-      ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
-      ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
-      ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
-      ["<C-Down>"] = actions.cycle_history_next,
-      ["<C-Up>"] = actions.cycle_history_prev,
+  ["<C-c>"] = actions.close,
+  ["<C-p>"] = action_layout.toggle_preview,
+  ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
+  ["<s-tab>"] = actions.toggle_selection + actions.move_selection_previous,
+  ["<tab>"] = actions.toggle_selection + actions.move_selection_next,
+  ["<C-Down>"] = actions.cycle_history_next,
+  ["<C-Up>"] = actions.cycle_history_prev,
 }
 
 lvim.builtin.telescope.file_previewer = {
