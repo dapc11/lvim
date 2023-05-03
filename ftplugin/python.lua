@@ -123,20 +123,21 @@ local function file_exists(name)
   return f ~= nil and io.close(f)
 end
 
-local buf_ft = vim.bo.filetype
-if buf_ft ~= "python" or buf_ft == nil then
-  return
-end
 local pythonpath_file = ".pythonpath"
 local root = get_root(pythonpath_file)
+
 if root == nil then
-  vim.env.PYTHONPATH = ""
-  return
-end
-local absolute_path = root .. "/" .. pythonpath_file
-if file_exists(absolute_path) then
-  for line in io.open(absolute_path):lines() do
-    vim.env.PYTHONPATH = line
+  vim.env.PYTHONPATH = nil
+else
+  local absolute_path = root .. "/" .. pythonpath_file
+  local python_path = ""
+  if file_exists(absolute_path) then
+    for line in io.open(absolute_path):lines() do
+      python_path = python_path .. root .. "/" .. line .. ":"
+    end
+    vim.env.PYTHONPATH = python_path
+  else
+    vim.env.PYTHONPATH = nil
   end
 end
 
