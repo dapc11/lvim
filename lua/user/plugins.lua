@@ -17,7 +17,10 @@ lvim.plugins = {
 
   -- No setup
   "kylechui/nvim-surround",
-  "tpope/vim-unimpaired",
+  {
+    "tpope/vim-unimpaired",
+    lazy = false,
+  },
   "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-nvim-lsp-signature-help",
   "ray-x/go.nvim",
