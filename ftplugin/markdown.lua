@@ -1,22 +1,8 @@
 local bufnr = vim.api.nvim_get_current_buf()
-local map = require("user.functions").map
-
--- Open the link under the caret.
-map("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", "Preview a Linked Note", bufnr)
-
-local wk = require("which-key")
-wk.register({
-  z = {
-    name = "Zettelkasten",
-    b = { "<Cmd>ZkBacklinks<CR>", "Open Notes Linking to Buffer" },
-    l = { "<Cmd>ZkLinks<CR>", "Open Notes Linked by the Buffer" },
-    f = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Follow Link" },
-  },
-}, { prefix = "<leader>", buffer = bufnr, mode = "n" })
-wk.register({
-  z = {
-    name = "Zettelkasten",
-    a = { ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", "Code Actions" },
-    l = { "<Cmd>ZkLinks<CR>", "Open Notes Linked by the Buffer" },
-  },
-}, { prefix = "<leader>", buffer = bufnr, mode = "v" })
+require("which-key").register({
+  ["K"] = { vim.lsp.buf.hover, "Preview a Linked Note", buffer = bufnr },
+  ["<leader>zb"] = { "<Cmd>ZkBacklinks<CR>", "Open Notes Linking to Buffer", buffer = bufnr },
+  ["<leader>zf"] = { vim.lsp.buf.definition, "Follow Link", buffer = bufnr },
+  ["<leader>za"] = { ":'<,'>lua vim.lsp.buf.range_code_action()<CR>", "Code Actions", buffer = bufnr, mode = "v" },
+  ["<leader>zl"] = { vim.cmd.ZkLinks, "Open Notes Linked by the Buffer", buffer = bufnr, mode = { "v", "n" } },
+})

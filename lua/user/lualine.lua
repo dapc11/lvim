@@ -5,13 +5,17 @@ local function getLspName()
   if next(clients) == nil then
     return msg
   end
+  local lsp_names = ""
   for _, client in ipairs(clients) do
     local filetypes = client.config.filetypes
     if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-      return "  " .. client.name
+      if lsp_names ~= "" then
+        lsp_names = lsp_names .. ", "
+      end
+      lsp_names = lsp_names .. client.name
     end
   end
-  return "  " .. msg
+  return "  [" .. lsp_names .. "]"
 end
 
 lvim.builtin.lualine.on_config_done = function(lualine)

@@ -12,16 +12,16 @@
 -- add2virtualenv <dir>
 
 local bufnr = vim.api.nvim_get_current_buf()
-local map = require("user.functions").map
-map("n", "gf", "<cmd>PytrizeJumpFixture<Cr>", "Jump To Fixture", bufnr)
-
-lvim.builtin.which_key.mappings["lv"] = {
-  function()
-    require("swenv.api").pick_venv()
-  end,
-  "Pick Venv",
-  buffer = bufnr,
-}
+require("which-key").register({
+  ["<leader>lv"] = {
+    function()
+      require("swenv.api").pick_venv()
+    end,
+    "Pick Venv",
+    buffer = bufnr,
+  },
+  ["gf"] = { vim.cmd.PytrizeJumpFixture, "Jump To Fixture", buffer = bufnr },
+})
 
 -- pcall(function()
 --   require("dap-python").test_runner = "pytest"
