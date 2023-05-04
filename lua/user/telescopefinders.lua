@@ -47,11 +47,11 @@ local finders = require("telescope.finders")
 local entry_display = require("telescope.pickers.entry_display")
 local make_entry = require("telescope.make_entry")
 
-local function visit_yaml_node(node, name, yaml_path, result, file_path, bufnr)
+local function visit_yaml_node(node, _, yaml_path, result, file_path, bufnr)
   local key = ""
   if node:type() == "block_mapping_pair" then
     local field_key = node:field("key")[1]
-    key = vim.treesitter.query.get_node_text(field_key, bufnr)
+    key = vim.treesitter.get_node_text(field_key, bufnr)
   end
 
   if key ~= nil and string.len(key) > 0 then

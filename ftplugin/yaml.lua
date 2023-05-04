@@ -9,7 +9,7 @@ require("which-key").register({
   },
   ["<leader>fy"] = {
     function ()
-      require("user.telescope").yaml_find()
+      require("user.telescopefinders").yaml_find()
     end,
     "YAML key",
     buffer = bufnr
