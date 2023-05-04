@@ -110,6 +110,7 @@ lvim.plugins = {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-neotest/neotest-python",
       "nvim-neotest/neotest-go",
+      "mfussenegger/nvim-dap-python",
     },
   },
   { "AckslD/nvim-pytrize.lua", ft = "python", config = true },

@@ -159,64 +159,6 @@ lvim.builtin.which_key.mappings["g"] = {
   },
 }
 
-lvim.builtin.which_key.mappings["t"] = {
-  name = "Test",
-  c = {
-    function()
-      require("neotest").run.run()
-    end,
-    "Run nearest test",
-  },
-  f = {
-    function()
-      require("neotest").run.run(vim.fn.expand("%"))
-    end,
-    "Run current file",
-  },
-  d = {
-    function()
-      require("neotest").run.run({ strategy = "dap" })
-    end,
-    "Debug nearest test",
-  },
-  l = {
-    function()
-      require("neotest").run.run_last()
-    end,
-    "Re-run last",
-  },
-  s = {
-    function()
-      require("neotest").summary.toggle()
-    end,
-    "Toggle test summary",
-  },
-  O = {
-    function()
-      require("neotest").output.open({ enter = true })
-    end,
-    "Open test output",
-  },
-  o = {
-    function()
-      require("neotest").output_panel.open()
-    end,
-    "Open test output panel",
-  },
-  j = {
-    function()
-      require("neotest").jump.next({ status = "failed" })
-    end,
-    "Next Failed Test",
-  },
-  k = {
-    function()
-      require("neotest").jump.prev({ status = "failed" })
-    end,
-    "Prev Failed Test",
-  },
-}
-
 lvim.builtin.which_key.mappings["l"] = {
   name = "LSP",
   a = {
@@ -307,6 +249,23 @@ lvim.builtin.which_key.mappings["z"] = {
 --   u = { dapui.toggle, "UI" },
 --   x = { dap.terminate, "Exit" },
 -- }
+-- lvim.builtin.which_key.mappings["d"] = {
+--   name = "Debug/Test",
+-- }
+lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>", "Test Method" }
+lvim.builtin.which_key.mappings["dM"] = {
+  "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+  "Test Method DAP",
+}
+lvim.builtin.which_key.mappings["df"] = {
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>",
+  "Test Class",
+}
+lvim.builtin.which_key.mappings["dF"] = {
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
+  "Test Class DAP",
+}
+lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
 
 local Terminal = require("bufterm.terminal").Terminal
 local ui = require("bufterm.ui")

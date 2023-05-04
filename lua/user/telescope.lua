@@ -22,7 +22,8 @@ lvim.builtin.telescope.defaults.mappings.i = {
   ["<C-o>"] = actions.select_tab,
 }
 
-lvim.builtin.telescope.defaults.layout_config.width = 0.95
+lvim.builtin.telescope.defaults.layout_config.width = 0.90
+lvim.builtin.telescope.defaults.layout_config.height = 0.70
 lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
 lvim.builtin.telescope.defaults.mappings.n = {
   ["<C-c>"] = actions.close,

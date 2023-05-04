@@ -12,6 +12,7 @@ require("which-key").register({
       require("user.telescopefinders").yaml_find()
     end,
     "YAML key",
-    buffer = bufnr
+    buffer = bufnr,
+    mode = {"v", "n"}
   }
 })
