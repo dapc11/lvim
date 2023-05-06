@@ -9,7 +9,7 @@ Daily driver for development in:
 
 ## Features
 
-Based on a dark color palette, rotating theme of [ Tokyonight-Storm, Catppuccin-Macchiatio and Github One Dark ].
+Based on a dark color palette, rotating theme of ***[Tokyonight-Storm, Catppuccin-Macchiatio and Github One Dark]*** .
 
 Other features are:
 
@@ -24,4 +24,19 @@ Other features are:
 - Fuzzy Finding (Files, Text, Git, Yaml Keys/Values)
 - Dynamic PYTHONPATH population and switch of Virtualenv
 - Seamless TMUX navigation
+- Git integration
 - Note taking powered by Zettelkasten
+
+## Screenshots
+
+![Splashscreen](./resources/splashscreen.png)
+*Splashscreen*
+
+![Git Commit](./resources/gitcommit.png)
+*Git Commit*
+
+![Live Grep](./resources/liveGrep.png)
+*Live Grep*
+
+![Splits](./resources/splits.png)
+*Splits*
