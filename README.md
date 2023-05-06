@@ -9,7 +9,7 @@ Daily driver for development in:
 
 ## Features
 
-Based on a dark color palette, rotating theme of ***[Tokyonight-Storm, Catppuccin-Macchiatio and Github One Dark]*** .
+Based on a dark color palette, rotating theme of ***[Tokyonight-Storm, Catppuccin-Macchiatio and Github One Dark]***.
 
 Other features are:
 
