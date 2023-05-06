@@ -85,11 +85,45 @@ local config = {
       maven = {
         downloadSources = true,
       },
+      format = {
+        comments = { enabled = false },
+        enabled = true,
+        insertSpaces = true,
+        settings = {
+          url = "file://" .. home .. "/software/java_style.xml",
+        },
+        tabSize = 4,
+      },
+      saveActions = {
+        organizeImports = true,
+      },
+      completion = {
+        enabled = true,
+        favoriteStaticMembers = {
+          "java",
+          "javax",
+          "org",
+          "",
+          "com",
+        },
+      },
+      cleanup = {
+        "qualifyMembers",
+        "qualifyStaticMembers",
+        "addOverride",
+        "addDeprecated",
+        "stringConcatToTextBlock",
+        "invertEquals",
+        "addFinalModifier",
+        "instanceofPatternMatch",
+        "lambdaExpression",
+        "switchExpression",
+      },
       implementationsCodeLens = {
         enabled = true,
       },
       referencesCodeLens = {
-        enabled = true,
+        enabled = false,
       },
       references = {
         includeDecompiledSources = true,
@@ -143,22 +177,6 @@ config["on_attach"] = function(client, bufnr)
   require("jdtls.dap").setup_dap_main_class_configs()
   jdtls.setup_dap({ hotcodereplace = "auto" })
   require("lvim.lsp").common_on_attach(client, bufnr)
-  local map = require("user.functions").map
-  map("n", "<leader>Co", jdtls.organize_imports, "Organize Imports", bufnr)
-  map("n", "<leader>Cv", jdtls.extract_variable, "Extract Variable", bufnr)
-  map("n", "<leader>Cc", jdtls.extract_constant, "Extract Constant", bufnr)
-  map("n", "<leader>Ct", jdtls.test_nearest_method, "Test Method", bufnr)
-  map("n", "<leader>CT", jdtls.test_class, "Test Class", bufnr)
-  map("v", "<leader>Cv", function()
-    jdtls.extract_variable(true)
-  end, "Extract Variable", bufnr)
-  map("v", "<leader>Cc", function()
-    jdtls.extract_constant(true)
-  end, "Extract Constant", bufnr)
-  map("v", "<leader>Cm", function()
-    jdtls.extract_method(true)
-  end, "Extract Method", bufnr)
-  map("n", "<leader>Cu", vim.cmd.JdtUpdateConfig, "Update Config", bufnr)
 end
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
@@ -168,15 +186,53 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   end,
 })
 
+local bufnr = vim.api.nvim_get_current_buf()
+local status_ok, which_key = pcall(require, "which-key")
+if not status_ok then
+  return
+end
+
+local opts = {
+  mode = "n",
+  prefix = "<leader>",
+  buffer = bufnr,
+  silent = true,
+  noremap = true,
+  nowait = true,
+}
+
+local vopts = {
+  mode = "v",
+  prefix = "<leader>",
+  buffer = bufnr,
+  silent = true,
+  noremap = true,
+  nowait = true,
+}
+
+local mappings = {
+  C = {
+    name = "Java",
+    o = { jdtls.organize_imports, "Organize Imports" },
+    v = { jdtls.extract_variable, "Extract Variable" },
+    c = { jdtls.extract_constant, "Extract Constant" },
+    t = { jdtls.test_nearest_method, "Test Method" },
+    T = { jdtls.test_class, "Test Class" },
+    u = { jdtls.update_project_config, "Update Config" },
+  },
+}
+
+local vmappings = {
+  C = {
+    name = "Java",
+    v = { "<Esc><Cmd>lua require('jdtls').extract_variable(true)<CR>", "Extract Variable" },
+    c = { "<Esc><Cmd>lua require('jdtls').extract_constant(true)<CR>", "Extract Constant" },
+    m = { "<Esc><Cmd>lua require('jdtls').extract_method(true)<CR>", "Extract Method" },
+  },
+}
+which_key.register(mappings, opts)
+which_key.register(vmappings, vopts)
+
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
 jdtls.start_or_attach(config)
-
-vim.cmd(
-  "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_compile JdtCompile lua require('jdtls').compile(<f-args>)"
-)
-vim.cmd(
-  "command! -buffer -nargs=? -complete=custom,v:lua.require'jdtls'._complete_set_runtime JdtSetRuntime lua require('jdtls').set_runtime(<f-args>)"
-)
-vim.cmd("command! -buffer JdtUpdateConfig lua require('jdtls').update_project_config()")
-vim.cmd("command! -buffer JdtBytecode lua require('jdtls').javap()")
