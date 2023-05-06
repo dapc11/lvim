@@ -44,6 +44,7 @@ lvim.plugins = {
           highlights.TelescopeSelectionCaret = { bg = colors.bg_highlight }
           highlights.TelescopeSelection = {
             bg = colors.bg_highlight,
+            bold = true,
           }
           highlights.TelescopeNormal = {
             bg = colors.none,
