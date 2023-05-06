@@ -10,7 +10,7 @@ require("neotest").setup({
         justMyCode = false,
         console = "integratedTerminal",
       },
-      args = { "--log-level", "DEBUG", "--quiet" },
+      args = { "--log-level", "DEBUG", "--quiet", "-vvv" },
       runner = "pytest",
     }),
     require("neotest-go")({

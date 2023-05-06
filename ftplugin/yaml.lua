@@ -4,15 +4,15 @@ require("which-key").register({
   ["<leader>Cf"] = {
     ":%!yq '.'",
     "Format",
-    mode = {"v", "n"},
+    mode = { "v", "n" },
     buffer = bufnr,
   },
   ["<leader>fy"] = {
-    function ()
+    function()
       require("user.telescopefinders").yaml_find()
     end,
     "YAML key",
     buffer = bufnr,
-    mode = {"v", "n"}
-  }
+    mode = { "v", "n" },
+  },
 })

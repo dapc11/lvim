@@ -12,19 +12,14 @@ require("which-key").register({
 local json_opts = {
   settings = {
     json = {
-      schemas = vim.list_extend(
+      schemas = vim.list_extend({
         {
-          {
-            description = "pyright config",
-            fileMatch = { "pyrightconfig.json" },
-            name = "pyrightconfig.json",
-            url =
-            "https://raw.githubusercontent.com/microsoft/pyright/main/packages/vscode-pyright/schemas/pyrightconfig.schema.json",
-          },
+          description = "pyright config",
+          fileMatch = { "pyrightconfig.json" },
+          name = "pyrightconfig.json",
+          url = "https://raw.githubusercontent.com/microsoft/pyright/main/packages/vscode-pyright/schemas/pyrightconfig.schema.json",
         },
-        require('schemastore').json.schemas {
-        }
-      ),
+      }, require("schemastore").json.schemas({})),
     },
   },
 }

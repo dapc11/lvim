@@ -186,6 +186,8 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   end,
 })
 
+require("jdtls").start_or_attach(config)
+
 local bufnr = vim.api.nvim_get_current_buf()
 local status_ok, which_key = pcall(require, "which-key")
 if not status_ok then
@@ -211,13 +213,16 @@ local vopts = {
 }
 
 local mappings = {
+  t = {
+    name = "Test",
+    c = { jdtls.test_nearest_method, "Run nearest test" },
+    f = { jdtls.test_class, "Run current file" },
+  },
   C = {
     name = "Java",
     o = { jdtls.organize_imports, "Organize Imports" },
     v = { jdtls.extract_variable, "Extract Variable" },
     c = { jdtls.extract_constant, "Extract Constant" },
-    t = { jdtls.test_nearest_method, "Test Method" },
-    T = { jdtls.test_class, "Test Class" },
     u = { jdtls.update_project_config, "Update Config" },
   },
 }
@@ -232,7 +237,3 @@ local vmappings = {
 }
 which_key.register(mappings, opts)
 which_key.register(vmappings, vopts)
-
--- This starts a new client & server,
--- or attaches to an existing client & server depending on the `root_dir`.
-jdtls.start_or_attach(config)
