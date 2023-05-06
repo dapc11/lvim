@@ -1,7 +1,4 @@
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-local ts = lvim.builtin.treesitter
-
-parser_config.gotmpl = {
+require("nvim-treesitter.parsers").get_parser_configs().gotmpl = {
   install_info = {
     url = "https://github.com/ngalaiko/tree-sitter-go-template",
     files = { "src/parser.c" },
@@ -10,26 +7,26 @@ parser_config.gotmpl = {
   used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml", "tpl", "yml" },
 }
 
-ts.highlight = {
+lvim.builtin.treesitter.highlight = {
   enable = true,
   disable = { "gitcommit" },
 }
 
-ts.ensure_installed = {
-  "vim",
+lvim.builtin.treesitter.ensure_installed = {
   "bash",
-  "json",
-  "help",
-  "lua",
+  "css",
   "go",
   "gomod",
-  "python",
-  "css",
+  "help",
   "java",
+  "json",
+  "lua",
+  "python",
+  "vim",
   "yaml",
 }
 
-ts.incremental_selection = {
+lvim.builtin.treesitter.incremental_selection = {
   enable = true,
   keymaps = {
     init_selection = "<CR>",
@@ -39,7 +36,7 @@ ts.incremental_selection = {
   },
 }
 
-ts.textobjects = {
+lvim.builtin.treesitter.textobjects = {
   move = {
     enable = true,
     set_jumps = true, -- whether to set jumps in the jumplist

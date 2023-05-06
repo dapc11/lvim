@@ -1,8 +1,6 @@
 lvim.leader = "space"
 local map = vim.keymap.set
 
-map("v", "<Tab>", ">gv")
-map("v", "<S-Tab>", "<gv")
 map("i", "<S-Tab>", "<C-d>")
 map("i", "<Tab>", "<C-t>")
 

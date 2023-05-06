@@ -13,6 +13,7 @@ local opts = {
         },
       },
       diagnostics = {
+        enable = false,
         globals = { "vim", "lvim", "reload" },
       },
     },

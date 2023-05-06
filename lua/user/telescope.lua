@@ -2,10 +2,12 @@ local actions = require("telescope.actions")
 local action_layout = require("telescope.actions.layout")
 local putils = require("telescope.previewers.utils")
 
-lvim.builtin.telescope.defaults.prompt_prefix = "   "
-lvim.builtin.telescope.defaults.path_display = { "truncate" }
+lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
+lvim.builtin.telescope.defaults.layout_config.width = 0.90
+-- lvim.builtin.telescope.defaults.path_display = { "truncate" }
 lvim.builtin.telescope.file_sorter = require("telescope.sorters").get_fuzzy_file
 lvim.builtin.telescope.generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter
+lvim.builtin.telescope.theme = "center"
 
 lvim.builtin.telescope.defaults.mappings.i = {
   ["<C-p>"] = action_layout.toggle_preview,
@@ -22,9 +24,6 @@ lvim.builtin.telescope.defaults.mappings.i = {
   ["<C-o>"] = actions.select_tab,
 }
 
-lvim.builtin.telescope.defaults.layout_config.width = 0.90
-lvim.builtin.telescope.defaults.layout_config.height = 0.70
-lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
 lvim.builtin.telescope.defaults.mappings.n = {
   ["<C-c>"] = actions.close,
   ["<C-p>"] = action_layout.toggle_preview,
