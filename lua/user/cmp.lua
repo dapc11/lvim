@@ -46,18 +46,4 @@ cmp.setup.filetype({ "gitcommit" }, {
   }),
 })
 
-lvim.builtin.cmp.cmdline.options = {
-  {
-    type = ":",
-    sources = {
-      { name = "path" },
-      { name = "cmdline", keyword_length = 2, keyword_pattern = [=[[^[:blank:]\!]*]=] },
-    },
-  },
-  {
-    type = { "/", "?" },
-    sources = {
-      { name = "buffer" },
-    },
-  },
-}
+lvim.builtin.cmp.cmdline.enable = true

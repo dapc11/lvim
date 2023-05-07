@@ -101,7 +101,6 @@ lvim.plugins = {
     "tpope/vim-unimpaired",
     lazy = false,
   },
-  "hrsh7th/cmp-cmdline",
   "hrsh7th/cmp-nvim-lsp-signature-help",
   "ray-x/go.nvim",
   "ray-x/guihua.lua",
@@ -121,12 +120,7 @@ lvim.plugins = {
       },
     },
   },
-  {
-    "christianchiarulli/harpoon",
-    config = true,
-    dependencies = { "nvim-telescope/telescope.nvim" },
-  },
-  { "kdheepak/lazygit.nvim", cmd = "LazyGit" },
+
   { "junegunn/vim-easy-align", event = "VeryLazy" },
   { "dapc11/vim-fugitive", event = "VeryLazy" },
   { "mfussenegger/nvim-treehopper", dependencies = { "nvim-treesitter/nvim-treesitter" } },

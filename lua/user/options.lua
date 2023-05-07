@@ -16,7 +16,7 @@ lvim.builtin.nvimtree.setup.respect_buf_cwd = false
 lvim.builtin.indentlines.options.show_current_context = false
 lvim.builtin.nvimtree.setup.renderer.icons.webdev_colors = false
 lvim.builtin.breadcrumbs.active = false
-lvim.builtin.bufferline.active = false
+lvim.builtin.bufferline.active = true
 lvim.builtin.bufferline.highlights.background.italic = false
 lvim.builtin.bufferline.highlights.buffer_selected.bold = true
 lvim.builtin.bufferline.highlights.buffer_selected.italic = false
@@ -31,7 +31,7 @@ lvim.builtin.bufferline.options.offsets = {
   {
 
     filetype = "NvimTree",
-    highlight = "PanelHeading",
+    highlight = "NvimTreeNormal",
     padding = 0,
     text = "Explorer",
   },

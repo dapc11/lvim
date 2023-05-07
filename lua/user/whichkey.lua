@@ -7,11 +7,6 @@ lvim.builtin.which_key.setup.plugins.presets.text_objects = true
 lvim.builtin.which_key.setup.ignore_missing = true
 lvim.builtin.which_key.setup.icons.group = " "
 
-lvim.builtin.which_key.mappings["m"] = { require("harpoon.mark").add_file, "Harpoon Add" }
-lvim.builtin.which_key.mappings["."] = { require("harpoon.ui").nav_next, "Harpoon Next" }
-lvim.builtin.which_key.mappings[","] = { require("harpoon.ui").nav_prev, "Harpoon Prev" }
-lvim.keys.normal_mode["<C-e>"] = require("harpoon.ui").toggle_quick_menu
-
 lvim.builtin.which_key.mappings["P"] = { require("telescope").extensions.projects.projects, "Projects" }
 lvim.builtin.which_key.mappings["o"] = { require("telescope.builtin").find_files, "Find files" }
 lvim.builtin.which_key.mappings["<leader>"] = {
@@ -23,9 +18,9 @@ lvim.builtin.which_key.mappings["<leader>"] = {
   "Live Grep",
 }
 
-lvim.builtin.which_key.mappings["b"] = { require("telescope.builtin").buffers, "Buffers" }
 lvim.builtin.which_key.mappings["v"] = { vim.cmd.vsplit, "Split Vertically" }
 lvim.builtin.which_key.mappings["s"] = { vim.cmd.split, "Split Horizontally" }
+lvim.builtin.which_key.mappings[","] = { require("telescope.builtin").buffers, "Buffers" }
 lvim.builtin.which_key.mappings["h"] = { require("telescope.builtin").oldfiles, "Recent files" }
 lvim.builtin.which_key.mappings["n"] = { require("telescope.builtin").git_files, "Find in tracked files" }
 lvim.builtin.which_key.mappings["N"] = {
@@ -56,7 +51,7 @@ lvim.builtin.which_key.mappings["ps"] = {
 lvim.builtin.which_key.mappings["pS"] = { vim.cmd.LvimSyncCorePlugins, "Sync Core Plugins" }
 
 lvim.builtin.which_key.mappings["f"] = {
-  name = "Find",
+  name = "Search",
   b = { require("telescope.builtin").buffers, "Buffer" },
   d = {
     function()
@@ -93,134 +88,95 @@ lvim.builtin.which_key.mappings["f"] = {
   r = { require("telescope.builtin").oldfiles, "Recent File" },
   R = { require("user.telescopefinders").repo_fd, "File in Repos" },
   G = { require("user.telescopefinders").repo_grep, "String in Repos" },
+  h = { require("telescope.builtin").highlights, "Highlight" },
   k = { require("telescope.builtin").keymaps, "Keymap" },
   C = { require("telescope.builtin").commands, "Command" },
 }
 
-lvim.builtin.which_key.mappings["g"] = {
-  name = "Git",
-  d = {
-    name = "Diff",
-    c = { "<cmd>DiffviewClose<cr>", "Diffview Close" },
-    d = { "<cmd>DiffviewOpen<cr>", "Diffview (all modified files)" },
-  },
-  f = { "<cmd>DiffviewFileHistory %<cr>", "Diffview current file history" },
-  g = { "<cmd>tab Git<CR>", "Status" },
-  p = {
-    name = "Push",
-    p = {
-      "<cmd>Git push origin HEAD:refs/for/master<CR>",
-      "Gerrit",
-    },
-    P = {
-      function()
-        vim.cmd.Git("push")
-      end,
-      "Regular",
-    },
-  },
-  b = {
-    "<cmd>tab Git blame --date=human --color-by-age --abbrev-commit<CR>",
-    "Blame",
-  },
-  c = {
-    name = "Checkout",
-    b = { require("telescope.builtin").git_branches, "Checkout branch" },
-    c = { require("telescope.builtin").git_commits, "Checkout commit" },
-  },
+-- Git
+lvim.builtin.which_key.mappings["gd"] = {
+  name = "Diff",
+  c = { "<cmd>DiffviewClose<cr>", "Diffview Close" },
+  d = { "<cmd>DiffviewOpen<cr>", "Diffview (all modified files)" },
   D = { "<cmd>Gvdiffsplit!<CR>", "Diff-3-way" },
-  h = { require("gitsigns").preview_hunk, "Preview Hunk" },
-  l = {
-    "<cmd>Gclog %<CR>",
-    "Log",
+  h = { "<cmd>DiffviewFileHistory %<cr>", "Diffview current file history" },
+}
+lvim.builtin.which_key.mappings["gg"] = { "<cmd>tab Git<CR>", "Status" }
+lvim.builtin.which_key.mappings["gp"] = {
+  name = "Push",
+  p = {
+    "<cmd>Git push origin HEAD:refs/for/master<CR>",
+    "Gerrit",
   },
-  L = {
-    '<cmd>tab Git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all<cr>',
-    "Log",
-  },
-  s = { require("gitsigns").stage_hunk, "Stage Hunk" },
-  u = { require("gitsigns").undo_stage_hunk, "Unstage Hunk" },
   P = {
-    "<cmd>Git pull --rebase<CR>",
-    "Pull & rebase",
-  },
-  U = {
     function()
-      vim.cmd.Git("submodule", "update", "--init", "--recursive<CR>")
+      vim.cmd.Git("push")
     end,
-    "Update Submodules",
-  },
-  r = { require("gitsigns").reset_hunk, "Reset Hunk" },
-  R = {
-    function()
-      require("gitsigns").reset_buffer()
-    end,
-    "Reset Buffer",
+    "Regular",
   },
 }
+lvim.builtin.which_key.mappings["gb"] = {
+  "<cmd>tab Git blame --date=human --color-by-age --abbrev-commit<CR>",
+  "Blame",
+}
+lvim.builtin.which_key.mappings["gh"] = { require("gitsigns").preview_hunk, "Preview Hunk" }
+lvim.builtin.which_key.mappings["gl"] = {
+  "<cmd>Gclog %<CR>",
+  "Log",
+}
+lvim.builtin.which_key.mappings["gL"] = {
+  '<cmd>tab Git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all<cr>',
+  "Log",
+}
+lvim.builtin.which_key.mappings["gP"] = {
+  "<cmd>Git pull --rebase<CR>",
+  "Pull & rebase",
+}
+lvim.builtin.which_key.mappings["gU"] = {
+  function()
+    vim.cmd.Git("submodule", "update", "--init", "--recursive<CR>")
+  end,
+  "Update Submodules",
+}
 
-lvim.builtin.which_key.mappings["l"] = {
-  name = "LSP",
-  a = {
-    name = "Actions",
-    a = { vim.lsp.buf.code_action, "Code" },
-    l = { vim.lsp.codelens.run, "Lens" },
-  },
-  f = {
-    function()
-      vim.lsp.buf.format({ async = true })
-    end,
-    "Format",
-  },
-  F = { vim.cmd.LspToggleAutoFormat, "Toggle Autoformat" },
-  H = { vim.cmd.IlluminationToggle, "Toggle Doc HL" },
-  g = { vim.cmd.Neogen, "Generate Annotation" },
-  t = {
-    function()
-      if vim.g.diagnostics_visible then
-        vim.g.diagnostics_visible = false
-        vim.diagnostic.disable()
-      else
-        vim.g.diagnostics_visible = true
-        vim.diagnostic.enable()
-      end
-    end,
-    "Toggle Diagnostics",
-  },
-  d = {
-    function()
-      require("telescope.builtin").diagnostics({ bufnr = 0 })
-    end,
-    "List Diagnostics for Buffer",
-  },
-  D = {
-    function()
-      require("telescope.builtin").diagnostics()
-    end,
-    "List Diagnostics for Workspace",
-  },
-  l = {
-    function()
-      local config = lvim.lsp.diagnostics.float
-      config.scope = "line"
-      config.severity_sort = true
-      vim.diagnostic.open_float(0, config)
-    end,
-    "Show Line Diagnostics",
-  },
-  r = { vim.lsp.buf.rename, "Rename" },
-  s = {
-    function()
-      require("telescope.builtin").lsp_document_symbols({ symbol_width = 100, show_line = false })
-    end,
-    "Document Symbols",
-  },
-  S = {
-    function()
-      require("telescope.builtin").lsp_dynamic_workspace_symbols({ fname_width = 100, show_line = false })
-    end,
-    "Workspace Symbols",
-  },
+-- Lsp
+lvim.builtin.which_key.mappings["lA"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" }
+lvim.builtin.which_key.mappings["lF"] = { vim.cmd.LspToggleAutoFormat, "Toggle Autoformat" }
+lvim.builtin.which_key.mappings["lH"] = { vim.cmd.IlluminationToggle, "Toggle Doc HL" }
+lvim.builtin.which_key.mappings["ld"] = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" }
+lvim.builtin.which_key.mappings["lD"] = { "<cmd>Telescope diagnostics theme=get_ivy<cr>", "Workspace Diagnostics" }
+lvim.builtin.which_key.mappings["ls"] = {
+  function()
+    require("telescope.builtin").lsp_document_symbols({ symbol_width = 80, show_line = false })
+  end,
+  "Document Symbols",
+}
+lvim.builtin.which_key.mappings["lS"] = {
+  function()
+    require("telescope.builtin").lsp_dynamic_workspace_symbols({ fname_width = 80, show_line = false })
+  end,
+  "Workspace Symbols",
+}
+lvim.builtin.which_key.mappings["ll"] = {
+  function()
+    local config = lvim.lsp.diagnostics.float
+    config.scope = "line"
+    config.severity_sort = true
+    vim.diagnostic.open_float(0, config)
+  end,
+  "Show Line Diagnostics",
+}
+lvim.builtin.which_key.mappings["lt"] = {
+  function()
+    if vim.g.diagnostics_visible then
+      vim.g.diagnostics_visible = false
+      vim.diagnostic.disable()
+    else
+      vim.g.diagnostics_visible = true
+      vim.diagnostic.enable()
+    end
+  end,
+  "Toggle Diagnostics",
 }
 
 lvim.builtin.which_key.mappings["z"] = {
@@ -230,28 +186,6 @@ lvim.builtin.which_key.mappings["z"] = {
   z = { "<cmd>Telescope live_grep cwd=~/notes<cr>", "Find Notes" },
 }
 
--- local dap = require("dap")
--- local dapui = require("dapui")
--- lvim.builtin.which_key.mappings["d"] = {
---   name = "Debug",
---   b = { dap.toggle_breakpoint, "Breakpoint" },
---   c = { dap.continue, "Continue" },
---   i = {
---     function()
---       dap.step_into("Into")
---     end,
---     "Step Into",
---   },
---   o = { dap.step_over, "Over" },
---   O = { dap.step_out, "Out" },
---   r = { dap.repl.toggle, "Repl" },
---   l = { dap.run_last, "Last" },
---   u = { dapui.toggle, "UI" },
---   x = { dap.terminate, "Exit" },
--- }
--- lvim.builtin.which_key.mappings["d"] = {
---   name = "Debug/Test",
--- }
 lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>", "Test Method" }
 lvim.builtin.which_key.mappings["dM"] = {
   "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
@@ -381,5 +315,3 @@ lvim.builtin.which_key.mappings["t"] = {
 }
 
 lvim.builtin.which_key.mappings[";"] = nil
-lvim.builtin.which_key.mappings["c"] = nil
-lvim.builtin.which_key.mappings["L"] = nil
