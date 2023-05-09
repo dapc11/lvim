@@ -191,3 +191,7 @@ lvim.builtin.which_key.vmappings["<leader>"] = {
   end,
   "Live Grep Selection",
 }
+lvim.keys.visual_mode["<C-f>"] = function()
+    local text = vim.getVisualSelection()
+    tb.current_buffer_fuzzy_find({ default_text = text })
+  end
