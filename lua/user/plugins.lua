@@ -5,9 +5,7 @@ lvim.plugins = {
     lazy = false,
     priority = 1000,
     config = function()
-      require("github-theme").setup({
-        theme_style = "dark",
-      })
+      require("github-theme").setup({})
     end,
   },
   {

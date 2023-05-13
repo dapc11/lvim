@@ -18,113 +18,53 @@ local function getLspName()
   return "  [" .. lsp_names .. "]"
 end
 
-lvim.builtin.lualine.on_config_done = function(lualine)
-  lualine.setup({
-    options = {
-      icons_enabled = true,
-      theme = "auto",
-      component_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
-      disabled_filetypes = {
-        statusline = {
-          "lazy",
-          "lazygit",
-          "TelescopePrompt",
-          "help",
-          "lir",
-          "Outline",
-          "spectre_panel",
-          "toggleterm",
-          "DressingSelect",
-          "Jaq",
-          "harpoon",
-          "dap-repl",
-          "dap-terminal",
-          "dapui_console",
-          "startify",
-          "lab",
-          "Markdown",
-          "notify",
-          "noice",
-          "",
-          "dashboard",
-          "packer",
-          "neo-tree",
-          "neogitstatus",
-          "NvimTree",
-          "alpha",
-        },
-        winbar = {
-          "lazy",
-          "lazygit",
-          "TelescopePrompt",
-          "help",
-          "lir",
-          "Outline",
-          "spectre_panel",
-          "toggleterm",
-          "DressingSelect",
-          "Jaq",
-          "harpoon",
-          "dap-repl",
-          "dap-terminal",
-          "dapui_console",
-          "startify",
-          "lab",
-          "Markdown",
-          "notify",
-          "noice",
-          "",
-          "dashboard",
-          "packer",
-          "neo-tree",
-          "neogitstatus",
-          "NvimTree",
-          "alpha",
-        },
-      },
-      ignore_focus = {},
-      always_divide_middle = true,
-      globalstatus = true,
-      refresh = {
-        statusline = 1000,
-        tabline = 1000,
-        winbar = 1000,
-      },
-    },
+lvim.builtin.lualine.style = "default"
+lvim.builtin.lualine.options.component_separators = { left = "", right = "" }
+lvim.builtin.lualine.options.section_separators = { left = "", right = "" }
+local components = require("lvim.core.lualine.components")
 
-    sections = {
-      lualine_a = {
-        {
-          "mode",
-          fmt = function(str)
-            return str:gsub(str, "  ")
-          end,
-        },
-        {
-          "mode",
-          fmt = function(str)
-            return str:sub(1, 1)
-          end,
-        },
-      },
-      lualine_b = { "filename", "branch", "diff", "diagnostics" },
-      lualine_c = {},
-      lualine_x = {},
-      lualine_y = { "encoding", "fileformat", "filetype", "progress", "location" },
-      lualine_z = { { getLspName } },
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = { "filename" },
-      lualine_x = { "location" },
-      lualine_y = {},
-      lualine_z = {},
-    },
-    tabline = {},
-    winbar = {},
-    inactive_winbar = {},
-    extensions = {},
-  })
-end
+lvim.builtin.lualine.sections.lualine_a = { "mode" }
+lvim.builtin.lualine.sections.lualine_y = { components.location, components.progress }
+lvim.builtin.lualine.sections.lualine_z = { getLspName }
+
+local custom_theme = require("lualine.themes.auto")
+local colors = require("tokyonight.colors").setup()
+
+custom_theme.normal = {
+  a = { bg = colors.blue, fg = colors.black },
+  b = { bg = colors.fg_gutter, fg = colors.blue },
+  c = { bg = colors.none, fg = colors.fg_sidebar },
+}
+
+custom_theme.insert = {
+  a = { bg = colors.green, fg = colors.black },
+  b = { bg = colors.fg_gutter, fg = colors.green },
+}
+
+custom_theme.command = {
+  a = { bg = colors.yellow, fg = colors.black },
+  b = { bg = colors.fg_gutter, fg = colors.yellow },
+}
+
+custom_theme.visual = {
+  a = { bg = colors.magenta, fg = colors.black },
+  b = { bg = colors.fg_gutter, fg = colors.magenta },
+}
+
+custom_theme.replace = {
+  a = { bg = colors.red, fg = colors.black },
+  b = { bg = colors.fg_gutter, fg = colors.red },
+}
+
+custom_theme.terminal = {
+  a = { bg = colors.green1, fg = colors.black },
+  b = { bg = colors.fg_gutter, fg = colors.green1 },
+}
+
+custom_theme.inactive = {
+  a = { bg = colors.bg_statusline, fg = colors.blue },
+  b = { bg = colors.bg_statusline, fg = colors.fg_gutter, gui = "bold" },
+  c = { bg = colors.bg_statusline, fg = colors.fg_gutter },
+}
+
+lvim.builtin.lualine.options.theme = custom_theme
