@@ -9,10 +9,6 @@ lvim.plugins = {
     end,
   },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-  },
-  {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
@@ -38,6 +34,9 @@ lvim.plugins = {
         ---@param highlights Highlights
         ---@param colors ColorScheme
         on_highlights = function(highlights, colors)
+          highlights.VertSplit = { fg = colors.blue7 }
+          highlights.WinSeparator = { fg = colors.blue7 }
+          highlights.IndentBlanklineContextChar = { fg = colors.blue0 }
           highlights.TelescopeMultiSelection = { bold = true }
           highlights.TelescopeSelectionCaret = { bg = colors.bg_highlight }
           highlights.TelescopeSelection = {
@@ -53,15 +52,15 @@ lvim.plugins = {
           }
           highlights.TelescopePromptBorder = {
             bg = colors.none,
-            fg = colors.cyan,
+            fg = colors.blue7,
           }
           highlights.TelescopePreviewBorder = {
             bg = colors.none,
-            fg = colors.cyan,
+            fg = colors.blue7,
           }
           highlights.TelescopeResultsBorder = {
             bg = colors.none,
-            fg = colors.cyan,
+            fg = colors.blue7,
           }
           highlights.WhichKeyFloat = {
             bg = colors.none,
@@ -74,7 +73,7 @@ lvim.plugins = {
           }
           highlights.FloatBorder = {
             bg = colors.none,
-            fg = colors.cyan,
+            fg = colors.blue7,
           }
           highlights.FoldColumn = {
             bg = colors.none,
@@ -87,6 +86,25 @@ lvim.plugins = {
           }
           highlights.SignColumn = {
             bg = colors.none,
+          }
+
+          local colors = require("tokyonight.colors").setup()
+          highlights.LeapBackdrop = { link = "Comment" }
+          highlights.LeapMatch = {
+            fg = colors.fg_dark,
+            underline = true,
+            bold = true,
+          }
+          highlights.LeapLabelPrimary = {
+            fg = colors.blue,
+            underline = true,
+            bold = true,
+          }
+          highlights.LeapLabelSecondary = {
+            fg = colors.red,
+          }
+          highlights.LeapLabelSelected = {
+            fg = colors.green1,
           }
         end,
       })
@@ -127,31 +145,12 @@ lvim.plugins = {
     "ggandor/leap.nvim",
     dependencies = { "tpope/vim-repeat" },
     config = true,
-    init = function()
-      vim.api.nvim_set_hl(0, "LeapBackdrop", { link = "Comment" })
-      vim.api.nvim_set_hl(0, "LeapMatch", {
-        fg = "#c9d1d9",
-        underline = true,
-        bold = true,
-      })
-      vim.api.nvim_set_hl(0, "LeapLabelPrimary", {
-        fg = "#539bf5",
-        underline = true,
-        bold = true,
-      })
-      vim.api.nvim_set_hl(0, "LeapLabelSecondary", {
-        fg = "#e5534b",
-      })
-      vim.api.nvim_set_hl(0, "LeapLabelSelected", {
-        fg = "#57ab5a",
-      })
-    end,
     opts = {
-      highlight_unlabeled = false,
+      highlight_unlabeled = true,
       case_sensitive = false,
       max_highlighted_traversal_targets = nil,
-      highlight_unlabeled_phase_one_targets = true,
-      max_phase_one_targets = nil,
+      highlight_unlabeled_phase_one_targets = false,
+      max_phase_one_targets = 0,
     },
   },
   {

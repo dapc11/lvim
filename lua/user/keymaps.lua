@@ -88,6 +88,12 @@ vim.keymap.set("n", "[c", function()
 end, { expr = true })
 
 require("leap").add_default_mappings()
+vim.keymap.set({ "n", "x", "o" }, "s", function()
+  require("leap").leap({ opts = { offset = 1, inclusive_op = true } })
+end)
+vim.keymap.set({ "n", "x", "o" }, "s", function()
+  require("leap").leap({ opts = { backward = true, offset = 1, inclusive_op = true } })
+end)
 vim.keymap.set("o", "m", require("tsht").nodes, { noremap = false })
 vim.keymap.set("x", "m", require("tsht").nodes, { noremap = true })
 
@@ -192,6 +198,6 @@ lvim.builtin.which_key.vmappings["<leader>"] = {
   "Live Grep Selection",
 }
 lvim.keys.visual_mode["<C-f>"] = function()
-    local text = vim.getVisualSelection()
-    tb.current_buffer_fuzzy_find({ default_text = text })
-  end
+  local text = vim.getVisualSelection()
+  tb.current_buffer_fuzzy_find({ default_text = text })
+end
