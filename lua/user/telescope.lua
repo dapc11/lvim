@@ -5,7 +5,8 @@ local putils = require("telescope.previewers.utils")
 lvim.builtin.telescope.defaults.layout_config.preview_cutoff = 75
 lvim.builtin.telescope.defaults.layout_config.width = 0.90
 
--- lvim.builtin.telescope.defaults.path_display = { "truncate" }
+lvim.builtin.telescope.pickers.buffers.initial_mode = "insert"
+lvim.builtin.telescope.defaults.path_display = { "truncate" }
 lvim.builtin.telescope.file_sorter = require("telescope.sorters").get_fuzzy_file
 lvim.builtin.telescope.generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter
 lvim.builtin.telescope.theme = "ivy"

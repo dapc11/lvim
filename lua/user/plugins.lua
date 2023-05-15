@@ -30,64 +30,14 @@ lvim.plugins = {
         },
         -- sidebars = { "qf", "help", "NvimTree" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
         ---@param colors ColorScheme
-        on_colors = function(colors) end,
+        on_colors = function(colors)
+          colors.bg = "#24292e"
+          colors.bg_sidebar = "#282c34"
+          colors.bg_float = "#24292e"
+        end,
         ---@param highlights Highlights
         ---@param colors ColorScheme
         on_highlights = function(highlights, colors)
-          highlights.VertSplit = { fg = colors.blue7 }
-          highlights.WinSeparator = { fg = colors.blue7 }
-          highlights.IndentBlanklineContextChar = { fg = colors.blue0 }
-          highlights.TelescopeMultiSelection = { bold = true }
-          highlights.TelescopeSelectionCaret = { bg = colors.bg_highlight }
-          highlights.TelescopeSelection = {
-            bg = colors.bg_highlight,
-            bold = true,
-          }
-          highlights.TelescopeNormal = {
-            bg = colors.none,
-            fg = colors.fg_dark,
-          }
-          highlights.TelescopePromptNormal = {
-            bg = colors.none,
-          }
-          highlights.TelescopePromptBorder = {
-            bg = colors.none,
-            fg = colors.blue7,
-          }
-          highlights.TelescopePreviewBorder = {
-            bg = colors.none,
-            fg = colors.blue7,
-          }
-          highlights.TelescopeResultsBorder = {
-            bg = colors.none,
-            fg = colors.blue7,
-          }
-          highlights.WhichKeyFloat = {
-            bg = colors.none,
-          }
-          highlights.NormalFloat = {
-            bg = colors.none,
-          }
-          highlights.WhichKey = {
-            bg = colors.none,
-          }
-          highlights.FloatBorder = {
-            bg = colors.none,
-            fg = colors.blue7,
-          }
-          highlights.FoldColumn = {
-            bg = colors.none,
-          }
-          highlights.NvimTreeWinSeparator = {
-            bg = colors.none,
-          }
-          highlights.ColorColumn = {
-            bg = colors.none,
-          }
-          highlights.SignColumn = {
-            bg = colors.none,
-          }
-
           local colors = require("tokyonight.colors").setup()
           highlights.LeapBackdrop = { link = "Comment" }
           highlights.LeapMatch = {
@@ -106,6 +56,9 @@ lvim.plugins = {
           highlights.LeapLabelSelected = {
             fg = colors.green1,
           }
+          highlights.WinSeparator = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
+          highlights.NvimTreeNormal = { bg = colors.red }
+          highlights.NvimTreeNormalNC = { bg = colors.yellow }
         end,
       })
     end,
@@ -197,7 +150,23 @@ lvim.plugins = {
     "monaqa/dial.nvim",
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
-  { "boltlessengineer/bufterm.nvim", config = true },
+  {
+    "boltlessengineer/bufterm.nvim",
+    config = function()
+      require("bufterm").setup({
+        save_native_terms = true, -- integrate native terminals from `:terminal` command
+        start_in_insert = false, -- start terminal in insert mode
+        remember_mode = false, -- remember vi_mode of terminal buffer
+        enable_ctrl_w = true, -- use <C-w> for window navigating in terminal mode (like vim8)
+        terminal = { -- default terminal settings
+          buflisted = false, -- whether to set 'buflisted' option
+          termlisted = true, -- list terminal in termlist (similar to buflisted)
+          fallback_on_exit = true, -- prevent auto-closing window on terminal exit
+          auto_close = true, -- auto close buffer on terminal job ends
+        },
+      })
+    end,
+  },
   {
     "alexghergh/nvim-tmux-navigation",
     config = true,
