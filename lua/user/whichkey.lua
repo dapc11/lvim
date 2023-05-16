@@ -35,6 +35,7 @@ lvim.builtin.which_key.mappings["q"] = { require("user.functions").smart_quit, "
 lvim.builtin.which_key.mappings["w"] = { "<cmd>bdelete!<CR>", "Close Current Buffer" }
 lvim.builtin.which_key.mappings["/"] = { require("Comment.api").toggle.linewise.current, "Comment" }
 
+lvim.builtin.which_key.mappings["bd"] = { "<cmd>bd<cr>", "Close buffer" }
 vim.cmd([[
     function! ClearQuickfixList()
         call setqflist([])
