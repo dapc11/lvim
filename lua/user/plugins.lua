@@ -57,6 +57,7 @@ lvim.plugins = {
             fg = colors.green1,
           }
           highlights.WinSeparator = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
+          highlights.TelescopeBorder = { bg = colors.bg, fg = colors.blue7 }
           highlights.NvimTreeNormal = { bg = colors.red }
           highlights.NvimTreeNormalNC = { bg = colors.yellow }
         end,
@@ -208,5 +209,28 @@ lvim.plugins = {
   },
   {
     "wellle/targets.vim",
+  },
+  {
+    "stevearc/dressing.nvim",
+    config = function()
+      require("dressing").setup({
+        select = {
+          get_config = function(opts)
+            if opts.kind == "codeaction" then
+              return {
+                backend = "telescope",
+                telescope = require("telescope.themes").get_dropdown({
+                  layout_config = {
+                    height = function(_, _, max_lines)
+                      return math.min(max_lines, 30)
+                    end,
+                  },
+                }),
+              }
+            end
+          end,
+        },
+      })
+    end,
   },
 }
