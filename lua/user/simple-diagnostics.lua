@@ -2,7 +2,7 @@ local prev_line = vim.api.nvim_win_get_cursor(0)[1] - 1
 local prev_buf = vim.api.nvim_get_current_buf()
 local set = false
 local virtual_text = true
-local message_area = false
+local message_area = true
 local signs = false
 
 local severity = {
@@ -64,15 +64,16 @@ local function printDiagnostics(buf, line)
 
   diagnostic_message = diagnostic_message
     .. string.format(
-      "%s: %s%s %s",
+      "%s[%s]: %s%s",
       diagnostic.source or "",
+      diagnostic.code or "",
       signs and text or "",
-      diagnostic.message or "",
-      diagnostic.code or ""
+      diagnostic.message or ""
     )
 
   if message_area then
-    print(diagnostic_message)
+    stripped, _ = diagnostic_message:gsub("\n", "")
+    print(stripped)
   end
 
   if virtual_text then
@@ -87,26 +88,25 @@ end
 
 local augroup = vim.api.nvim_create_augroup("simple-diagnostics", { clear = true })
 
-vim.api.nvim_create_autocmd({ "CursorHold", "InsertLeave" }, {
-  pattern = "*",
-  group = augroup,
-  callback = function()
-    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-    if buf_ft == "lazy" then
-      return
-    end
-    printDiagnostics(vim.api.nvim_get_current_buf(), vim.api.nvim_win_get_cursor(0)[1] - 1)
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "CursorMoved", "InsertEnter", "BufEnter" }, {
-  pattern = "*",
-  group = augroup,
-  callback = function()
-    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
-    if buf_ft == "lazy" then
-      return
-    end
-    clear(prev_buf)
-  end,
-})
+lvim.autocommands = {
+  {
+    { "CursorMoved", "InsertEnter", "BufEnter" },
+    {
+      group = augroup,
+      pattern = { "*" },
+      callback = function()
+        clear(prev_buf)
+      end,
+    },
+  },
+  {
+    { "CursorHold", "InsertLeave" },
+    {
+      pattern = "*",
+      group = augroup,
+      callback = function()
+        printDiagnostics(vim.api.nvim_get_current_buf(), vim.api.nvim_win_get_cursor(0)[1] - 1)
+      end,
+    },
+  },
+}

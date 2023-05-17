@@ -50,6 +50,7 @@ lvim.builtin.project.patterns = {
   "image-design-rule-check-report.html",
 }
 
+vim.opt.relativenumber = true
 vim.opt.timeoutlen = 250
 vim.filetype.add({
   extension = {
