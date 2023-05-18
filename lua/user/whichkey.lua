@@ -86,10 +86,10 @@ lvim.builtin.which_key.mappings["f"] = {
     end,
     "Unstaged File",
   },
-  r = { require("telescope.builtin").oldfiles, "Recent File" },
+  h = { require("telescope.builtin").oldfiles, "Recent File" },
   R = { require("user.telescopefinders").repo_fd, "File in Repos" },
   G = { require("user.telescopefinders").repo_grep, "String in Repos" },
-  h = { require("telescope.builtin").highlights, "Highlight" },
+  H = { require("telescope.builtin").highlights, "Highlight" },
   k = { require("telescope.builtin").keymaps, "Keymap" },
   C = { require("telescope.builtin").commands, "Command" },
 }
@@ -100,8 +100,8 @@ lvim.builtin.which_key.mappings["gd"] = {
   c = { "<cmd>DiffviewClose<cr>", "Diffview Close" },
   d = { "<cmd>DiffviewOpen<cr>", "Diffview (all modified files)" },
   D = { "<cmd>Gvdiffsplit!<CR>", "Diff-3-way" },
-  h = { "<cmd>DiffviewFileHistory %<cr>", "Diffview current file history" },
 }
+lvim.builtin.which_key.mappings["gh"] = { "<cmd>DiffviewFileHistory %<cr>", "Diffview current file history" }
 lvim.builtin.which_key.mappings["gg"] = { "<cmd>tab Git<CR>", "Status" }
 lvim.builtin.which_key.mappings["gp"] = {
   name = "Push",
@@ -120,7 +120,7 @@ lvim.builtin.which_key.mappings["gb"] = {
   "<cmd>tab Git blame --date=human --color-by-age --abbrev-commit<CR>",
   "Blame",
 }
-lvim.builtin.which_key.mappings["gh"] = { require("gitsigns").preview_hunk, "Preview Hunk" }
+lvim.builtin.which_key.mappings["gv"] = { require("gitsigns").preview_hunk, "Preview Hunk" }
 lvim.builtin.which_key.mappings["gl"] = {
   "<cmd>Gclog %<CR>",
   "Log",
