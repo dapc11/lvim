@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
-"DiffviewFileHistory"
+    "DiffviewFileHistory",
   },
   callback = function()
     vim.cmd([[
@@ -79,22 +79,6 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 
     vim.opt.titlestring = get_project_dir() .. " - nvim"
     vim.opt.laststatus = 3
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-  pattern = { "term://*" },
-  callback = function()
-    vim.cmd("startinsert!")
-    vim.cmd("set cmdheight=1")
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "gitcommit", "markdown" },
-  callback = function()
-    vim.opt_local.wrap = true
-    vim.opt_local.spell = true
   end,
 })
 
