@@ -105,11 +105,8 @@ lvim.builtin.which_key.mappings["gh"] = { "<cmd>DiffviewFileHistory %<cr>", "Dif
 lvim.builtin.which_key.mappings["gg"] = { "<cmd>tab Git<CR>", "Status" }
 lvim.builtin.which_key.mappings["gp"] = {
   name = "Push",
+  g = { "<cmd>Git push origin HEAD:refs/for/master<CR>", "Gerrit" },
   p = {
-    "<cmd>Git push origin HEAD:refs/for/master<CR>",
-    "Gerrit",
-  },
-  P = {
     function()
       vim.cmd.Git("push")
     end,
