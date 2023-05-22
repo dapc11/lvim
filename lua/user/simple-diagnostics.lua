@@ -6,10 +6,10 @@ local message_area = true
 local signs = false
 
 local severity = {
-  { texthl = "LspDiagnosticsVirtualTextError", sign = "DiagnosticSignError" },
-  { texthl = "LspDiagnosticsVirtualTextWarning", sign = "DiagnosticSignWarning" },
-  { texthl = "LspDiagnosticsVirtualTextInformation", sign = "DiagnosticSignInfo" },
-  { texthl = "LspDiagnosticsVirtualTextHint", sign = "DiagnosticSignHint" },
+  { texthl = "DiagnosticError", sign = "DiagnosticSignError" },
+  { texthl = "DiagnosticWarn", sign = "DiagnosticSignWarning" },
+  { texthl = "DiagnosticInfo", sign = "DiagnosticSignInfo" },
+  { texthl = "DiagnosticHint", sign = "DiagnosticSignHint" },
 }
 
 local function clear(bufnr)

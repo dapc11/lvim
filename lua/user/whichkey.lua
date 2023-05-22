@@ -138,6 +138,8 @@ lvim.builtin.which_key.mappings["gU"] = {
 }
 
 -- Lsp
+lvim.builtin.which_key.mappings["lc"] = { "<cmd>LspStop<cr>", "Stop LSP server" }
+lvim.builtin.which_key.mappings["lR"] = { "<cmd>LspRestart<cr>", "Restart LSP server" }
 lvim.builtin.which_key.mappings["lA"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" }
 lvim.builtin.which_key.mappings["lF"] = { vim.cmd.LspToggleAutoFormat, "Toggle Autoformat" }
 lvim.builtin.which_key.mappings["lH"] = { vim.cmd.IlluminationToggle, "Toggle Doc HL" }

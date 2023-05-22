@@ -15,4 +15,22 @@ require("which-key").register({
     buffer = bufnr,
     mode = { "v", "n" },
   },
+  ["<leader>lv"] = {
+    "<cmd>YAMLYankValue<cr>",
+    "Yank value",
+    mode = { "n" },
+    buffer = bufnr,
+  },
+  ["<leader>lk"] = {
+    "<cmd>YAMLYankKey<cr>",
+    "Yank Key",
+    mode = { "n" },
+    buffer = bufnr,
+  },
+  ["<leader>ly"] = {
+    "<cmd>YAMLYank<cr>",
+    "Yank",
+    mode = { "n" },
+    buffer = bufnr,
+  },
 })
