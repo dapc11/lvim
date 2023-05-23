@@ -101,7 +101,7 @@ endfunction
 
 call s:Map('n', "<C-r>", ":Git pull --rebase<CR>", "<silent>")
 call s:Map('n', "<C-p>", ":Git push<CR>", "<silent>")
-call s:Map('n', "<C-å>", ":Git push origin HEAD:refs/for/master<CR>", "<silent>")
+call s:Map('n', "<C-g>", ":Git push origin HEAD:refs/for/master<CR>", "<silent>")
 
 autocmd BufWinEnter */.git/index let @n="="
 autocmd BufWinEnter */.git/index nnoremap <buffer><Tab> @n
