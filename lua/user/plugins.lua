@@ -66,7 +66,7 @@ lvim.plugins = {
   "NvChad/nvim-colorizer.lua",
   "wellle/targets.vim",
   "monaqa/dial.nvim",
-  "nvim-aaaa/nvim-aaaa-textobjects",
+  "nvim-treesitter/nvim-treesitter-textobjects",
 
   -- Custom config
   { "mfussenegger/nvim-jdtls", event = "VeryLazy" },
@@ -88,7 +88,7 @@ lvim.plugins = {
     },
   },
   { "dapc11/vim-fugitive", event = "VeryLazy" },
-  { "mfussenegger/nvim-treehopper", dependencies = { "nvim-aaaa/nvim-aaaa" } },
+  { "mfussenegger/nvim-treehopper", dependencies = { "nvim-treesitter/nvim-treesitter" } },
   { "cuducos/yaml.nvim", ft = "yaml" },
   {
     "ggandor/leap.nvim",
@@ -126,7 +126,7 @@ lvim.plugins = {
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-aaaa/nvim-aaaa",
+      "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-neotest/neotest-python",
       "nvim-neotest/neotest-go",
