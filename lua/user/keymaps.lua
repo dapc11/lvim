@@ -166,11 +166,6 @@ lvim.keys.visual_mode["<S-Down>"] = ":m '>+1<CR>gv=gv"
 lvim.keys.visual_mode["<S-Up>"] = ":m '<-2<CR>gv=gv"
 lvim.keys.visual_mode["c"] = '"_c'
 lvim.keys.visual_mode["p"] = '"_dP'
--- Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-lvim.keys.visual_mode["ga"] = "<Plug>(EasyAlign)"
-
--- Start interactive EasyAlign for a motion/text object (e.g. gaip)
-lvim.keys.normal_mode["ga"] = "<Plug>(EasyAlign)"
 
 lvim.keys.visual_block_mode["p"] = "pgvy"
 vim.keymap.set("n", "<C-Left>", "<Nop>")
