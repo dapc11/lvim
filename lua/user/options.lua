@@ -28,7 +28,6 @@ lvim.builtin.bufferline.options.diagnostics = false
 lvim.builtin.bufferline.options.modified_icon = ""
 lvim.builtin.bufferline.options.offsets = {
   {
-
     filetype = "NvimTree",
     highlight = "NvimTreeNormal",
     padding = 0,
@@ -62,6 +61,5 @@ vim.filetype.add({
     [".*/templates/.*.yml"] = "gotmpl",
   },
 })
-
 
 require("lvim.lsp.manager").setup("marksman")

@@ -51,8 +51,6 @@ lvim.plugins = {
         }
         highlights.WinSeparator = { bg = colors.bg_sidebar, fg = colors.bg_sidebar }
         highlights.TelescopeBorder = { bg = colors.bg, fg = colors.blue7 }
-        highlights.NvimTreeNormal = { bg = colors.red }
-        highlights.NvimTreeNormalNC = { bg = colors.yellow }
       end,
     },
   },
@@ -218,5 +216,58 @@ lvim.plugins = {
         desc = "Replace in file",
       },
     },
+  },
+  {
+    "nvimdev/lspsaga.nvim",
+    event = "LspAttach",
+    keys = {
+      {
+        "<leader>a",
+        "<cmd>Lspsaga outline<cr>",
+        desc = "Outline",
+      },
+    },
+    config = function()
+      require("lspsaga").setup({
+        ui = {
+          -- This option only works in Neovim 0.9
+          title = true,
+          -- Border type can be single, double, rounded, solid, shadow.
+          border = "rounded",
+          winblend = 0,
+          expand = "",
+          collapse = "",
+          code_action = "",
+          incoming = " ",
+          outgoing = " ",
+          hover = " ",
+          kind = {},
+        },
+        outline = {
+          win_position = "right",
+          win_with = "",
+          win_width = 30,
+          preview_width = 0.4,
+          show_detail = true,
+          auto_preview = true,
+          auto_refresh = true,
+          auto_close = true,
+          auto_resize = false,
+          custom_sort = nil,
+          keys = {
+            expand_or_jump = "<cr>",
+            quit = "q",
+          },
+        },
+      })
+    end,
+    dependencies = {
+      { "nvim-tree/nvim-web-devicons" },
+      { "nvim-treesitter/nvim-treesitter" },
+    },
+  },
+  {
+    "stevearc/stickybuf.nvim",
+    opts = {},
   },
 }
