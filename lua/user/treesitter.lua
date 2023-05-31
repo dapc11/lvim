@@ -1,16 +1,19 @@
-local parser_config = require'nvim-treesitter.parsers'.get_parser_configs()
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.gotmpl = {
   install_info = {
     url = "https://github.com/ngalaiko/tree-sitter-go-template",
-    files = {"src/parser.c"}
+    files = { "src/parser.c" },
   },
   filetype = "gotmpl",
-  used_by = {"gohtmltmpl", "gotexttmpl", "gotmpl", "yaml"}
+  used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" },
 }
 
 lvim.builtin.treesitter.highlight = {
   enable = true,
   disable = { "gitcommit" },
+  disable = function(_, bufnr)
+    return vim.api.nvim_buf_line_count(bufnr) > 2000
+  end,
 }
 
 lvim.builtin.treesitter.ensure_installed = {

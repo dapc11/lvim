@@ -61,5 +61,3 @@ vim.filetype.add({
     [".*/templates/.*.yml"] = "gotmpl",
   },
 })
-
-require("lvim.lsp.manager").setup("marksman")
