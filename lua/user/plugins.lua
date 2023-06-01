@@ -62,8 +62,26 @@ lvim.plugins = {
   "kylechui/nvim-surround",
   { "tpope/vim-unimpaired", lazy = false },
   "hrsh7th/cmp-nvim-lsp-signature-help",
-  "ray-x/go.nvim",
-  "ray-x/guihua.lua",
+  {
+    "ray-x/go.nvim",
+    dependencies = {
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("go").setup(require("user.lsp.go"))
+      vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        pattern = { "*.go" },
+        callback = function()
+          vim.cmd([[silent! lua require("go.format").goimport()]])
+        end,
+      })
+    end,
+    event = { "CmdlineEnter" },
+    ft = { "go", "gomod" },
+    build = ':lua require("go.install").update_all_sync()',
+  },
   "NvChad/nvim-colorizer.lua",
   "wellle/targets.vim",
   "monaqa/dial.nvim",

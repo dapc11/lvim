@@ -1,4 +1,4 @@
-require("go").setup({
+return {
   disable_defaults = false, -- true|false when true set false to all boolean settings and replace all table
   go = "go", -- go command, can be go[default] or go1.18beta1
   goimport = "gopls", -- goimport command, can be gopls[default] or goimport
@@ -129,11 +129,4 @@ require("go").setup({
   trouble = false, -- true: use trouble to open quickfix
   test_efm = false, -- errorfomat for quickfix, default mix mode, set to true will be efm only
   luasnip = false, -- enable included luasnip snippets. you can also disable while add lua/snips folder to luasnip load
-})
-
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*.go" },
-  callback = function()
-    vim.cmd([[silent! lua require("go.format").goimport()]])
-  end,
-})
+}
