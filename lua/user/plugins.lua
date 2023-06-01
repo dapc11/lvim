@@ -71,12 +71,6 @@ lvim.plugins = {
     },
     config = function()
       require("go").setup(require("user.lsp.go"))
-      vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-        pattern = { "*.go" },
-        callback = function()
-          vim.cmd([[silent! lua require("go.format").goimport()]])
-        end,
-      })
     end,
     event = { "CmdlineEnter" },
     ft = { "go", "gomod" },
