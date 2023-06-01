@@ -32,6 +32,12 @@ local function clear(bufnr)
   set = false
 end
 
+-- Function to print colored text to the message area
+local function printColoredText(message, highlight_group)
+  local echo_table = { { message, highlight_group } }
+  vim.api.nvim_echo(echo_table, true, {})
+end
+
 local function printDiagnostics(buf, line)
   local line_diagnostics = vim.lsp.diagnostic.get_line_diagnostics(buf, line)
   prev_buf = buf
@@ -73,7 +79,7 @@ local function printDiagnostics(buf, line)
 
   if message_area then
     stripped, _ = diagnostic_message:gsub("\n", "")
-    print(stripped)
+    printColoredText(stripped, severity[diagnostic.severity].texthl)
   end
 
   if virtual_text then
