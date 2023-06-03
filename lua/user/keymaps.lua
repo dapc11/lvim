@@ -47,35 +47,34 @@ cnoreabbrev <expr> Wq ((getcmdtype() is# ':' && getcmdline() is# 'Wq')?('wq'):('
 ]])
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
-vim.keymap.set("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
-vim.keymap.set("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-vim.keymap.set("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
-vim.keymap.set("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map("n", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
+map("n", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
+map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev search result" })
 
-vim.keymap.set({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
-vim.keymap.set({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
-vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+map({ "n", "x" }, "gw", "*N", { desc = "Search word under cursor" })
+map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
-vim.keymap.set("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
-vim.keymap.set("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
-vim.keymap.set("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
-vim.keymap.set("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
-vim.keymap.set("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
-vim.keymap.set("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
-vim.keymap.set("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
-vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
+map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
+map("n", "<leader><tab>f", "<cmd>tabfirst<cr>", { desc = "First Tab" })
+map("n", "<leader><tab><tab>", "<cmd>tabnew<cr>", { desc = "New Tab" })
+map("n", "<leader><tab>]", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+map("n", "<leader><tab>d", "<cmd>tabclose<cr>", { desc = "Close Tab" })
+map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+map("n", "<leader>ww", "<C-W>p", { desc = "Other window" })
+map("n", "<leader>wd", "<C-W>c", { desc = "Delete window" })
 
--- stolen from justinmk
-vim.keymap.set("n", "/", "ms/", { desc = "Keeps jumplist after forward searching" })
-vim.keymap.set("n", "?", "ms?", { desc = "Keeps jumplist after backward searching" })
+map("n", "/", "ms/", { desc = "Keeps jumplist after forward searching" })
+map("n", "?", "ms?", { desc = "Keeps jumplist after backward searching" })
 
-vim.keymap.set({ "n", "v", "x", "o" }, "ä", "}zz")
-vim.keymap.set({ "n", "v", "x", "o" }, "ö", "{zz")
-vim.keymap.set({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
-vim.keymap.set({ "n", "v", "x", "o" }, "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "]c", function()
+map({ "n", "v", "x", "o" }, "ä", "}zz")
+map({ "n", "v", "x", "o" }, "ö", "{zz")
+map({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
+map({ "n", "v", "x", "o" }, "<C-u>", "<C-u>zz")
+map("n", "]c", function()
   if vim.wo.diff then
     return "]czz"
   end
@@ -86,7 +85,7 @@ vim.keymap.set("n", "]c", function()
   return "<Ignore>"
 end, { expr = true })
 
-vim.keymap.set("n", "[c", function()
+map("n", "[c", function()
   if vim.wo.diff then
     return "[czz"
   end
@@ -98,14 +97,14 @@ vim.keymap.set("n", "[c", function()
 end, { expr = true })
 
 require("leap").add_default_mappings()
-vim.keymap.set({ "n", "x", "o" }, "s", function()
+map({ "n", "x", "o" }, "s", function()
   require("leap").leap({ opts = { offset = 1, inclusive_op = true } })
 end)
-vim.keymap.set({ "n", "x", "o" }, "s", function()
+map({ "n", "x", "o" }, "s", function()
   require("leap").leap({ opts = { backward = true, offset = 1, inclusive_op = true } })
 end)
-vim.keymap.set("o", "m", require("tsht").nodes, { noremap = false })
-vim.keymap.set("x", "m", require("tsht").nodes, { noremap = true })
+map("o", "m", require("tsht").nodes, { noremap = false })
+map("x", "m", require("tsht").nodes, { noremap = true })
 
 lvim.keys.normal_mode["]t"] = function()
   require("neotest").jump.next({ status = "failed" })
@@ -168,10 +167,10 @@ lvim.keys.visual_mode["c"] = '"_c'
 lvim.keys.visual_mode["p"] = '"_dP'
 
 lvim.keys.visual_block_mode["p"] = "pgvy"
-vim.keymap.set("n", "<C-Left>", "<Nop>")
-vim.keymap.set("n", "<C-Right>", "<Nop>")
-vim.keymap.set("n", "<C-Up>", "<Nop>")
-vim.keymap.set("n", "<C-Down>", "<Nop>")
+map("n", "<C-Left>", "<Nop>")
+map("n", "<C-Right>", "<Nop>")
+map("n", "<C-Up>", "<Nop>")
+map("n", "<C-Down>", "<Nop>")
 
 function vim.getVisualSelection()
   vim.cmd('noau normal! "vy"')
