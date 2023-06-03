@@ -255,4 +255,16 @@ lvim.plugins = {
     "stevearc/stickybuf.nvim",
     opts = {},
   },
+  -- Telescope
+  {
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    config = function()
+      require("lvim.core.telescope").setup()
+    end,
+    dependencies = { "telescope-fzf-native.nvim", "dapc11/telescope-yaml.nvim" },
+    lazy = true,
+    cmd = "Telescope",
+    enabled = lvim.builtin.telescope.active,
+  },
 }
