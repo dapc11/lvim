@@ -222,33 +222,24 @@ lvim.plugins = {
   },
   {
     "nvim-pack/nvim-spectre",
-    keys = {
-      {
-        "<C-r>",
-        function()
-          require("spectre").open_file_search({ select_word = true })
-        end,
-        desc = "Replace in file",
+  },
+  {
+    "stevearc/aerial.nvim",
+    opts = {
+      layout = {
+        max_width = { 200, 0.15 },
+        width = 0.15,
       },
+      close_automatic_events = { "switch_buffer", "unsupported" },
+      show_guides = true,
     },
-    {
-      "stevearc/aerial.nvim",
-      opts = {
-        layout = {
-          max_width = { 200, 0.15 },
-          width = 0.15,
-        },
-        close_automatic_events = { "switch_buffer", "unsupported" },
-        show_guides = true,
-      },
-      keys = {
-        { "<leader>a", "<cmd>AerialToggle<cr>", desc = "Toggle outline" },
-      },
-      -- Optional dependencies
-      dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "nvim-tree/nvim-web-devicons",
-      },
+    keys = {
+      { "<leader>a", "<cmd>AerialToggle<cr>", desc = "Toggle outline" },
+    },
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
     },
   },
   {

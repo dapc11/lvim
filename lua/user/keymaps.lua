@@ -205,3 +205,10 @@ lvim.keys.visual_mode["<C-f>"] = function()
   local text = vim.getVisualSelection()
   tb.current_buffer_fuzzy_find({ default_text = text })
 end
+
+lvim.builtin.which_key.mappings["r"] = {
+  function()
+    require("spectre").open_file_search({ select_word = true })
+  end,
+  { desc = "Replace in file" },
+}

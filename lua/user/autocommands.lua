@@ -214,8 +214,8 @@ vim.api.nvim_create_autocmd(
   { group = "Configs", pattern = os.getenv("HOME") .. "/.config/lvim/*/*.lua", command = "source <afile>" }
 )
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "aerial",
-	callback = function()
-		require("illuminate.engine").toggle()
-	end,
+  pattern = "aerial",
+  callback = function()
+    require("illuminate.engine").toggle()
+  end,
 })
