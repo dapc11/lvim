@@ -253,7 +253,11 @@ lvim.plugins = {
     config = function()
       require("lvim.core.telescope").setup()
     end,
-    dependencies = { "telescope-fzf-native.nvim", "dapc11/telescope-yaml.nvim" },
+    dependencies = {
+      "telescope-fzf-native.nvim",
+      "dapc11/telescope-yaml.nvim",
+      "nvim-telescope/telescope-file-browser.nvim",
+    },
     lazy = true,
     cmd = "Telescope",
     enabled = lvim.builtin.telescope.active,

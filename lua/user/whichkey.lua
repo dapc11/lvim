@@ -53,7 +53,7 @@ lvim.builtin.which_key.mappings["pS"] = { vim.cmd.LvimSyncCorePlugins, "Sync Cor
 
 lvim.builtin.which_key.mappings["f"] = {
   name = "Search",
-  b = { require("telescope.builtin").buffers, "Buffer" },
+  b = { require("telescope").extensions.file_browser.file_browser, "File Browse" },
   d = {
     function()
       require("telescope.builtin").find_files({

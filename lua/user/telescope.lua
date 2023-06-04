@@ -60,5 +60,6 @@ lvim.builtin.telescope.file_previewer = {
 lvim.builtin.telescope.on_config_done = function(telescope)
   pcall(telescope.load_extension, "harpoon")
   pcall(telescope.load_extension, "zk")
-  telescope.load_extension("telescope-yaml")
+  pcall(telescope.load_extension, "file_browser")
+  pcall(telescope.load_extension, "telescope-yaml")
 end
