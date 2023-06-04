@@ -7,11 +7,14 @@ lvim.builtin.which_key.setup.plugins.presets.text_objects = true
 lvim.builtin.which_key.setup.ignore_missing = true
 lvim.builtin.which_key.setup.icons.group = " "
 
-lvim.builtin.which_key.mappings["P"] = { require("telescope").extensions.projects.projects, "Projects" }
-lvim.builtin.which_key.mappings["o"] = { require("telescope.builtin").find_files, "Find files" }
+local tb = require("telescope.builtin")
+local te = require("telescope").extensions
+
+lvim.builtin.which_key.mappings["P"] = { te.projects.projects, "Projects" }
+lvim.builtin.which_key.mappings["o"] = { tb.find_files, "Find files" }
 lvim.builtin.which_key.mappings["<leader>"] = {
   function()
-    require("telescope.builtin").live_grep({
+    tb.live_grep({
       path_display = { "truncate", shorten = { len = 3, exclude = { 1, -1 } } },
     })
   end,
@@ -20,12 +23,12 @@ lvim.builtin.which_key.mappings["<leader>"] = {
 
 lvim.builtin.which_key.mappings["v"] = { vim.cmd.vsplit, "Split Vertically" }
 lvim.builtin.which_key.mappings["s"] = { vim.cmd.split, "Split Horizontally" }
-lvim.builtin.which_key.mappings[","] = { require("telescope.builtin").buffers, "Buffers" }
-lvim.builtin.which_key.mappings["h"] = { require("telescope.builtin").oldfiles, "Recent files" }
-lvim.builtin.which_key.mappings["n"] = { require("telescope.builtin").git_files, "Find in tracked files" }
+lvim.builtin.which_key.mappings[","] = { tb.buffers, "Buffers" }
+lvim.builtin.which_key.mappings["h"] = { tb.oldfiles, "Recent files" }
+lvim.builtin.which_key.mappings["n"] = { tb.git_files, "Find in tracked files" }
 lvim.builtin.which_key.mappings["N"] = {
   function()
-    require("telescope.builtin").git_files({
+    tb.git_files({
       git_command = { "git", "ls-files", "--modified", "--exclude-standard" },
     })
   end,
@@ -53,10 +56,10 @@ lvim.builtin.which_key.mappings["pS"] = { vim.cmd.LvimSyncCorePlugins, "Sync Cor
 
 lvim.builtin.which_key.mappings["f"] = {
   name = "Search",
-  b = { require("telescope").extensions.file_browser.file_browser, "File Browse" },
+  b = { te.file_browser.file_browser, "File Browse" },
   d = {
     function()
-      require("telescope.builtin").find_files({
+      tb.find_files({
         cwd = "~/",
         path_display = { "truncate", shorten = { len = 3, exclude = { 1, -1 } } },
       })
@@ -65,33 +68,33 @@ lvim.builtin.which_key.mappings["f"] = {
   },
   f = {
     function()
-      require("telescope.builtin").find_files({
+      tb.find_files({
         cwd = "~/repos/",
         path_display = { "truncate", shorten = { len = 3, exclude = { 1, -1 } } },
       })
     end,
     "File",
   },
-  t = { require("telescope.builtin").live_grep, "Live Grep" },
-  w = { require("telescope.builtin").grep_string, "String" },
+  t = { tb.live_grep, "Live Grep" },
+  w = { tb.grep_string, "String" },
   s = { require("user.telescopefinders").spell_check, "Spelling" },
-  l = { require("telescope.builtin").resume, "Last Search" },
-  n = { require("telescope.builtin").git_files, "Tracked File" },
+  l = { tb.resume, "Last Search" },
+  n = { tb.git_files, "Tracked File" },
   p = { "<cmd>silent !tmux neww tmux-sessionizer<CR>", "Tmux Session" },
   N = {
     function()
-      require("telescope.builtin").git_files({
+      tb.git_files({
         git_command = { "git", "ls-files", "--modified", "--exclude-standard" },
       })
     end,
     "Unstaged File",
   },
-  h = { require("telescope.builtin").oldfiles, "Recent File" },
+  h = { tb.oldfiles, "Recent File" },
   R = { require("user.telescopefinders").repo_fd, "File in Repos" },
   G = { require("user.telescopefinders").repo_grep, "String in Repos" },
-  H = { require("telescope.builtin").highlights, "Highlight" },
-  k = { require("telescope.builtin").keymaps, "Keymap" },
-  C = { require("telescope.builtin").commands, "Command" },
+  H = { tb.highlights, "Highlight" },
+  k = { tb.keymaps, "Keymap" },
+  C = { tb.commands, "Command" },
 }
 
 -- Git
@@ -147,13 +150,13 @@ lvim.builtin.which_key.mappings["ld"] = { "<cmd>Telescope diagnostics bufnr=0 th
 lvim.builtin.which_key.mappings["lD"] = { "<cmd>Telescope diagnostics theme=get_ivy<cr>", "Workspace Diagnostics" }
 lvim.builtin.which_key.mappings["ls"] = {
   function()
-    require("telescope.builtin").lsp_document_symbols({ symbol_width = 80, show_line = false })
+    tb.lsp_document_symbols({ symbol_width = 80, show_line = false })
   end,
   "Document Symbols",
 }
 lvim.builtin.which_key.mappings["lS"] = {
   function()
-    require("telescope.builtin").lsp_dynamic_workspace_symbols({ fname_width = 80, show_line = false })
+    tb.lsp_dynamic_workspace_symbols({ fname_width = 80, show_line = false })
   end,
   "Workspace Symbols",
 }
