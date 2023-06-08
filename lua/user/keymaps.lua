@@ -144,7 +144,7 @@ lvim.keys.normal_mode["n"] = "nzzzv"
 lvim.keys.normal_mode["N"] = "Nzzzv"
 lvim.keys.normal_mode["<A-a>"] = "<C-a>"
 lvim.keys.normal_mode["<A-x>"] = "<C-x>"
-lvim.keys.normal_mode["<C-g>"] = "<cmd>tab Git<CR>"
+lvim.keys.normal_mode["<C-g>"] = "<cmd>Neogit<CR>"
 lvim.keys.normal_mode["<C-f>"] = require("telescope.builtin").current_buffer_fuzzy_find
 lvim.keys.normal_mode["<C-p>"] = function()
   require("telescope").extensions.projects.projects()
