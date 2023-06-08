@@ -34,7 +34,7 @@ lvim.builtin.which_key.mappings["q"] = { require("user.functions").smart_quit, "
 lvim.builtin.which_key.mappings["w"] = { "<cmd>bdelete!<CR>", "Close Current Buffer" }
 lvim.builtin.which_key.mappings["/"] = { require("Comment.api").toggle.linewise.current, "Comment" }
 
-lvim.builtin.which_key.mappings["bd"] = { "<cmd>bd<cr>", "Close buffer" }
+lvim.builtin.which_key.mappings["bd"] = { "<cmd>bd<CR>", "Close buffer" }
 vim.cmd([[
     function! ClearQuickfixList()
         call setqflist([])
@@ -95,19 +95,17 @@ lvim.builtin.which_key.mappings["f"] = {
 -- Git
 lvim.builtin.which_key.mappings["gd"] = {
   name = "Diff",
-  c = { "<cmd>DiffviewClose<cr>", "Diffview Close" },
-  d = { "<cmd>DiffviewOpen<cr>", "Diffview (all modified files)" },
+  c = { "<cmd>DiffviewClose<CR>", "Diffview Close" },
+  d = { "<cmd>DiffviewOpen<CR>", "Diffview (all modified files)" },
   D = { "<cmd>Gvdiffsplit!<CR>", "Diff-3-way" },
 }
-lvim.builtin.which_key.mappings["gh"] = { "<cmd>DiffviewFileHistory %<cr>", "Diffview current file history" }
+lvim.builtin.which_key.mappings["gh"] = { "<cmd>DiffviewFileHistory %<CR>", "Diffview current file history" }
 lvim.builtin.which_key.mappings["gg"] = { "<cmd>tab Git<CR>", "Status" }
 lvim.builtin.which_key.mappings["gp"] = {
   name = "Push",
   g = { "<cmd>Git push origin HEAD:refs/for/master<CR>", "Gerrit" },
   p = {
-    function()
-      vim.cmd.Git("push")
-    end,
+    "<cmd>Git push<CR>",
     "Regular",
   },
 }
@@ -121,7 +119,7 @@ lvim.builtin.which_key.mappings["gl"] = {
   "Log",
 }
 lvim.builtin.which_key.mappings["gL"] = {
-  '<cmd>tab Git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all<cr>',
+  '<cmd>tab Git log --pretty=format:"%Cgreen%h %Creset%cd %Cblue[%cn] %Creset%s%C(yellow)%d%C(reset)" --graph --date=relative --decorate --all<CR>',
   "Log",
 }
 lvim.builtin.which_key.mappings["gP"] = {
@@ -136,13 +134,13 @@ lvim.builtin.which_key.mappings["gU"] = {
 }
 
 -- Lsp
-lvim.builtin.which_key.mappings["lc"] = { "<cmd>LspStop<cr>", "Stop LSP server" }
-lvim.builtin.which_key.mappings["lR"] = { "<cmd>LspRestart<cr>", "Restart LSP server" }
-lvim.builtin.which_key.mappings["lA"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" }
+lvim.builtin.which_key.mappings["lc"] = { "<cmd>LspStop<CR>", "Stop LSP server" }
+lvim.builtin.which_key.mappings["lR"] = { "<cmd>LspRestart<CR>", "Restart LSP server" }
+lvim.builtin.which_key.mappings["lA"] = { "<cmd>lua vim.lsp.codelens.run()<CR>", "CodeLens Action" }
 lvim.builtin.which_key.mappings["lF"] = { vim.cmd.LspToggleAutoFormat, "Toggle Autoformat" }
 lvim.builtin.which_key.mappings["lH"] = { vim.cmd.IlluminationToggle, "Toggle Doc HL" }
-lvim.builtin.which_key.mappings["ld"] = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<cr>", "Buffer Diagnostics" }
-lvim.builtin.which_key.mappings["lD"] = { "<cmd>Telescope diagnostics theme=get_ivy<cr>", "Workspace Diagnostics" }
+lvim.builtin.which_key.mappings["ld"] = { "<cmd>Telescope diagnostics bufnr=0 theme=get_ivy<CR>", "Buffer Diagnostics" }
+lvim.builtin.which_key.mappings["lD"] = { "<cmd>Telescope diagnostics theme=get_ivy<CR>", "Workspace Diagnostics" }
 lvim.builtin.which_key.mappings["ls"] = {
   function()
     tb.lsp_document_symbols({ symbol_width = 80, show_line = false })
@@ -181,23 +179,23 @@ lvim.builtin.which_key.mappings["z"] = {
   name = "Zettelkasten",
   n = { "<Cmd>ZkNew { dir = vim.fn.expand('$HOME/notes'), title = vim.fn.input('Title: ') }<CR>", "New Note" },
   b = { vim.cmd.ZkNotes, "Browse Notes" },
-  z = { "<cmd>Telescope live_grep cwd=~/notes<cr>", "Find Notes" },
+  z = { "<cmd>Telescope live_grep cwd=~/notes<CR>", "Find Notes" },
 }
 
-lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<cr>", "Test Method" }
+lvim.builtin.which_key.mappings["dm"] = { "<cmd>lua require('neotest').run.run()<CR>", "Test Method" }
 lvim.builtin.which_key.mappings["dM"] = {
-  "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
+  "<cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>",
   "Test Method DAP",
 }
 lvim.builtin.which_key.mappings["df"] = {
-  "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<cr>",
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%')})<CR>",
   "Test Class",
 }
 lvim.builtin.which_key.mappings["dF"] = {
-  "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
+  "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<CR>",
   "Test Class DAP",
 }
-lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
+lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<CR>", "Test Summary" }
 
 
 lvim.builtin.which_key.mappings["x"] = {

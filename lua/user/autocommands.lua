@@ -7,7 +7,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "help",
     "man",
     "lspinfo",
-    "spectre_panel",
     "lir",
     "DressingSelect",
     "tsplayground",
