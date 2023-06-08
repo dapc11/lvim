@@ -5,6 +5,10 @@ if not status_ok then
   return
 end
 local themes = require("telescope.themes")
+local previewers = require("telescope.previewers")
+local pickers = require("telescope.pickers")
+local sorters = require("telescope.sorters")
+local finders = require("telescope.finders")
 
 function M.repo_grep()
   telescope.live_grep({
@@ -29,7 +33,32 @@ function M.repo_fd()
 end
 
 function M.git_unstaged()
-  telescope.git_files({ git_command = { "git", "ls-files", "--modified", "--exclude-standard" } })
+  local rel_path = string.gsub(vim.fn.system("git rev-parse --show-cdup"), "^%s*(.-)%s*$", "%1")
+  if vim.v.shell_error ~= 0 then
+    return
+  end
+  pickers.new({
+      results_title = "Modified on current branch",
+      finder = finders.new_oneshot_job({
+        "git",
+        "diff",
+        "--name-only",
+        "HEAD",
+      }),
+      sorter = sorters.get_fuzzy_file(),
+      previewer = previewers.new_termopen_previewer({
+        get_command = function(entry)
+          return {
+            "git",
+            "diff",
+            "HEAD",
+            "--",
+            rel_path .. entry.value,
+          }
+        end,
+      }),
+    })
+    :find()
 end
 
 function M.spell_check()

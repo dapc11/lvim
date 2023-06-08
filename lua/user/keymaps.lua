@@ -74,6 +74,35 @@ map({ "n", "v", "x", "o" }, "ä", "}zz")
 map({ "n", "v", "x", "o" }, "ö", "{zz")
 map({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
 map({ "n", "v", "x", "o" }, "<C-u>", "<C-u>zz")
+
+require("leap").add_default_mappings()
+map({ "n", "x", "o" }, "s", function()
+  require("leap").leap({ opts = { offset = 1, inclusive_op = true } })
+end)
+map({ "n", "x", "o" }, "s", function()
+  require("leap").leap({ opts = { backward = true, offset = 1, inclusive_op = true } })
+end)
+
+lvim.keys.normal_mode["]t"] = function()
+  require("neotest").jump.next({ status = "failed" })
+end
+lvim.keys.normal_mode["[t"] = function()
+  require("neotest").jump.prev({ status = "failed" })
+end
+lvim.keys.normal_mode["]q"] = vim.cmd.cnext
+lvim.keys.normal_mode["[q"] = vim.cmd.cprevious
+lvim.keys.normal_mode["]l"] = vim.cmd.lnext
+lvim.keys.normal_mode["[l"] = vim.cmd.lprevious
+lvim.keys.normal_mode["]d"] = function()
+  vim.diagnostic.goto_next({
+    float = false,
+  })
+end
+lvim.keys.normal_mode["[d"] = function()
+  vim.diagnostic.goto_prev({
+    float = false,
+  })
+end
 map("n", "]c", function()
   if vim.wo.diff then
     return "]czz"
@@ -95,23 +124,6 @@ map("n", "[c", function()
   end)
   return "<Ignore>"
 end, { expr = true })
-
-require("leap").add_default_mappings()
-map({ "n", "x", "o" }, "s", function()
-  require("leap").leap({ opts = { offset = 1, inclusive_op = true } })
-end)
-map({ "n", "x", "o" }, "s", function()
-  require("leap").leap({ opts = { backward = true, offset = 1, inclusive_op = true } })
-end)
-map("o", "m", require("tsht").nodes, { noremap = false })
-map("x", "m", require("tsht").nodes, { noremap = true })
-
-lvim.keys.normal_mode["]t"] = function()
-  require("neotest").jump.next({ status = "failed" })
-end
-lvim.keys.normal_mode["[t"] = function()
-  require("neotest").jump.prev({ status = "failed" })
-end
 
 lvim.keys.visual_mode["<Tab>"] = ">gv"
 lvim.keys.visual_mode["<S-Tab>"] = "<gv"
@@ -144,20 +156,7 @@ lvim.keys.normal_mode["<S-Down>"] = ":m .+1<CR>=="
 lvim.keys.normal_mode["<S-Left>"] = vim.cmd.tabprevious
 lvim.keys.normal_mode["<S-Right>"] = vim.cmd.tabnext
 lvim.keys.normal_mode["<S-Up>"] = ":m .-2<CR>=="
-lvim.keys.normal_mode["]q"] = vim.cmd.cnext
-lvim.keys.normal_mode["[q"] = vim.cmd.cprevious
-lvim.keys.normal_mode["]l"] = vim.cmd.lnext
-lvim.keys.normal_mode["[l"] = vim.cmd.lprevious
-lvim.keys.normal_mode["]d"] = function()
-  vim.diagnostic.goto_next({
-    float = false,
-  })
-end
-lvim.keys.normal_mode["[d"] = function()
-  vim.diagnostic.goto_prev({
-    float = false,
-  })
-end
+
 lvim.keys.normal_mode["W"] = ":noautocmd w<CR>"
 lvim.keys.visual_mode["<A-a>"] = "<C-a>"
 lvim.keys.visual_mode["<A-x>"] = "<C-x>"

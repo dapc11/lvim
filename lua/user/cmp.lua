@@ -11,7 +11,7 @@ lvim.builtin.cmp.source = {
   {
     name = "nvim_lsp",
     entry_filter = function(entry, ctx)
-      return require("cmp").lsp.CompletionItemKind.Text ~= entry:get_kind()
+      return cmp.lsp.CompletionItemKind.Text ~= entry:get_kind()
     end,
   },
   { name = "buffer", max_item_count = 5, keyword_length = 5 },
@@ -19,7 +19,6 @@ lvim.builtin.cmp.source = {
   { name = "luasnip", max_item_count = 3 },
   { name = "nvim_lua" },
   { name = "treesitter" },
-  { name = "nvim_lsp_signature_help" },
 }
 
 lvim.builtin.cmp.experimental = {
@@ -28,7 +27,6 @@ lvim.builtin.cmp.experimental = {
   custom_menu = true,
 }
 
--- Set configuration for specific filetype.
 cmp.setup.filetype({ "gitcommit" }, {
   sources = cmp.config.sources({
     {

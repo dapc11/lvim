@@ -27,11 +27,7 @@ lvim.builtin.which_key.mappings[","] = { tb.buffers, "Buffers" }
 lvim.builtin.which_key.mappings["h"] = { tb.oldfiles, "Recent files" }
 lvim.builtin.which_key.mappings["n"] = { tb.git_files, "Find in tracked files" }
 lvim.builtin.which_key.mappings["N"] = {
-  function()
-    tb.git_files({
-      git_command = { "git", "ls-files", "--modified", "--exclude-standard" },
-    })
-  end,
+  require("user.telescopefinders").git_unstaged,
   "Find in unstaged files",
 }
 lvim.builtin.which_key.mappings["q"] = { require("user.functions").smart_quit, "Quit" }
@@ -56,7 +52,6 @@ lvim.builtin.which_key.mappings["pS"] = { vim.cmd.LvimSyncCorePlugins, "Sync Cor
 
 lvim.builtin.which_key.mappings["f"] = {
   name = "Search",
-  b = { te.file_browser.file_browser, "File Browse" },
   d = {
     function()
       tb.find_files({
@@ -64,7 +59,7 @@ lvim.builtin.which_key.mappings["f"] = {
         path_display = { "truncate", shorten = { len = 3, exclude = { 1, -1 } } },
       })
     end,
-    "File",
+    "In home dir",
   },
   f = {
     function()
@@ -73,7 +68,7 @@ lvim.builtin.which_key.mappings["f"] = {
         path_display = { "truncate", shorten = { len = 3, exclude = { 1, -1 } } },
       })
     end,
-    "File",
+    "In repos",
   },
   t = { tb.live_grep, "Live Grep" },
   w = { tb.grep_string, "String" },
@@ -90,8 +85,8 @@ lvim.builtin.which_key.mappings["f"] = {
     "Unstaged File",
   },
   h = { tb.oldfiles, "Recent File" },
-  R = { require("user.telescopefinders").repo_fd, "File in Repos" },
-  G = { require("user.telescopefinders").repo_grep, "String in Repos" },
+  r = { require("user.telescopefinders").repo_fd, "File in Repos" },
+  g = { require("user.telescopefinders").repo_grep, "String in Repos" },
   H = { tb.highlights, "Highlight" },
   k = { tb.keymaps, "Keymap" },
   C = { tb.commands, "Command" },
@@ -204,49 +199,9 @@ lvim.builtin.which_key.mappings["dF"] = {
 }
 lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<cr>", "Test Summary" }
 
-local Terminal = require("bufterm.terminal").Terminal
-local ui = require("bufterm.ui")
-
-local runner = Terminal:new({
-  cmd = function()
-    local runner = {
-      python = "python3 %",
-      go = "go run %",
-      sh = "sh %",
-      bash = "bash %",
-      fish = "fish %",
-    }
-    local cmd = runner[vim.bo.filetype]
-    if not cmd then
-      -- fallback to default shell if can't run current filetype
-      return vim.o.shell
-    end
-    cmd = cmd:gsub("%%", vim.fn.expand("%"))
-    return cmd
-  end,
-  termlisted = true,
-  fallback_on_exit = false,
-  auto_close = false,
-})
-local runner_win = ui.Window:new()
 
 lvim.builtin.which_key.mappings["x"] = {
   name = "Misc",
-  r = {
-    function()
-      -- re-run process if buffer is visible
-      if runner.bufnr and vim.fn.bufwinid(runner.bufnr) > 0 then
-        runner:run()
-        return
-      end
-      -- open new window (or get existing window-id)
-      local winid = runner_win:open(runner.bufnr)
-      -- enter job
-      runner:enter(winid)
-    end,
-    "Run Current File in Terminal",
-  },
-  x = { vim.cmd.BufTermEnter, "Toggle Terminal" },
   c = { vim.cmd.ClearQuickfixList, "Clear QF" },
   l = {
     ":nohlsearch<CR>:diffupdate<CR>:syntax sync fromstart<CR><c-l>",

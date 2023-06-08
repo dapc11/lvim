@@ -1,67 +1,13 @@
 lvim.plugins = {
   -- Themes
   {
-    "dapc11/github-nvim-theme",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("github-theme").setup({})
-    end,
-  },
-  {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
-    opts = {
-      style = "storm",
-      transparent = false,
-      terminal_colors = true,
-      styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-        sidebars = "dark",
-        floats = "dark",
-      },
-      ---@param colors ColorScheme
-      on_colors = function(colors)
-        colors.bg = "#24292e"
-        colors.bg_sidebar = "#282c34"
-        colors.bg_float = "#24292e"
-      end,
-      ---@param highlights Highlights
-      ---@param colors ColorScheme
-      on_highlights = function(highlights, colors)
-        local colors = require("tokyonight.colors").setup()
-        highlights.LeapBackdrop = { link = "Comment" }
-        highlights.LeapMatch = {
-          fg = colors.fg_dark,
-          underline = true,
-          bold = true,
-        }
-        highlights.LeapLabelPrimary = {
-          fg = colors.blue,
-          underline = true,
-          bold = true,
-        }
-        highlights.LeapLabelSecondary = {
-          fg = colors.red,
-        }
-        highlights.LeapLabelSelected = {
-          fg = colors.green1,
-        }
-        highlights.WinSeparator = { bg = colors.none, fg = colors.blue7 }
-        highlights.NvimTreeWinSeparator = { link = "WinSeparator" }
-        highlights.FloatBorder = { bg = colors.bg, fg = colors.blue7 }
-        highlights.TelescopeBorder = { bg = colors.bg, fg = colors.blue7 }
-        highlights.WhichKeyFloat = { bg = colors.bg }
-      end,
-    },
+    opts = require("user.theme"),
   },
-
-  -- No setup
   "kylechui/nvim-surround",
-  { "tpope/vim-unimpaired", lazy = false },
-  "hrsh7th/cmp-nvim-lsp-signature-help",
+  "tpope/vim-unimpaired",
   {
     "ray-x/go.nvim",
     dependencies = {
@@ -69,10 +15,7 @@ lvim.plugins = {
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
-    config = function()
-      require("go").setup(require("user.lsp.go"))
-    end,
-    event = { "CmdlineEnter" },
+    opts = require("user.lsp.go"),
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
   },
@@ -87,26 +30,20 @@ lvim.plugins = {
     "j-hui/fidget.nvim",
     opts = {
       window = {
-        relative = "win", -- where to anchor, either "win" or "editor"
-        blend = 0, -- &winblend for the window
-        zindex = nil, -- the zindex value for the window
-        border = "none", -- style of border for the fidget window
+        blend = 0,
       },
     },
   },
   {
     "junegunn/vim-easy-align",
     keys = {
-      { "ga", "<Plug>(EasyAlign)", desc = "", mode = { "v", "n" } },
+      { "ga", "<Plug>(EasyAlign)", mode = { "v", "n" } },
     },
   },
-  { "dapc11/vim-fugitive", event = "VeryLazy" },
-  { "mfussenegger/nvim-treehopper", dependencies = { "nvim-treesitter/nvim-treesitter" } },
-  { "cuducos/yaml.nvim", ft = "yaml" },
+  "dapc11/vim-fugitive",
   {
     "ggandor/leap.nvim",
     dependencies = { "tpope/vim-repeat" },
-    config = true,
     opts = {
       highlight_unlabeled = true,
       case_sensitive = false,
@@ -119,8 +56,6 @@ lvim.plugins = {
     "mickael-menu/zk-nvim",
     config = function()
       require("zk").setup({
-        -- can be "telescope", "fzf" or "select" (`vim.ui.select`)
-        -- it's recommended to use "telescope" or "fzf"
         picker = "telescope",
         lsp = {
           config = {
@@ -156,25 +91,10 @@ lvim.plugins = {
     end,
   },
   {
-    "boltlessengineer/bufterm.nvim",
-    opts = {
-      save_native_terms = true, -- integrate native terminals from `:terminal` command
-      start_in_insert = false, -- start terminal in insert mode
-      remember_mode = false, -- remember vi_mode of terminal buffer
-      enable_ctrl_w = true, -- use <C-w> for window navigating in terminal mode (like vim8)
-      terminal = { -- default terminal settings
-        buflisted = false, -- whether to set 'buflisted' option
-        termlisted = true, -- list terminal in termlist (similar to buflisted)
-        fallback_on_exit = true, -- prevent auto-closing window on terminal exit
-        auto_close = true, -- auto close buffer on terminal job ends
-      },
-    },
-  },
-  {
     "alexghergh/nvim-tmux-navigation",
     priority = 999,
     opts = {
-      disable_when_zoomed = true, -- defaults to false
+      disable_when_zoomed = true,
       keybindings = {
         left = "<C-left>",
         down = "<C-down>",
@@ -185,67 +105,20 @@ lvim.plugins = {
       },
     },
   },
-  { "folke/todo-comments.nvim", event = "BufRead" },
   {
     "sindrets/diffview.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = {
       "DiffviewOpen",
-      "DiffviewClose", -- also can use :tabclose
+      "DiffviewClose",
       "DiffviewFileHistory",
       "DiffviewRefresh",
       "DiffviewToggleFiles",
       "DiffviewFocusFiles",
     },
   },
-  {
-    "stevearc/dressing.nvim",
-    opts = {
-      select = {
-        get_config = function(opts)
-          if opts.kind == "codeaction" then
-            return {
-              backend = "telescope",
-              telescope = require("telescope.themes").get_dropdown({
-                layout_config = {
-                  height = function(_, _, max_lines)
-                    return math.min(max_lines, 30)
-                  end,
-                },
-              }),
-            }
-          end
-        end,
-      },
-    },
-  },
-  {
-    "nvim-pack/nvim-spectre",
-  },
-  {
-    "stevearc/aerial.nvim",
-    opts = {
-      layout = {
-        max_width = { 200, 0.15 },
-        width = 0.15,
-      },
-      close_automatic_events = { "switch_buffer", "unsupported" },
-      show_guides = true,
-    },
-    keys = {
-      { "<leader>a", "<cmd>AerialToggle<cr>", desc = "Toggle outline" },
-    },
-    -- Optional dependencies
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
-  {
-    "stevearc/stickybuf.nvim",
-    opts = {},
-  },
+  "nvim-pack/nvim-spectre",
   -- Telescope
   {
     "nvim-telescope/telescope.nvim",
@@ -256,7 +129,6 @@ lvim.plugins = {
     dependencies = {
       "telescope-fzf-native.nvim",
       "dapc11/telescope-yaml.nvim",
-      "nvim-telescope/telescope-file-browser.nvim",
     },
     lazy = true,
     cmd = "Telescope",
