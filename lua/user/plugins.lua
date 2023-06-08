@@ -1,5 +1,4 @@
 lvim.plugins = {
-  -- Themes
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -23,8 +22,6 @@ lvim.plugins = {
   "wellle/targets.vim",
   "monaqa/dial.nvim",
   "nvim-treesitter/nvim-treesitter-textobjects",
-
-  -- Custom config
   { "mfussenegger/nvim-jdtls", event = "VeryLazy" },
   {
     "j-hui/fidget.nvim",
@@ -119,7 +116,6 @@ lvim.plugins = {
     },
   },
   "nvim-pack/nvim-spectre",
-  -- Telescope
   {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
@@ -134,4 +130,5 @@ lvim.plugins = {
     cmd = "Telescope",
     enabled = lvim.builtin.telescope.active,
   },
+  { "TimUntersberger/neogit", dependencies = "nvim-lua/plenary.nvim" },
 }
