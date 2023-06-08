@@ -39,6 +39,11 @@ return {
     highlights.NvimTreeWinSeparator = { link = "WinSeparator" }
     highlights.FloatBorder = { bg = colors.bg, fg = colors.blue7 }
     highlights.TelescopeBorder = { bg = colors.bg, fg = colors.blue7 }
+    highlights.NeogitDiffAdd = { fg = colors.green }
+    highlights.NeogitDiffDelete = { fg = colors.red }
+    highlights.NeogitDiffContextHighlight = { fg = colors.fg }
+    highlights.NeogitHunkHeaderHighlight = { fg = colors.fg, bold = true }
+    highlights.NeogitHunkHeader = { fg = colors.blue, bold = true }
     highlights.WhichKeyFloat = { bg = colors.bg }
   end,
 }
