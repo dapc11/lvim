@@ -130,5 +130,5 @@ lvim.plugins = {
     cmd = "Telescope",
     enabled = lvim.builtin.telescope.active,
   },
-  { "TimUntersberger/neogit", dependencies = "nvim-lua/plenary.nvim" },
+  { "TimUntersberger/neogit", keys = { { "<C-g>", "<cmd>Neogit<cr>" } }, dependencies = "nvim-lua/plenary.nvim" },
 }
