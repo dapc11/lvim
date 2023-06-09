@@ -270,3 +270,4 @@ lvim.builtin.which_key.mappings["t"] = {
 }
 
 lvim.builtin.which_key.mappings[";"] = nil
+lvim.builtin.which_key.mappings["c"] = nil

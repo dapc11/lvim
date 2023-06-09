@@ -7,30 +7,30 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 return {
-  disable_defaults = false, -- true|false when true set false to all boolean settings and replace all table
-  go = "go", -- go command, can be go[default] or go1.18beta1
-  goimport = "gopls", -- goimport command, can be gopls[default] or goimport
-  fillstruct = "gopls", -- can be nil (use fillstruct, slower) and gopls
-  gofmt = "gofmt", --gofmt cmd,
+  disable_defaults = false,
+  go = "go",
+  goimport = "gopls",
+  fillstruct = "gopls",
+  gofmt = "gofmt",
   max_line_len = 100,
-  tag_transform = false, -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
-  gotests_template = "", -- sets gotests -template parameter (check gotests for details)
-  gotests_template_dir = "", -- sets gotests -template_dir parameter (check gotests for details)
-  comment_placeholder = "", -- comment_placeholder your cool placeholder e.g. ﳑ       
-  icons = { breakpoint = "", currentpos = "" }, -- setup to `false` to disable icons setup
-  verbose = false, -- output loginf in messages
+  tag_transform = false,
+  gotests_template = "",
+  gotests_template_dir = "",
+  comment_placeholder = "",
+  icons = { breakpoint = "", currentpos = "" },
+  verbose = false,
   lsp_cfg = {
     settings = {
       gopls = {
-        gofumpt = false, -- A stricter gofmt
+        gofumpt = false,
         codelenses = {
-          gc_details = true, -- Toggle the calculation of gc annotations
-          generate = true, -- Runs go generate for a given directory
-          regenerate_cgo = true, -- Regenerates cgo definitions
+          gc_details = true,
+          generate = true,
+          regenerate_cgo = true,
           test = true,
-          tidy = true, -- Runs go mod tidy for a module
-          upgrade_dependency = true, -- Upgrades a dependency in the go.mod file for a module
-          vendor = true, -- Runs go mod vendor for a module
+          tidy = true,
+          upgrade_dependency = true,
+          vendor = true,
         },
         hints = {
           assignVariableTypes = true,
@@ -45,42 +45,51 @@ return {
         completeUnimported = true,
         staticcheck = false,
         matcher = "Fuzzy",
-        usePlaceholders = true, -- enables placeholders for function parameters or struct fields in completion responses
+        usePlaceholders = true,
         analyses = {
-          fieldalignment = true, -- find structs that would use less memory if their fields were sorted
-          nilness = true, -- check for redundant or impossible nil comparisons
-          shadow = true, -- check for possible unintended shadowing of variables
-          unusedparams = true, -- check for unused parameters of functions
-          unusedwrite = true, -- checks for unused writes, an instances of writes to struct fields and arrays that are never read
+          fieldalignment = true,
+          nilness = true,
+          shadow = true,
+          unusedparams = true,
+          unusedwrite = true,
         },
       },
     },
-  }, -- true: use non-default gopls setup specified in go/lsp.lua
-  -- false: do nothing
-  -- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
-  --   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
-  lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
+  },
+  lsp_gofumpt = false,
   lsp_on_attach = function(client, bufnr)
     require("lvim.lsp").common_on_attach(client, bufnr)
     local _, _ = pcall(vim.lsp.codelens.refresh)
-    local map = require("user.functions").map
-    map("n", "<leader>Ci", "<cmd>GoInstallDeps<Cr>", "Install Go Dependencies", bufnr)
-    map("n", "<leader>Ct", "<cmd>GoMod tidy<cr>", "Tidy", bufnr)
-    map("n", "<leader>Cg", "<cmd>GoGenerate", "Go Generate", bufnr)
-    map("n", "<leader>Cf", "<cmd>GoGenerate %<Cr>", "Go Generate File", bufnr)
-    map("n", "<leader>Cc", "<cmd>GoCmt<Cr>", "Generate Comment", bufnr)
-    map("n", "<leader>r", "<cmd>GoRun<Cr>", "Run", bufnr)
-    map("n", "<leader>Cb", "<cmd>GoBuild<Cr>", "Build", bufnr)
-    map("n", "<leader>Ce", "<cmd>GoGenReturn<Cr>", "Generate Return", bufnr)
-    map("n", "<leader>Dt", function()
-      require("dap-go").debug_test()
-    end, "Debug Test", bufnr)
-    map("n", "<leader>Tt", "<cmd>GoTest<cr>", "Run Tests", bufnr)
-    map("n", "<leader>Ta", "<cmd>GoAddTest<cr>", "Add Test", bufnr)
-    map("n", "<leader>TA", "<cmd>GoAddAllTest<cr>", "Add All Missing Tests", bufnr)
-    map("n", "<leader>TF", "<cmd>GoTestFile<cr>", "Test File", bufnr)
-    map("n", "<leader>Tf", "<cmd>GoTestFunc<cr>", "Test Func", bufnr)
-    map("n", "<leader>Tp", "<cmd>GoTestPkg<cr>", "Test Package", bufnr)
+    require("which-key").register({
+      ["<leader>c"] = { name = "+Go", buffer = bufnr },
+      ["<leader>ci"] = { vim.cmd.GoInstallDeps, "Install Go Dependencies", buffer = bufnr },
+      ["<leader>ct"] = {
+        function()
+          vim.cmd.GoMod("tidy")
+        end,
+        "Tidy",
+        buffer = bufnr,
+      },
+      ["<leader>cg"] = { vim.cmd.GoGenerate, "Go Generate", buffer = bufnr },
+      ["<leader>cf"] = {
+        function()
+          vim.cmd.GoGenerate("%")
+        end,
+        "Go Generate File",
+        buffer = bufnr,
+      },
+      ["<leader>cc"] = { vim.cmd.GoCmt, "Generate Comment", buffer = bufnr },
+      ["<leader>cr"] = { vim.cmd.GoRun, "Run", buffer = bufnr },
+      ["<leader>cb"] = { vim.cmd.GoBuild, "Build", buffer = bufnr },
+      ["<leader>ce"] = { vim.cmd.GoGenReturn, "Generate Return", buffer = bufnr },
+      -- ["<leader>dt"] = { require("dap-go").debug_test, "Debug Test", buffer = bufnr },
+      ["<leader>tt"] = { vim.cmd.GoTest, "Run Tests", buffer = bufnr },
+      ["<leader>ta"] = { vim.cmd.GoAddTest, "Add Test", buffer = bufnr },
+      ["<leader>tA"] = { vim.cmd.GoAddAllTest, "Add All Missing Tests", buffer = bufnr },
+      ["<leader>tF"] = { vim.cmd.GoTestFile, "Test File", buffer = bufnr },
+      ["<leader>tf"] = { vim.cmd.GoTestFunc, "Test Func", buffer = bufnr },
+      ["<leader>tp"] = { vim.cmd.GoTestPkg, "Test Package", buffer = bufnr },
+    })
   end,
   lsp_keymaps = false, -- set to false to disable gopls/lsp keymap
   lsp_codelens = true, -- set to false to disable codelens, true by default, you can use a function

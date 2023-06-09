@@ -1,7 +1,7 @@
 local bufnr = vim.api.nvim_get_current_buf()
 require("which-key").register({
-  ["<leader>C"] = { name = "+Json" },
-  ["<leader>Cf"] = {
+  ["<leader>c"] = { name = "+Json", buffer = bufnr },
+  ["<leader>cf"] = {
     ":%!jq '.'",
     "Format",
     mode = { "v", "n" },
