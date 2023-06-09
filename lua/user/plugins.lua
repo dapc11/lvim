@@ -117,6 +117,51 @@ lvim.plugins = {
   },
   "nvim-pack/nvim-spectre",
   {
+    "nvim-treesitter/nvim-treesitter",
+    -- run = ":TSUpdate",
+    commit= "71bb1da621a48856c7f8ca10e674f2ac8c0a9005",
+    config = function()
+      local utils = require "lvim.utils"
+      local path = utils.join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt", "nvim-treesitter")
+      vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
+      require("lvim.core.treesitter").setup()
+    end,
+    cmd = {
+      "TSInstall",
+      "TSUninstall",
+      "TSUpdate",
+      "TSUpdateSync",
+      "TSInstallInfo",
+      "TSInstallSync",
+      "TSInstallFromGrammar",
+    },
+    event = "User FileOpened",
+  },
+  {
+    "stevearc/aerial.nvim",
+    opts = {
+      layout = {
+        max_width = { 200, 0.15 },
+        width = 0.15,
+      },
+      close_automatic_events = { "switch_buffer", "unsupported" },
+      show_guides = true,
+    },
+    keys = {
+      { "<leader>a", "<cmd>AerialToggle<cr>", desc = "Toggle outline" },
+    },
+    -- Optional dependencies
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
+  {
+    "stevearc/stickybuf.nvim",
+    opts = {},
+  },
+  -- Telescope
+  {
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     config = function()
