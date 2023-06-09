@@ -1,8 +1,7 @@
 lvim.plugins = {
   "NvChad/nvim-colorizer.lua",
-  "dapc11/vim-fugitive",
   "kylechui/nvim-surround",
-  "mickael-menu/zk-nvim",
+  { "mickael-menu/zk-nvim", ft = "markdown" },
   "monaqa/dial.nvim",
   "nvim-treesitter/nvim-treesitter-textobjects",
   "nvim-pack/nvim-spectre",
@@ -61,6 +60,10 @@ lvim.plugins = {
       "nvim-neotest/neotest-go",
       "mfussenegger/nvim-dap-python",
     },
+    ft = {
+      "python",
+      "go",
+    },
   },
   { "AckslD/nvim-pytrize.lua", ft = "python" },
   { "AckslD/swenv.nvim", ft = "python" },
@@ -111,7 +114,7 @@ lvim.plugins = {
     "nvim-telescope/telescope.nvim",
     dependencies = {
       "telescope-fzf-native.nvim",
-      "dapc11/telescope-yaml.nvim",
+      { "dapc11/telescope-yaml.nvim", ft = "yaml" },
     },
   },
   {
@@ -123,4 +126,5 @@ lvim.plugins = {
     "windwp/nvim-ts-autotag",
     config = true,
   },
+  { "tamago324/nlsp-settings.nvim", enabled = false },
 }
