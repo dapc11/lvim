@@ -119,9 +119,9 @@ lvim.plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     -- run = ":TSUpdate",
-    commit= "71bb1da621a48856c7f8ca10e674f2ac8c0a9005",
+    commit = "71bb1da621a48856c7f8ca10e674f2ac8c0a9005",
     config = function()
-      local utils = require "lvim.utils"
+      local utils = require("lvim.utils")
       local path = utils.join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt", "nvim-treesitter")
       vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
       require("lvim.core.treesitter").setup()
@@ -176,4 +176,10 @@ lvim.plugins = {
     enabled = lvim.builtin.telescope.active,
   },
   { "TimUntersberger/neogit", keys = { { "<C-g>", "<cmd>Neogit<cr>" } }, dependencies = "nvim-lua/plenary.nvim" },
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
 }
