@@ -38,27 +38,26 @@ function M.git_unstaged()
     return
   end
   pickers.new({
-      results_title = "Modified on current branch",
-      finder = finders.new_oneshot_job({
-        "git",
-        "diff",
-        "--name-only",
-        "HEAD",
-      }),
-      sorter = sorters.get_fuzzy_file(),
-      previewer = previewers.new_termopen_previewer({
-        get_command = function(entry)
-          return {
-            "git",
-            "diff",
-            "HEAD",
-            "--",
-            rel_path .. entry.value,
-          }
-        end,
-      }),
-    })
-    :find()
+    results_title = "Modified on current branch",
+    finder = finders.new_oneshot_job({
+      "git",
+      "diff",
+      "--name-only",
+      "HEAD",
+    }),
+    sorter = sorters.get_fuzzy_file(),
+    previewer = previewers.new_termopen_previewer({
+      get_command = function(entry)
+        return {
+          "git",
+          "diff",
+          "HEAD",
+          "--",
+          rel_path .. entry.value,
+        }
+      end,
+    }),
+  }):find()
 end
 
 function M.spell_check()

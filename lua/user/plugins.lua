@@ -1,12 +1,19 @@
 lvim.plugins = {
+  "NvChad/nvim-colorizer.lua",
+  "dapc11/vim-fugitive",
+  "kylechui/nvim-surround",
+  "mickael-menu/zk-nvim",
+  "monaqa/dial.nvim",
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  "nvim-pack/nvim-spectre",
+  "tpope/vim-unimpaired",
+  "wellle/targets.vim",
   {
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
     opts = require("user.theme"),
   },
-  "kylechui/nvim-surround",
-  "tpope/vim-unimpaired",
   {
     "ray-x/go.nvim",
     dependencies = {
@@ -18,10 +25,6 @@ lvim.plugins = {
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
   },
-  "NvChad/nvim-colorizer.lua",
-  "wellle/targets.vim",
-  "monaqa/dial.nvim",
-  "nvim-treesitter/nvim-treesitter-textobjects",
   { "mfussenegger/nvim-jdtls", event = "VeryLazy" },
   {
     "j-hui/fidget.nvim",
@@ -37,7 +40,6 @@ lvim.plugins = {
       { "ga", "<Plug>(EasyAlign)", mode = { "v", "n" } },
     },
   },
-  "dapc11/vim-fugitive",
   {
     "ggandor/leap.nvim",
     dependencies = { "tpope/vim-repeat" },
@@ -48,24 +50,6 @@ lvim.plugins = {
       highlight_unlabeled_phase_one_targets = false,
       max_phase_one_targets = 0,
     },
-  },
-  {
-    "mickael-menu/zk-nvim",
-    config = function()
-      require("zk").setup({
-        picker = "telescope",
-        lsp = {
-          config = {
-            cmd = { "zk", "lsp" },
-            name = "zk",
-          },
-          auto_attach = {
-            enabled = true,
-            filetypes = { "markdown" },
-          },
-        },
-      })
-    end,
   },
   {
     "nvim-neotest/neotest",
@@ -115,71 +99,28 @@ lvim.plugins = {
       "DiffviewFocusFiles",
     },
   },
-  "nvim-pack/nvim-spectre",
   {
     "nvim-treesitter/nvim-treesitter",
-    -- run = ":TSUpdate",
     commit = "71bb1da621a48856c7f8ca10e674f2ac8c0a9005",
-    config = function()
-      local utils = require("lvim.utils")
-      local path = utils.join_paths(get_runtime_dir(), "site", "pack", "lazy", "opt", "nvim-treesitter")
-      vim.opt.rtp:prepend(path) -- treesitter needs to be before nvim's runtime in rtp
-      require("lvim.core.treesitter").setup()
-    end,
-    cmd = {
-      "TSInstall",
-      "TSUninstall",
-      "TSUpdate",
-      "TSUpdateSync",
-      "TSInstallInfo",
-      "TSInstallSync",
-      "TSInstallFromGrammar",
-    },
-    event = "User FileOpened",
-  },
-  {
-    "stevearc/aerial.nvim",
-    opts = {
-      layout = {
-        max_width = { 200, 0.15 },
-        width = 0.15,
-      },
-      close_automatic_events = { "switch_buffer", "unsupported" },
-      show_guides = true,
-    },
-    keys = {
-      { "<leader>a", "<cmd>AerialToggle<cr>", desc = "Toggle outline" },
-    },
-    -- Optional dependencies
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
   },
   {
     "stevearc/stickybuf.nvim",
-    opts = {},
+    config = true,
   },
-  -- Telescope
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
-    config = function()
-      require("lvim.core.telescope").setup()
-    end,
     dependencies = {
       "telescope-fzf-native.nvim",
       "dapc11/telescope-yaml.nvim",
     },
-    lazy = true,
-    cmd = "Telescope",
-    enabled = lvim.builtin.telescope.active,
   },
-  { "TimUntersberger/neogit", keys = { { "<C-g>", "<cmd>Neogit<cr>" } }, dependencies = "nvim-lua/plenary.nvim" },
+  {
+    "TimUntersberger/neogit",
+    keys = { { "<C-g>", "<cmd>Neogit<cr>" } },
+    dependencies = "nvim-lua/plenary.nvim",
+  },
   {
     "windwp/nvim-ts-autotag",
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
+    config = true,
   },
 }

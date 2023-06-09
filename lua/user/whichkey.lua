@@ -197,7 +197,6 @@ lvim.builtin.which_key.mappings["dF"] = {
 }
 lvim.builtin.which_key.mappings["dS"] = { "<cmd>lua require('neotest').summary.toggle()<CR>", "Test Summary" }
 
-
 lvim.builtin.which_key.mappings["x"] = {
   name = "Misc",
   c = { vim.cmd.ClearQuickfixList, "Clear QF" },
