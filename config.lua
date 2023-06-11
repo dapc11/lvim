@@ -1,5 +1,5 @@
-require("user.options")
 require("user.plugins")
+require("user.options")
 require("user.keymaps")
 require("user.autocommands")
 require("user.lsp.general")

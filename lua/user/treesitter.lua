@@ -8,8 +8,7 @@ parser_config.gotmpl = {
   used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" },
 }
 
-local parser_mapping = require("nvim-treesitter.parsers").filetype_to_parsername
-parser_mapping.xml = "html"
+vim.treesitter.language.register("html", "xml")
 
 lvim.builtin.treesitter.highlight = {
   enable = true,
