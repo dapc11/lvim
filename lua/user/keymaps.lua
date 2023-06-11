@@ -1,5 +1,6 @@
 lvim.leader = "space"
 local map = vim.keymap.set
+local fzf = require("fzf-lua")
 
 map("i", "<S-Tab>", "<C-d>")
 map("i", "<Tab>", "<C-t>")
@@ -144,10 +145,6 @@ lvim.keys.normal_mode["n"] = "nzzzv"
 lvim.keys.normal_mode["N"] = "Nzzzv"
 lvim.keys.normal_mode["<A-a>"] = "<C-a>"
 lvim.keys.normal_mode["<A-x>"] = "<C-x>"
-lvim.keys.normal_mode["<C-f>"] = require("telescope.builtin").current_buffer_fuzzy_find
-lvim.keys.normal_mode["<C-p>"] = function()
-  require("telescope").extensions.projects.projects()
-end
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<M-Left>"] = vim.cmd.bprev
 lvim.keys.normal_mode["<M-Right>"] = vim.cmd.bnext
@@ -185,10 +182,7 @@ end
 
 local tb = require("telescope.builtin")
 lvim.builtin.which_key.vmappings["f"] = {
-  function()
-    local text = vim.getVisualSelection()
-    tb.current_buffer_fuzzy_find({ default_text = text })
-  end,
+  fzf.grep_visual,
   "Current Buffer Grep Selection",
 }
 
@@ -199,10 +193,6 @@ lvim.builtin.which_key.vmappings["<leader>"] = {
   end,
   "Live Grep Selection",
 }
-lvim.keys.visual_mode["<C-f>"] = function()
-  local text = vim.getVisualSelection()
-  tb.current_buffer_fuzzy_find({ default_text = text })
-end
 
 lvim.builtin.which_key.mappings["r"] = {
   function()
@@ -210,3 +200,8 @@ lvim.builtin.which_key.mappings["r"] = {
   end,
   "Replace in file",
 }
+lvim.keys.visual_mode["<C-f>"] = fzf.grep_visual
+lvim.keys.normal_mode["<C-f>"] = fzf.lgrep_curbuf
+lvim.keys.normal_mode["<C-p>"] = function()
+  require("telescope").extensions.projects.projects()
+end

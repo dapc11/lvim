@@ -4,6 +4,23 @@ lvim.format_on_save = false
 lvim.colorscheme = "tokyonight"
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
+
+local lvim_dashboard = require("lvim.core.alpha.dashboard")
+local sections = lvim_dashboard.get_sections()
+local fzf = require("fzf-lua")
+lvim.builtin.alpha.dashboard.section.buttons.entries = {
+  { "f", lvim.icons.ui.FindFile .. "  Find File", "<CMD>FzfLua files<CR>" },
+  { "n", lvim.icons.ui.NewFile .. "  New File", "<CMD>ene!<CR>" },
+  { "p", lvim.icons.ui.Project .. "  Projects ", "<CMD>Telescope projects<CR>" },
+  { "r", lvim.icons.ui.History .. "  Recent files", "<CMD>FzfLua oldfiles <CR>" },
+  { "t", lvim.icons.ui.FindText .. "  Find Text", "<CMD>FzfLua live_grep<CR>" },
+  {
+    "c",
+    lvim.icons.ui.Gear .. "  Configuration",
+    "<CMD>edit " .. require("lvim.config"):get_user_config_path() .. " <CR>",
+  },
+  { "q", lvim.icons.ui.Close .. "  Quit", "<CMD>quit<CR>" },
+}
 lvim.builtin.terminal.active = false
 lvim.builtin.dap.active = true
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false

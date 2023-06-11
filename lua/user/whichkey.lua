@@ -9,23 +9,20 @@ lvim.builtin.which_key.setup.icons.group = " "
 
 local tb = require("telescope.builtin")
 local te = require("telescope").extensions
+local fzf = require("fzf-lua")
 
 lvim.builtin.which_key.mappings["P"] = { te.projects.projects, "Projects" }
 lvim.builtin.which_key.mappings["o"] = { tb.find_files, "Find files" }
 lvim.builtin.which_key.mappings["<leader>"] = {
-  function()
-    tb.live_grep({
-      path_display = { "truncate", shorten = { len = 3, exclude = { 1, -1 } } },
-    })
-  end,
+  fzf.live_grep,
   "Live Grep",
 }
 
 lvim.builtin.which_key.mappings["v"] = { vim.cmd.vsplit, "Split Vertically" }
 lvim.builtin.which_key.mappings["s"] = { vim.cmd.split, "Split Horizontally" }
-lvim.builtin.which_key.mappings[","] = { tb.buffers, "Buffers" }
-lvim.builtin.which_key.mappings["h"] = { tb.oldfiles, "Recent files" }
-lvim.builtin.which_key.mappings["n"] = { tb.git_files, "Find in tracked files" }
+lvim.builtin.which_key.mappings[","] = { fzf.buffers, "Buffers" }
+lvim.builtin.which_key.mappings["h"] = { fzf.oldfiles, "Recent files" }
+lvim.builtin.which_key.mappings["n"] = { fzf.git_files, "Find in tracked files" }
 lvim.builtin.which_key.mappings["N"] = {
   require("user.telescopefinders").git_unstaged,
   "Find in unstaged files",
@@ -49,7 +46,6 @@ lvim.builtin.which_key.mappings["ps"] = {
   "Sync Core Plugins",
 }
 lvim.builtin.which_key.mappings["pS"] = { vim.cmd.LvimSyncCorePlugins, "Sync Core Plugins" }
-
 lvim.builtin.which_key.mappings["f"] = {
   name = "Search",
   d = {
@@ -70,11 +66,11 @@ lvim.builtin.which_key.mappings["f"] = {
     end,
     "In repos",
   },
-  t = { tb.live_grep, "Live Grep" },
+  t = { fzf.live_grep, "Live Grep" },
   w = { tb.grep_string, "String" },
   s = { require("user.telescopefinders").spell_check, "Spelling" },
   l = { tb.resume, "Last Search" },
-  n = { tb.git_files, "Tracked File" },
+  n = { fzf.git_files, "Tracked File" },
   p = { "<cmd>silent !tmux neww tmux-sessionizer<CR>", "Tmux Session" },
   N = {
     function()
@@ -84,7 +80,7 @@ lvim.builtin.which_key.mappings["f"] = {
     end,
     "Unstaged File",
   },
-  h = { tb.oldfiles, "Recent File" },
+  h = { fzf.oldfiles, "Recent File" },
   r = { require("user.telescopefinders").repo_fd, "File in Repos" },
   g = { require("user.telescopefinders").repo_grep, "String in Repos" },
   H = { tb.highlights, "Highlight" },

@@ -4,6 +4,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "fugitiveblame",
     "Jaq",
     "qf",
+    "fzf",
     "help",
     "man",
     "lspinfo",

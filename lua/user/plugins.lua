@@ -127,4 +127,18 @@ lvim.plugins = {
     config = true,
   },
   { "tamago324/nlsp-settings.nvim", enabled = false },
+  { "junegunn/fzf", build = "./install --bin" },
+  {
+    "ibhagwan/fzf-lua",
+    config = function()
+      require("fzf-lua").setup({
+        keymaps = {
+          fzf = {
+            ["<esc>"] = "abort",
+          },
+        },
+      })
+    end,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 }
