@@ -1,7 +1,14 @@
 lvim.plugins = {
   "NvChad/nvim-colorizer.lua",
   "kylechui/nvim-surround",
-  { "mickael-menu/zk-nvim", ft = "markdown" },
+  {
+    "mickael-menu/zk-nvim",
+    config = function()
+      require("zk").setup({
+        picker = "telescope",
+      })
+    end,
+  },
   "monaqa/dial.nvim",
   "nvim-treesitter/nvim-treesitter-textobjects",
   "nvim-pack/nvim-spectre",
