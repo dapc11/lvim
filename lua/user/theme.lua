@@ -13,6 +13,10 @@ return {
     colors.bg = "#24292e"
     colors.bg_sidebar = "#282c34"
     colors.bg_float = "#24292e"
+    colors.git.change = "#7aa2f7"
+    colors.git.add = "#98c379"
+    colors.git.delete = "#e06c75"
+    colors.red = "#e06c75"
   end,
   ---@param highlights Highlights
   ---@param colors ColorScheme

@@ -1,6 +1,7 @@
 require("colorizer").setup({
   filetypes = {
     "*",
+    "lua",
     "!lazy",
   },
   user_default_options = {
