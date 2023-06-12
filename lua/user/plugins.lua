@@ -1,6 +1,7 @@
 lvim.plugins = {
   "NvChad/nvim-colorizer.lua",
   "kylechui/nvim-surround",
+  { "dapc11/vim-fugitive", cmd = "Git" },
   {
     "mickael-menu/zk-nvim",
     config = function()
