@@ -49,5 +49,6 @@ return {
     highlights.NeogitHunkHeaderHighlight = { fg = colors.fg, bold = true }
     highlights.NeogitHunkHeader = { fg = colors.blue, bold = true }
     highlights.WhichKeyFloat = { bg = colors.bg }
+    highlights.BqfPreviewFloat = { bg = colors.bg }
   end,
 }

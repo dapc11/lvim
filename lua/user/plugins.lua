@@ -140,4 +140,24 @@ lvim.plugins = {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
+  { "mbbill/undotree", keys = {
+    {
+      "<leader>u",
+      vim.cmd.UndotreeToggle,
+    },
+  } },
+  {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+    config = function()
+      require("bqf").setup({
+        func_map = {
+          fzffilter = "<C-f>",
+          filter = "<C-n>",
+          split = "<C-s>",
+          vsplit = "<C-v>",
+        },
+      })
+    end,
+  },
 }
