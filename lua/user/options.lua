@@ -23,6 +23,7 @@ lvim.builtin.alpha.dashboard.section.buttons.entries = {
 }
 lvim.builtin.terminal.active = false
 lvim.builtin.dap.active = true
+lvim.builtin.nvimtree.setup.renderer.root_folder_label = false
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.diagnostics.enable = false
@@ -32,11 +33,12 @@ lvim.builtin.nvimtree.setup.renderer.group_empty = true
 lvim.builtin.nvimtree.setup.respect_buf_cwd = false
 lvim.builtin.nvimtree.setup.renderer.icons.webdev_colors = false
 lvim.builtin.breadcrumbs.active = false
+lvim.builtin.indentlines.active = false
 lvim.builtin.bufferline.active = true
 lvim.builtin.bufferline.highlights.background.italic = false
 lvim.builtin.bufferline.highlights.buffer_selected.bold = true
 lvim.builtin.bufferline.highlights.buffer_selected.italic = false
-lvim.builtin.bufferline.options.always_show_bufferline = false
+lvim.builtin.bufferline.options.always_show_bufferline = true
 lvim.builtin.bufferline.options.show_buffer_icons = false
 lvim.builtin.bufferline.options.show_close_icon = false
 lvim.builtin.bufferline.options.show_buffer_close_icons = false
@@ -46,9 +48,11 @@ lvim.builtin.bufferline.options.modified_icon = ""
 lvim.builtin.bufferline.options.offsets = {
   {
     filetype = "NvimTree",
-    highlight = "NvimTreeNormal",
+    highlight = "Directory",
     padding = 0,
-    text = "Explorer",
+    text = function()
+      return string.upper(vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
+    end,
   },
 }
 

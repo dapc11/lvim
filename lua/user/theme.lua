@@ -50,5 +50,8 @@ return {
     highlights.NeogitHunkHeader = { fg = colors.blue, bold = true }
     highlights.WhichKeyFloat = { bg = colors.bg }
     highlights.BqfPreviewFloat = { bg = colors.bg }
+    highlights.Directory = { bold = true }
+    highlights.NvimTreeFileDirty = { fg = colors.git.change, bold = true }
+    highlights.NvimTreeGitDirty = { fg = colors.git.change, bold = true }
   end,
 }
