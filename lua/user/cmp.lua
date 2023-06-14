@@ -62,6 +62,9 @@ dict.switcher({
 cmp.setup.filetype({ "markdown" }, {
   sources = cmp.config.sources({
     { name = "dictionary", keyword_length = 2 },
+    { name = "buffer", max_item_count = 5, keyword_length = 5 },
+    { name = "path", max_item_count = 5 },
+    { name = "luasnip", max_item_count = 3 },
   }),
 })
 

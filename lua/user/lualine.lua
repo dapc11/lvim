@@ -24,7 +24,7 @@ lvim.builtin.lualine.options.section_separators = { left = "", right = "" 
 local components = require("lvim.core.lualine.components")
 
 lvim.builtin.lualine.sections.lualine_a = { "mode" }
-lvim.builtin.lualine.sections.lualine_y = { components.location, components.progress }
+lvim.builtin.lualine.sections.lualine_y = { components.progress }
 lvim.builtin.lualine.sections.lualine_z = { getLspName }
 
 local custom_theme = require("lualine.themes.auto")
