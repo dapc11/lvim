@@ -1,6 +1,12 @@
 lvim.plugins = {
   "NvChad/nvim-colorizer.lua",
   "kylechui/nvim-surround",
+  "uga-rosa/cmp-dictionary",
+  "monaqa/dial.nvim",
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  "nvim-pack/nvim-spectre",
+  "tpope/vim-unimpaired",
+  "wellle/targets.vim",
   { "dapc11/vim-fugitive", cmd = "Git" },
   {
     "mickael-menu/zk-nvim",
@@ -10,11 +16,6 @@ lvim.plugins = {
       })
     end,
   },
-  "monaqa/dial.nvim",
-  "nvim-treesitter/nvim-treesitter-textobjects",
-  "nvim-pack/nvim-spectre",
-  "tpope/vim-unimpaired",
-  "wellle/targets.vim",
   {
     "folke/tokyonight.nvim",
     lazy = false,

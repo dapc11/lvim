@@ -6,8 +6,18 @@ if not cmp_ok or cmp == nil then
     config = { sources = function(...) end },
   }
 end
-
-lvim.builtin.cmp.source = {
+lvim.builtin.cmp.formatting = {
+  source_names = {
+    nvim_lsp = "(LSP)",
+    path = "(Path)",
+    vsnip = "(Snippet)",
+    luasnip = "(Snippet)",
+    buffer = "(Buffer)",
+    treesitter = "(TreeSitter)",
+    dictionary = "(Dict)",
+  },
+}
+lvim.builtin.cmp.sources = {
   {
     name = "nvim_lsp",
     entry_filter = function(entry, ctx)
@@ -27,7 +37,35 @@ lvim.builtin.cmp.experimental = {
   custom_menu = true,
 }
 
-cmp.setup.filetype({ "gitcommit" }, {
+local dict = require("cmp_dictionary")
+dict.setup({
+  exact = 2,
+  first_case_insensitive = false,
+  document = false,
+  document_command = "wn %s -over",
+  async = false,
+  sqlite = false,
+  max_items = -1,
+  capacity = 5,
+  debug = false,
+})
+
+dict.switcher({
+  filetype = {
+    markdown = "en.dict",
+  },
+  spelllang = {
+    en = "en.dict",
+  },
+})
+
+cmp.setup.filetype({ "markdown" }, {
+  sources = cmp.config.sources({
+    { name = "dictionary", keyword_length = 2 },
+  }),
+})
+
+cmp.setup.filetype({ "gitcommit", "NeogitCommitMessage" }, {
   sources = cmp.config.sources({
     {
       name = "buffer",
@@ -41,6 +79,7 @@ cmp.setup.filetype({ "gitcommit" }, {
         end,
       },
     },
+    { name = "cmp_dictionary", keyword_length = 2 },
   }),
 })
 
