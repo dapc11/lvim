@@ -139,6 +139,7 @@ lvim.plugins = {
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = require("user.fzf")
   },
   { "mbbill/undotree", keys = {
     {
