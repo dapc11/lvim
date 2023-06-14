@@ -12,7 +12,7 @@ vim.treesitter.language.register("html", "xml")
 
 lvim.builtin.treesitter.highlight = {
   enable = true,
-  disable = { "gitcommit", "NeogitCommitMessage" },
+  disable = { "gitcommit", "NeogitCommitMessage", "java", "python", "go", "lua" },
   disable = function(_, bufnr)
     return vim.api.nvim_buf_line_count(bufnr) > 2000
   end,
