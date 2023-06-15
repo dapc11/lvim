@@ -2,6 +2,7 @@ lvim.plugins = {
   "NvChad/nvim-colorizer.lua",
   "kylechui/nvim-surround",
   "uga-rosa/cmp-dictionary",
+  "hrsh7th/cmp-nvim-lsp-signature-help",
   "monaqa/dial.nvim",
   "nvim-treesitter/nvim-treesitter-textobjects",
   "nvim-pack/nvim-spectre",
@@ -140,14 +141,17 @@ lvim.plugins = {
   {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = require("user.fzf")
+    opts = require("user.fzf"),
   },
-  { "mbbill/undotree", keys = {
-    {
-      "<leader>u",
-      vim.cmd.UndotreeToggle,
+  {
+    "mbbill/undotree",
+    keys = {
+      {
+        "<leader>u",
+        vim.cmd.UndotreeToggle,
+      },
     },
-  } },
+  },
   {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
@@ -161,5 +165,11 @@ lvim.plugins = {
         },
       })
     end,
+  },
+  {
+    "gelguy/wilder.nvim",
+    build = ":UpdateRemotePlugins",
+    dependencies = "romgrk/fzy-lua-native",
+    config = require("user.wilder"),
   },
 }

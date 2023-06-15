@@ -6,36 +6,6 @@ if not cmp_ok or cmp == nil then
     config = { sources = function(...) end },
   }
 end
-lvim.builtin.cmp.formatting = {
-  source_names = {
-    nvim_lsp = "(LSP)",
-    path = "(Path)",
-    vsnip = "(Snippet)",
-    luasnip = "(Snippet)",
-    buffer = "(Buffer)",
-    treesitter = "(TreeSitter)",
-    dictionary = "(Dict)",
-  },
-}
-lvim.builtin.cmp.sources = {
-  {
-    name = "nvim_lsp",
-    entry_filter = function(entry, ctx)
-      return cmp.lsp.CompletionItemKind.Text ~= entry:get_kind()
-    end,
-  },
-  { name = "buffer", max_item_count = 5, keyword_length = 5 },
-  { name = "path", max_item_count = 5 },
-  { name = "luasnip", max_item_count = 3 },
-  { name = "nvim_lua" },
-  { name = "treesitter" },
-}
-
-lvim.builtin.cmp.experimental = {
-  ghost_text = false,
-  native_menu = false,
-  custom_menu = true,
-}
 
 local dict = require("cmp_dictionary")
 dict.setup({
@@ -59,14 +29,44 @@ dict.switcher({
   },
 })
 
-cmp.setup.filetype({ "markdown" }, {
-  sources = cmp.config.sources({
-    { name = "dictionary", keyword_length = 2 },
-    { name = "buffer", max_item_count = 5, keyword_length = 5 },
-    { name = "path", max_item_count = 5 },
-    { name = "luasnip", max_item_count = 3 },
-  }),
-})
+lvim.builtin.cmp.formatting = {
+  source_names = {
+    nvim_lsp = "(LSP)",
+    path = "(Path)",
+    vsnip = "(Snippet)",
+    luasnip = "(Snippet)",
+    buffer = "(Buffer)",
+    treesitter = "(TreeSitter)",
+    dictionary = "(Dict)",
+  },
+}
+lvim.builtin.cmp.sources = {
+  { name = "nvim_lsp_signature_help" },
+  {
+    name = "nvim_lsp",
+    entry_filter = function(entry, ctx)
+      return cmp.lsp.CompletionItemKind.Text ~= entry:get_kind()
+    end,
+  },
+  { name = "buffer", max_item_count = 5, keyword_length = 5 },
+  { name = "path", max_item_count = 5 },
+  { name = "luasnip", max_item_count = 3 },
+  { name = "nvim_lua" },
+  { name = "treesitter" },
+  {
+    name = "dictionary",
+    keyword_length = 2,
+    entry_filter = function(entry, ctx)
+      return ctx.prev_context.filetype == "markdown"
+    end,
+  },
+}
+
+lvim.builtin.cmp.experimental = {
+  ghost_text = false,
+  native_menu = false,
+  custom_menu = true,
+}
 
 cmp.setup.filetype({ "gitcommit", "NeogitCommitMessage" }, {
   sources = cmp.config.sources({
@@ -86,4 +86,4 @@ cmp.setup.filetype({ "gitcommit", "NeogitCommitMessage" }, {
   }),
 })
 
-lvim.builtin.cmp.cmdline.enable = true
+lvim.builtin.cmp.cmdline.enable = false
