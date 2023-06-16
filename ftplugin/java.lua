@@ -79,6 +79,9 @@ local config = {
   -- for a list of options
   settings = {
     java = {
+      edit = {
+        validateAllOpenBuffersOnChanges = false,
+      },
       eclipse = {
         downloadSources = true,
       },
@@ -90,6 +93,7 @@ local config = {
         enabled = true,
         insertSpaces = true,
         settings = {
+          profile = "Code",
           url = "file://" .. home .. "/software/java_style.xml",
         },
         tabSize = 4,
@@ -103,6 +107,15 @@ local config = {
           "java",
           "javax",
           "org",
+          "",
+          "com",
+        },
+        importOrder = {
+          "java",
+          "javax",
+          "org",
+          "",
+          "junitparams",
           "",
           "com",
         },
@@ -150,9 +163,6 @@ local config = {
       signatureHelp = { enabled = true },
       configuration = {
         updateBuildConfiguration = "interactive",
-        -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
-        -- And search for `interface RuntimeOption`
-        -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
         runtimes = {
           {
             name = "JavaSE-11",
