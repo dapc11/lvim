@@ -76,14 +76,6 @@ map({ "n", "v", "x", "o" }, "ö", "{zz")
 map({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
 map({ "n", "v", "x", "o" }, "<C-u>", "<C-u>zz")
 
-require("leap").add_default_mappings()
-map({ "n", "x", "o" }, "s", function()
-  require("leap").leap({ opts = { offset = 1, inclusive_op = true } })
-end)
-map({ "n", "x", "o" }, "s", function()
-  require("leap").leap({ opts = { backward = true, offset = 1, inclusive_op = true } })
-end)
-
 lvim.keys.normal_mode["]t"] = function()
   require("neotest").jump.next({ status = "failed" })
 end

@@ -50,17 +50,6 @@ lvim.plugins = {
     },
   },
   {
-    "ggandor/leap.nvim",
-    dependencies = { "tpope/vim-repeat" },
-    opts = {
-      highlight_unlabeled = true,
-      case_sensitive = false,
-      max_highlighted_traversal_targets = nil,
-      highlight_unlabeled_phase_one_targets = false,
-      max_phase_one_targets = 0,
-    },
-  },
-  {
     "nvim-neotest/neotest",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -171,5 +160,28 @@ lvim.plugins = {
     build = ":UpdateRemotePlugins",
     dependencies = "romgrk/fzy-lua-native",
     config = require("user.wilder"),
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash Treesitter",
+      },
+    },
   },
 }
