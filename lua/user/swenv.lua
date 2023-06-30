@@ -1,4 +1,9 @@
-require("swenv").setup({
+local status_ok, swenv = pcall(require, "swenv")
+if not status_ok then
+  return
+end
+
+swenv.setup({
   -- Should return a list of tables with a `name` and a `path` entry each.
   -- Gets the argument `venvs_path` set below.
   -- By default just lists the entries in `venvs_path`.

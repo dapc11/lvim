@@ -23,7 +23,6 @@ lvim.builtin.treesitter.ensure_installed = {
   "css",
   "go",
   "gomod",
-  "help",
   "java",
   "json",
   "lua",

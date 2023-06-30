@@ -1,9 +1,15 @@
+local status_ok, neotest = pcall(require, "neotest")
+if not status_ok then
+  return
+end
+
 local mason_path = vim.fn.glob(vim.fn.stdpath("data") .. "/mason/")
+
 pcall(function()
   require("dap-python").setup(mason_path .. "packages/debugpy/venv/bin/python")
 end)
 
-require("neotest").setup({
+neotest.setup({
   adapters = {
     require("neotest-python")({
       dap = {

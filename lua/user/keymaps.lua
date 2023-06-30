@@ -1,6 +1,10 @@
+local status_ok, fzf = pcall(require, "fzf-lua")
+if not status_ok then
+  return
+end
+
 lvim.leader = "space"
 local map = vim.keymap.set
-local fzf = require("fzf-lua")
 
 map("i", "<S-Tab>", "<C-d>")
 map("i", "<Tab>", "<C-t>")
@@ -75,6 +79,15 @@ map({ "n", "v", "x", "o" }, "ä", "}zz")
 map({ "n", "v", "x", "o" }, "ö", "{zz")
 map({ "n", "v", "x", "o" }, "<C-d>", "<C-d>zz")
 map({ "n", "v", "x", "o" }, "<C-u>", "<C-u>zz")
+
+-- Close all fold except the current one.
+map("n", "zv", "zMzvzz")
+
+-- Close current fold when open. Always open next fold.
+map("n", "z<Down>", "zcjzOzz")
+
+-- Close current fold when open. Always open previous fold.
+map("n", "z<Up>", "zckzOzz")
 
 lvim.keys.normal_mode["]t"] = function()
   require("neotest").jump.next({ status = "failed" })

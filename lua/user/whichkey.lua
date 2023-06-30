@@ -1,4 +1,10 @@
-vim.g.diagnostics_visible = true
+local status_ok, fzf = pcall(require, "fzf-lua")
+if not status_ok then
+  return
+end
+
+local tb = require("telescope.builtin")
+local te = require("telescope").extensions
 
 lvim.builtin.which_key.setup.plugins.presets.motions = true
 lvim.builtin.which_key.setup.plugins.presets.nav = true
@@ -6,10 +12,6 @@ lvim.builtin.which_key.setup.plugins.presets.operators = true
 lvim.builtin.which_key.setup.plugins.presets.text_objects = true
 lvim.builtin.which_key.setup.ignore_missing = true
 lvim.builtin.which_key.setup.icons.group = " "
-
-local tb = require("telescope.builtin")
-local te = require("telescope").extensions
-local fzf = require("fzf-lua")
 
 lvim.builtin.which_key.mappings["P"] = { te.projects.projects, "Projects" }
 lvim.builtin.which_key.mappings["o"] = { tb.find_files, "Find files" }

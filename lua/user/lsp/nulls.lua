@@ -32,13 +32,14 @@ sources = {
     },
   }),
 }
+
 -- Go
-local gotest = require("go.null_ls").gotest()
-local gotest_codeaction = require("go.null_ls").gotest_action()
-local golangci_lint = require("go.null_ls").golangci_lint()
-table.insert(sources, gotest)
-table.insert(sources, golangci_lint)
-table.insert(sources, gotest_codeaction)
+local status_ok, go = pcall(require, "go.null_ls")
+if status_ok then
+  table.insert(sources, go.gotest())
+  table.insert(sources, go.gotest_action())
+  table.insert(sources, go.golangci_lint())
+end
 
 lvim.lsp.null_ls.setup = {
   root_dir = require("null-ls.utils").root_pattern(".git"),

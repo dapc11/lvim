@@ -7,7 +7,11 @@ if not cmp_ok or cmp == nil then
   }
 end
 
-local dict = require("cmp_dictionary")
+local status_ok, dict = pcall(require, "cmp_dictionary")
+if not status_ok then
+  return
+end
+
 dict.setup({
   exact = 2,
   first_case_insensitive = false,

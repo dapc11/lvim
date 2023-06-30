@@ -36,14 +36,6 @@ lvim.plugins = {
   },
   { "mfussenegger/nvim-jdtls", event = "VeryLazy" },
   {
-    "j-hui/fidget.nvim",
-    opts = {
-      window = {
-        blend = 0,
-      },
-    },
-  },
-  {
     "junegunn/vim-easy-align",
     keys = {
       { "ga", "<Plug>(EasyAlign)", mode = { "v", "n" } },
@@ -102,10 +94,6 @@ lvim.plugins = {
     },
   },
   {
-    "nvim-treesitter/nvim-treesitter",
-    commit = "71bb1da621a48856c7f8ca10e674f2ac8c0a9005",
-  },
-  {
     "stevearc/stickybuf.nvim",
     config = true,
   },
@@ -125,7 +113,6 @@ lvim.plugins = {
     "windwp/nvim-ts-autotag",
     config = true,
   },
-  { "tamago324/nlsp-settings.nvim", enabled = false },
   { "junegunn/fzf", build = "./install --bin" },
   {
     "ibhagwan/fzf-lua",

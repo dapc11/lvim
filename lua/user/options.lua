@@ -1,13 +1,12 @@
-lvim.log.level = "warn"
+lvim.log.level = "info"
 lvim.transparent_window = true
 lvim.format_on_save = false
 lvim.colorscheme = "tokyonight"
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 
-local lvim_dashboard = require("lvim.core.alpha.dashboard")
-local sections = lvim_dashboard.get_sections()
-local fzf = require("fzf-lua")
+vim.g.diagnostics_visible = true
+
 lvim.builtin.alpha.dashboard.section.buttons.entries = {
   { "f", lvim.icons.ui.FindFile .. "  Find File", "<CMD>FzfLua files<CR>" },
   { "n", lvim.icons.ui.NewFile .. "  New File", "<CMD>ene!<CR>" },

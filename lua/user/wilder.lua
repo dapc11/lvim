@@ -1,7 +1,15 @@
-local colors = require("tokyonight.colors").setup()
-return function()
-  local wilder = require("wilder")
+local status_ok, tokyonight = pcall(require, "tokyonight.colors")
+if not status_ok then
+  return
+end
 
+local status_ok, wilder = pcall(require, "wilder")
+if not status_ok then
+  return
+end
+
+local colors = tokyonight.setup()
+return function()
   wilder.setup({ modes = { ":", "/", "?" } })
 
   wilder.set_option("pipeline", {
