@@ -171,4 +171,8 @@ lvim.plugins = {
       },
     },
   },
+  {
+    "stevearc/overseer.nvim",
+    opts = require("user.overseer"),
+  },
 }

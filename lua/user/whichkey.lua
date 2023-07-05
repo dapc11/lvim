@@ -3,6 +3,11 @@ if not status_ok then
   return
 end
 
+local status_ok, overseer = pcall(require, "overseer")
+if not status_ok then
+  return
+end
+
 local tb = require("telescope.builtin")
 local te = require("telescope").extensions
 
@@ -132,6 +137,8 @@ lvim.builtin.which_key.mappings["gU"] = {
 }
 
 -- Lsp
+lvim.builtin.which_key.mappings["cr"] = { "<cmd>OverseerRun<CR>", "Run" }
+lvim.builtin.which_key.mappings["cw"] = { "<cmd>WatchRun<CR>", "Watch Run" }
 lvim.builtin.which_key.mappings["lc"] = { "<cmd>LspStop<CR>", "Stop LSP server" }
 lvim.builtin.which_key.mappings["lR"] = { "<cmd>LspRestart<CR>", "Restart LSP server" }
 lvim.builtin.which_key.mappings["lA"] = { "<cmd>lua vim.lsp.codelens.run()<CR>", "CodeLens Action" }

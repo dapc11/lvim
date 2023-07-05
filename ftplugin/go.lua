@@ -19,13 +19,6 @@ require("which-key").register({
     buffer = bufnr,
   },
   ["<leader>cc"] = { vim.cmd.GoCmt, "Generate Comment", buffer = bufnr },
-  ["<leader>cr"] = {
-    function()
-      require("user.utils").run({ "go", "run" })
-    end,
-    "Run current file",
-    buffer = bufnr,
-  },
   ["<leader>cb"] = { vim.cmd.GoBuild, "Build", buffer = bufnr },
   ["<leader>ce"] = { vim.cmd.GoGenReturn, "Generate Return", buffer = bufnr },
   ["<leader>tt"] = { vim.cmd.GoTest, "Run Tests", buffer = bufnr },

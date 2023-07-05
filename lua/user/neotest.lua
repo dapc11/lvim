@@ -10,6 +10,9 @@ pcall(function()
 end)
 
 neotest.setup({
+  consumers = {
+    overseer = require("neotest.consumers.overseer"),
+  },
   adapters = {
     require("neotest-python")({
       dap = {

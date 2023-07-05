@@ -23,13 +23,6 @@ require("which-key").register({
     buffer = bufnr,
   },
   ["<leader>cf"] = { vim.cmd.PytrizeJumpFixture, "Jump To Fixture", buffer = bufnr },
-  ["<leader>cr"] = {
-    function()
-      require("user.utils").run({ "python3" })
-    end,
-    "Run current file",
-    buffer = bufnr,
-  },
 })
 
 -- pcall(function()

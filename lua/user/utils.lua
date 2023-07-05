@@ -1,4 +1,6 @@
 local M = {}
+
+-- Not used
 function M.run(executor)
   local script = vim.fn.expand("%:p")
   vim.cmd("split")
