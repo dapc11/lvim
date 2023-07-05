@@ -1,5 +1,12 @@
 local bufnr = vim.api.nvim_get_current_buf()
 
-vim.keymap.set("n", ",", function()
-  require("user.utils").run({ "bash" })
-end, { buffer = bufnr })
+require("which-key").register({
+  ["<leader>c"] = { name = "+Bash", buffer = bufnr },
+  ["<leader>cr"] = {
+    function()
+      require("user.utils").run({ "bash" })
+    end,
+    "Run current file",
+    buffer = bufnr,
+  },
+})

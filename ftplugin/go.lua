@@ -1,4 +1,5 @@
 local bufnr = vim.api.nvim_get_current_buf()
+
 require("which-key").register({
   ["<leader>c"] = { name = "+Go", buffer = bufnr },
   ["<leader>ci"] = { vim.cmd.GoInstallDeps, "Install Go Dependencies", buffer = bufnr },
@@ -18,7 +19,13 @@ require("which-key").register({
     buffer = bufnr,
   },
   ["<leader>cc"] = { vim.cmd.GoCmt, "Generate Comment", buffer = bufnr },
-  ["<leader>cr"] = { vim.cmd.GoRun, "Run", buffer = bufnr },
+  ["<leader>cr"] = {
+    function()
+      require("user.utils").run({ "go", "run" })
+    end,
+    "Run current file",
+    buffer = bufnr,
+  },
   ["<leader>cb"] = { vim.cmd.GoBuild, "Build", buffer = bufnr },
   ["<leader>ce"] = { vim.cmd.GoGenReturn, "Generate Return", buffer = bufnr },
   ["<leader>tt"] = { vim.cmd.GoTest, "Run Tests", buffer = bufnr },
@@ -28,7 +35,3 @@ require("which-key").register({
   ["<leader>tf"] = { vim.cmd.GoTestFunc, "Test Func", buffer = bufnr },
   ["<leader>tp"] = { vim.cmd.GoTestPkg, "Test Package", buffer = bufnr },
 })
-
-vim.keymap.set("n", ",", function()
-  require("user.utils").run({ "go", "run" })
-end, { buffer = bufnr })

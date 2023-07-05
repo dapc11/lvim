@@ -12,15 +12,24 @@
 -- add2virtualenv <dir>
 
 local bufnr = vim.api.nvim_get_current_buf()
+
 require("which-key").register({
-  ["<leader>lv"] = {
+  ["<leader>c"] = { name = "+Python", buffer = bufnr },
+  ["<leader>cv"] = {
     function()
       require("swenv.api").pick_venv()
     end,
     "Pick Venv",
     buffer = bufnr,
   },
-  ["gf"] = { vim.cmd.PytrizeJumpFixture, "Jump To Fixture", buffer = bufnr },
+  ["<leader>cf"] = { vim.cmd.PytrizeJumpFixture, "Jump To Fixture", buffer = bufnr },
+  ["<leader>cr"] = {
+    function()
+      require("user.utils").run({ "python3" })
+    end,
+    "Run current file",
+    buffer = bufnr,
+  },
 })
 
 -- pcall(function()
@@ -139,7 +148,3 @@ else
 end
 
 require("lvim.lsp.manager").setup("pyright", opts)
-
-vim.keymap.set("n", ",", function()
-  require("user.utils").run({ "python3" })
-end, { buffer = bufnr })
