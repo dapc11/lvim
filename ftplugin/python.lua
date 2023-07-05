@@ -139,3 +139,7 @@ else
 end
 
 require("lvim.lsp.manager").setup("pyright", opts)
+
+vim.keymap.set("n", ",", function()
+  require("user.utils").run({ "python3" })
+end, { buffer = bufnr })

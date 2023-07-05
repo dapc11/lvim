@@ -28,3 +28,7 @@ require("which-key").register({
   ["<leader>tf"] = { vim.cmd.GoTestFunc, "Test Func", buffer = bufnr },
   ["<leader>tp"] = { vim.cmd.GoTestPkg, "Test Package", buffer = bufnr },
 })
+
+vim.keymap.set("n", ",", function()
+  require("user.utils").run({ "go", "run" })
+end, { buffer = bufnr })
